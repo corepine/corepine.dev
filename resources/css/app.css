@@ -1,0 +1,97 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Manrope', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@utility font-space {
+    font-family: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+    :root {
+        color-scheme: light;
+    }
+
+    .dark {
+        color-scheme: dark;
+    }
+}
+
+@layer components {
+    .docs-markdown h1 {
+        @apply font-space mb-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100;
+    }
+
+    .docs-markdown h2 {
+        @apply font-space mt-10 mb-3 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100;
+    }
+
+    .docs-markdown h3 {
+        @apply font-space mt-6 mb-2 text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-200;
+    }
+
+    .docs-markdown p {
+        @apply leading-7 text-zinc-700 dark:text-zinc-300;
+    }
+
+    .docs-markdown ul {
+        @apply my-4 ml-5 list-disc space-y-2 text-zinc-700 dark:text-zinc-300;
+    }
+
+    .docs-markdown ol {
+        @apply my-4 ml-5 list-decimal space-y-2 text-zinc-700 dark:text-zinc-300;
+    }
+
+    .docs-markdown a {
+        @apply font-medium text-teal-700 underline decoration-teal-400/80 decoration-2 underline-offset-4 transition hover:text-teal-600 dark:text-teal-300 dark:decoration-teal-500/70 dark:hover:text-teal-200;
+    }
+
+    .docs-markdown code {
+        @apply rounded bg-zinc-200 px-1.5 py-0.5 text-[0.92em] text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200;
+    }
+
+    .docs-markdown pre {
+        @apply my-6 overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-950 p-4 text-zinc-100 shadow-sm dark:border-zinc-700;
+    }
+
+    .docs-markdown pre code {
+        @apply bg-transparent p-0 text-zinc-100;
+    }
+
+    .docs-markdown blockquote {
+        @apply my-6 border-l-4 border-teal-500/80 bg-teal-50 px-4 py-3 text-zinc-700 dark:border-teal-500 dark:bg-teal-950/30 dark:text-zinc-200;
+    }
+
+    .docs-markdown hr {
+        @apply my-10 border-zinc-200 dark:border-zinc-800;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

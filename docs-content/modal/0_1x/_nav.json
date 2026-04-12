@@ -1,0 +1,19 @@
+{
+  "sections": [
+    {
+      "title": "Getting Started",
+      "items": [
+        { "label": "Welcome", "slug": "welcome" },
+        { "label": "Installation", "slug": "installation" },
+        { "label": "Quick Start", "slug": "quick-start" }
+      ]
+    },
+    {
+      "title": "Guides",
+      "items": [
+        { "label": "API & Events", "slug": "api-events" },
+        { "label": "Styling", "slug": "styling", "badge": "new" }
+      ]
+    }
+  ]
+}
