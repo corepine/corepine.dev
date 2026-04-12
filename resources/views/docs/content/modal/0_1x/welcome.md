@@ -1,29 +1,48 @@
-# Modal Package
+# Corepine Modal
 
-Build polished modal interactions for Laravel with a package that is fast to drop in, easy to theme, and ready for product teams.
+Corepine Modal is a stack-based modal system for Laravel Livewire.
 
-## Why Modal Exists
+If you are new to modal systems, think of it this way: you open small focused UI panels on top of your current page, complete a task, then close them without leaving the page.
 
-Corepine Modal helps you ship modal-driven UX without rebuilding the same behavior in every project.
+## What You Get
 
-### What you get
+- `modal` for centered dialogs
+- `drawer` for left/right side panels
+- `sheet` for bottom mobile-style panels
+- Stack support (open a child modal above a parent modal)
+- Typed modal classes (`extends Corepine\Modal\Modal`)
+- Standalone Blade modals when you do not need a Livewire modal class
+- Configurable events, useful for package authors and larger apps
 
-- Accessible modal primitives designed for keyboard-first navigation.
-- Predictable lifecycle hooks for loading, submit, and close states.
-- Clean defaults that stay minimal while still being production-ready.
+## How The System Works
 
-## Package Direction
+1. You render one global modal host in your layout.
+2. You define one or more modal UIs (Livewire class based or standalone Blade).
+3. You open/close them with events or helper methods.
+4. The host manages state, layering, escape behavior, and transitions.
 
-Corepine is building plug-and-go Laravel packages for modern products.
+## Which Mode Should You Choose?
 
-### Target products
+- Use `modal` for confirmations, short forms, and focused tasks.
+- Use `drawer` for contextual editing when users should still feel connected to the page underneath.
+- Use `sheet` for mobile-first interactions and quick actions near the bottom of the screen.
 
-- Ecommerce flows: checkout helpers, promotions, onboarding prompts.
-- Social features: invite dialogs, report flows, profile actions.
-- Business apps: approvals, task details, context workflows.
+Full guide: [Types & Positioning](doc:modal-types-positioning)
 
-## Start Here
+## Requirements
 
-- Continue to [Installation](doc:installation).
-- Open [Quick Start](doc:quick-start) for your first modal.
-- Explore [API & Events](doc:api-events) for advanced control.
+- PHP `^8.2|^8.3|^8.4`
+- Laravel `^11.0|^12.0|^13.0`
+- Livewire `^3.7|^4.0`
+
+## Suggested Learning Path
+
+1. [Installation](doc:installation)
+2. [Setup](doc:setup)
+3. [Tailwind Setup](doc:tailwind-setup)
+4. [Quick Start](doc:quick-start)
+5. [Open / Close APIs](doc:open-close-apis)
+
+## For Package Authors
+
+If your package may run inside many apps, avoid hardcoded event strings. Use the facade event resolver from [Events](doc:events).

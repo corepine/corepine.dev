@@ -5,14 +5,32 @@
       "items": [
         { "label": "Welcome", "slug": "welcome" },
         { "label": "Installation", "slug": "installation" },
+        { "label": "Setup", "slug": "setup" },
+        { "label": "Tailwind Setup", "slug": "tailwind-setup" },
         { "label": "Quick Start", "slug": "quick-start" }
       ]
     },
     {
-      "title": "Guides",
+      "title": "Concepts",
       "items": [
-        { "label": "API & Events", "slug": "api-events" },
-        { "label": "Styling", "slug": "styling", "badge": "new" }
+        { "label": "Types & Positioning", "slug": "modal-types-positioning" }
+      ]
+    },
+    {
+      "title": "Usage",
+      "items": [
+        { "label": "Open / Close APIs", "slug": "open-close-apis" },
+        { "label": "Standalone Blade Modal", "slug": "standalone-blade-modal", "badge": "new" }
+      ]
+    },
+    {
+      "title": "Reference",
+      "items": [
+        { "label": "Modal Attributes", "slug": "modal-attributes" },
+        { "label": "Declarative Actions", "slug": "declarative-actions" },
+        { "label": "Events", "slug": "events" },
+        { "label": "Configuration", "slug": "configuration" },
+        { "label": "Blade Components", "slug": "blade-components" }
       ]
     }
   ]

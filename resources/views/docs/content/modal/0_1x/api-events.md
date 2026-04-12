@@ -1,29 +1,7 @@
 # API & Events
 
-Control modal behavior with a compact, predictable API.
+This page is now split into focused guides:
 
-## Core Methods
-
-- `open()` opens the modal.
-- `close()` closes the modal.
-- `toggle()` flips open/closed state.
-- `title()` and `description()` set visible content.
-
-## Lifecycle Events
-
-### Before open
-
-Use preflight checks for permissions, stale state, or prerequisites.
-
-### On confirm
-
-Run save/delete workflows and surface toast feedback.
-
-### On close
-
-Reset temporary form state and clear optimistic UI markers.
-
-## Related Docs
-
-- [Quick Start](doc:quick-start)
-- [Styling](doc:styling)
+- Event system and customization: [Events](doc:events)
+- Footer action API: [Declarative Actions](doc:declarative-actions)
+- Runtime open/close helpers: [Open / Close APIs](doc:open-close-apis)

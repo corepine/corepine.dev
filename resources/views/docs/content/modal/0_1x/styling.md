@@ -1,23 +1,7 @@
 # Styling
 
-Align modal visuals with your product language while keeping defaults lightweight.
+Styling is now documented in dedicated pages:
 
-## Theme Tokens
-
-Define your color, radius, and spacing tokens in one place.
-
-### Recommended baseline
-
-- Radius: medium to large for friendlier surfaces.
-- Contrast: keep action buttons clearly separated.
-- Motion: prioritize smooth open/close transitions.
-
-## Accessibility
-
-- Keep close actions discoverable.
-- Preserve focus trap behavior.
-- Ensure interactive elements pass contrast checks.
-
-## Continue
-
-Review [API & Events](doc:api-events) for behavior-level customization.
+- CSS import and Tailwind integration: [Tailwind Setup](doc:tailwind-setup)
+- Default attributes and sizing tokens: [Configuration](doc:configuration)
+- Type layout behavior: [Types & Positioning](doc:modal-types-positioning)
