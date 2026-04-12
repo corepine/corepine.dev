@@ -37,7 +37,7 @@ class DocsController extends Controller
             currentSlug: $resolved['slug'],
         );
 
-        return response()->view('docs.show', [
+        return response()->view('docs-page', [
             'project' => $resolved['project'],
             'projectConfig' => $resolved['project_config'],
             'version' => $resolved['version'],
