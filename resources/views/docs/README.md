@@ -5,13 +5,13 @@
 Each package lives under its own directory:
 
 ```text
-resources/views/docs/content/{project}/{version_folder}/
+resources/views/docs/{project}/{version_folder}/
 ```
 
 Example:
 
 ```text
-resources/views/docs/content/modal/0_1x/
+resources/views/docs/modal/0_1x/
 ```
 
 ## Required Files Per Version

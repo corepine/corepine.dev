@@ -12,13 +12,40 @@
 
     <script>
         (() => {
-            const KEY = 'corepine-theme';
-            const stored = localStorage.getItem(KEY);
+            const LEGACY_KEY = 'corepine-theme';
+            const KEY = 'theme';
+
+            const readStoredPreference = () => {
+                try {
+                    const legacy = localStorage.getItem(LEGACY_KEY);
+                    const stored = localStorage.getItem(KEY);
+
+                    if ((stored !== 'light' && stored !== 'dark' && stored !== 'system') && (legacy === 'light' || legacy === 'dark')) {
+                        localStorage.setItem(KEY, legacy);
+                        localStorage.removeItem(LEGACY_KEY);
+
+                        return legacy;
+                    }
+
+                    if (stored === 'light' || stored === 'dark' || stored === 'system') {
+                        localStorage.removeItem(LEGACY_KEY);
+
+                        return stored;
+                    }
+                } catch (error) {
+                    // Ignore storage access issues and fall back to system mode.
+                }
+
+                return 'system';
+            };
+
+            const preference = readStoredPreference();
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+            const isDark = preference === 'dark' || (preference === 'system' && prefersDark);
 
             document.documentElement.classList.toggle('dark', isDark);
             document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+            document.documentElement.dataset.themePreference = preference;
         })();
     </script>
 
@@ -57,12 +84,29 @@
 
         <button
             type="button"
-            id="theme-toggle"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500"
-            aria-label="Toggle theme"
+            data-theme-toggle
+            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
+            aria-label="Theme toggle"
         >
-            <span class="theme-toggle-light">☀</span>
-            <span class="theme-toggle-dark hidden">☾</span>
+            <span class="sr-only">Toggle theme</span>
+
+            <span data-theme-icon="light" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                </svg>
+            </span>
+
+            <span data-theme-icon="dark" class="hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+                </svg>
+            </span>
+
+            <span data-theme-icon="system">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25" />
+                </svg>
+            </span>
         </button>
     </div>
 </header>
@@ -195,53 +239,136 @@
 
 <script>
     (() => {
-        const KEY = 'corepine-theme';
+        const LEGACY_KEY = 'corepine-theme';
+        const KEY = 'theme';
+        const CYCLE = ['light', 'dark', 'system'];
+        const LABELS = {
+            light: 'Light',
+            dark: 'Dark',
+            system: 'System',
+        };
         const root = document.documentElement;
-        const button = document.getElementById('theme-toggle');
-        const light = button?.querySelector('.theme-toggle-light');
-        const dark = button?.querySelector('.theme-toggle-dark');
+        const toggleButton = document.querySelector('[data-theme-toggle]');
+        const icons = Array.from(document.querySelectorAll('[data-theme-icon]'));
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-        const resolveTheme = () => {
-            const stored = localStorage.getItem(KEY);
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (! toggleButton || icons.length === 0) {
+            return;
+        }
 
-            return stored === 'dark' || (stored !== 'light' && prefersDark) ? 'dark' : 'light';
+        const readStoredPreference = () => {
+            try {
+                const legacy = localStorage.getItem(LEGACY_KEY);
+                const stored = localStorage.getItem(KEY);
+
+                if ((stored !== 'light' && stored !== 'dark' && stored !== 'system') && (legacy === 'light' || legacy === 'dark')) {
+                    localStorage.setItem(KEY, legacy);
+                    localStorage.removeItem(LEGACY_KEY);
+
+                    return legacy;
+                }
+
+                if (stored === 'light' || stored === 'dark' || stored === 'system') {
+                    localStorage.removeItem(LEGACY_KEY);
+
+                    return stored;
+                }
+            } catch (error) {
+                // Ignore storage access issues and fall back to system mode.
+            }
+
+            return 'system';
         };
 
-        const applyTheme = (theme) => {
+        const resolveTheme = (preference) => {
+            if (preference === 'light' || preference === 'dark') {
+                return preference;
+            }
+
+            return mediaQuery.matches ? 'dark' : 'light';
+        };
+
+        const applyThemeAndUi = (preference) => {
+            const theme = resolveTheme(preference);
             const isDark = theme === 'dark';
 
             root.classList.toggle('dark', isDark);
             root.style.colorScheme = isDark ? 'dark' : 'light';
+            root.dataset.themePreference = preference;
+
+            icons.forEach((icon) => {
+                const isVisible = icon.dataset.themeIcon === preference;
+                icon.classList.toggle('hidden', ! isVisible);
+            });
+
+            const currentIndex = CYCLE.indexOf(preference);
+            const nextPreference = CYCLE[(currentIndex + 1) % CYCLE.length];
+            const message = `Theme: ${LABELS[preference]}. Click to switch to ${LABELS[nextPreference]}.`;
+
+            toggleButton.setAttribute('aria-label', message);
+            toggleButton.setAttribute('title', message);
+            toggleButton.dataset.themeCurrent = preference;
         };
 
-        const syncIcons = () => {
-            const isDark = root.classList.contains('dark');
-            light?.classList.toggle('hidden', isDark);
-            dark?.classList.toggle('hidden', !isDark);
+        const setStoredPreference = (preference) => {
+            try {
+                if (preference === 'light' || preference === 'dark') {
+                    localStorage.setItem(KEY, preference);
+                } else {
+                    localStorage.removeItem(KEY);
+                }
+
+                localStorage.removeItem(LEGACY_KEY);
+            } catch (error) {
+                // Ignore storage access issues and keep in-memory state.
+            }
         };
 
-        button?.addEventListener('click', () => {
-            const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
-            localStorage.setItem(KEY, nextTheme);
-            applyTheme(nextTheme);
-            syncIcons();
-        });
+        const normalizePreference = (preference) => {
+            return CYCLE.includes(preference) ? preference : 'system';
+        };
 
-        window.addEventListener('pageshow', () => {
-            applyTheme(resolveTheme());
-            syncIcons();
-        });
+        const cyclePreference = () => {
+            const current = normalizePreference(toggleButton.dataset.themeCurrent ?? readStoredPreference());
+            const currentIndex = CYCLE.indexOf(current);
+            const nextPreference = CYCLE[(currentIndex + 1) % CYCLE.length];
 
+            setStoredPreference(nextPreference);
+            applyThemeAndUi(nextPreference);
+        };
+
+        const refreshFromStoredPreference = () => {
+            applyThemeAndUi(normalizePreference(readStoredPreference()));
+        };
+
+        toggleButton.addEventListener('click', cyclePreference);
+
+        if (typeof mediaQuery.addEventListener === 'function') {
+            mediaQuery.addEventListener('change', () => {
+                const preference = normalizePreference(readStoredPreference());
+
+                if (preference === 'system') {
+                    applyThemeAndUi(preference);
+                }
+            });
+        } else if (typeof mediaQuery.addListener === 'function') {
+            mediaQuery.addListener(() => {
+                const preference = normalizePreference(readStoredPreference());
+
+                if (preference === 'system') {
+                    applyThemeAndUi(preference);
+                }
+            });
+        }
+
+        window.addEventListener('pageshow', refreshFromStoredPreference);
         window.addEventListener('storage', (event) => {
-            if (event.key === KEY) {
-                applyTheme(resolveTheme());
-                syncIcons();
+            if (event.key === KEY || event.key === LEGACY_KEY) {
+                refreshFromStoredPreference();
             }
         });
 
-        applyTheme(resolveTheme());
-        syncIcons();
+        refreshFromStoredPreference();
     })();
 </script>
 </body>
