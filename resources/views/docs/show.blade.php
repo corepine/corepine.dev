@@ -44,7 +44,16 @@
             ☰
         </button>
 
-        <a href="/" class="font-space text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</a>
+        <a href="/" class="inline-flex items-center gap-2.5 rounded-lg px-1 py-0.5">
+            <img
+                src="{{ asset('brand/corepine-logo-mark.svg') }}"
+                alt="Corepine logo"
+                class="h-7 w-7 rounded-md"
+                width="28"
+                height="28"
+            >
+            <span class="font-space text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</span>
+        </a>
         <span class="hidden rounded-full border border-teal-300/70 bg-teal-100 px-2.5 py-1 text-xs font-medium text-teal-800 dark:border-teal-900 dark:bg-teal-950 dark:text-teal-300 sm:inline-flex">
             {{ $projectConfig['label'] ?? ucfirst($project) }} Docs
         </span>
@@ -102,8 +111,17 @@
         x-transition:leave-end="-translate-x-full opacity-0"
         class="fixed inset-y-0 left-0 w-[85vw] max-w-xs overflow-y-auto border-r border-zinc-200 bg-zinc-100 p-4 shadow-2xl dark:border-zinc-800 dark:bg-zinc-950"
     >
-        <div class="mb-4 flex items-center justify-between">
-            <p class="font-space text-base font-semibold tracking-tight">Documentation</p>
+        <div class="mb-4 flex items-center justify-between gap-3">
+            <div class="inline-flex items-center gap-2.5">
+                <img
+                    src="{{ asset('brand/corepine-logo-mark.svg') }}"
+                    alt="Corepine logo"
+                    class="h-7 w-7 rounded-md"
+                    width="28"
+                    height="28"
+                >
+                <p class="font-space text-base font-semibold tracking-tight">Documentation</p>
+            </div>
             <button
                 type="button"
                 class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"

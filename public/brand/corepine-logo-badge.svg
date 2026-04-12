@@ -1,0 +1,39 @@
+<svg width="1024" height="1024" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Corepine logo badge</title>
+  <desc id="desc">Corepine rounded badge logo with an orbital shell and glowing core.</desc>
+
+  <defs>
+    <linearGradient id="badge-bg" x1="68" y1="56" x2="452" y2="452" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#071126"/>
+      <stop offset="1" stop-color="#040712"/>
+    </linearGradient>
+
+    <linearGradient id="badge-shell" x1="84" y1="116" x2="438" y2="404" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5EEAD4"/>
+      <stop offset="0.5" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+
+    <radialGradient id="badge-core" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(122)">
+      <stop offset="0" stop-color="#E6FFFB"/>
+      <stop offset="0.48" stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </radialGradient>
+  </defs>
+
+  <rect x="20" y="20" width="472" height="472" rx="126" fill="url(#badge-bg)"/>
+
+  <circle cx="256" cy="256" r="172" stroke="url(#badge-shell)" stroke-width="20"/>
+  <circle cx="256" cy="256" r="132" stroke="#67E8F9" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="1 11"/>
+
+  <path d="M108 256C108 173 173 108 256 108" stroke="#A5F3FC" stroke-width="9" stroke-linecap="round"/>
+  <path d="M404 256C404 339 339 404 256 404" stroke="#67E8F9" stroke-width="9" stroke-linecap="round"/>
+
+  <circle cx="256" cy="256" r="102" fill="url(#badge-core)"/>
+  <circle cx="256" cy="256" r="48" fill="#8AF4EA"/>
+  <circle cx="256" cy="256" r="15" fill="#F0FDFF"/>
+
+  <circle cx="352" cy="220" r="7" fill="#5EEAD4"/>
+  <circle cx="176" cy="332" r="6" fill="#22D3EE"/>
+  <circle cx="220" cy="158" r="5" fill="#7DD3FC"/>
+</svg>

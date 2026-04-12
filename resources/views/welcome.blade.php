@@ -33,7 +33,16 @@
 
 <header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-zinc-100/80 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/80">
     <div class="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <a href="/" class="font-space text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</a>
+        <a href="/" class="inline-flex items-center gap-2.5 rounded-lg px-1 py-0.5">
+            <img
+                src="{{ asset('brand/corepine-logo-mark.svg') }}"
+                alt="Corepine logo"
+                class="h-8 w-8 rounded-md"
+                width="32"
+                height="32"
+            >
+            <span class="font-space text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</span>
+        </a>
         <span class="hidden rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 sm:inline-flex">
             Laravel Packages
         </span>

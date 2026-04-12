@@ -1,0 +1,51 @@
+<svg width="1024" height="1024" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Corepine logo mark CP variant</title>
+  <desc id="desc">Corepine rounded core logo with C and half-closed P monogram in the nucleus.</desc>
+
+  <defs>
+    <linearGradient id="shell-gradient" x1="86" y1="118" x2="432" y2="402" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5EEAD4"/>
+      <stop offset="0.5" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#60A5FA"/>
+    </linearGradient>
+
+    <radialGradient id="core-gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(128)">
+      <stop offset="0" stop-color="#CCFBF1"/>
+      <stop offset="0.4" stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#0B1220"/>
+    </radialGradient>
+
+    <radialGradient id="nucleus-gradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(58)">
+      <stop offset="0" stop-color="#ECFEFF"/>
+      <stop offset="0.55" stop-color="#99F6E4"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </radialGradient>
+
+    <filter id="soft-glow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feBlend in="SourceGraphic" in2="blur" mode="screen"/>
+    </filter>
+  </defs>
+
+  <circle cx="256" cy="256" r="178" stroke="url(#shell-gradient)" stroke-width="22"/>
+  <circle cx="256" cy="256" r="178" stroke="url(#shell-gradient)" stroke-width="22" opacity="0.22" filter="url(#soft-glow)"/>
+
+  <circle cx="256" cy="256" r="138" stroke="#67E8F9" stroke-opacity="0.38" stroke-width="2" stroke-dasharray="1 12"/>
+
+  <path d="M102 256C102 170 170 102 256 102" stroke="#A5F3FC" stroke-opacity="0.9" stroke-width="10" stroke-linecap="round"/>
+  <path d="M410 256C410 342 342 410 256 410" stroke="#67E8F9" stroke-opacity="0.82" stroke-width="10" stroke-linecap="round"/>
+
+  <circle cx="256" cy="256" r="106" fill="url(#core-gradient)"/>
+  <circle cx="256" cy="256" r="52" fill="url(#nucleus-gradient)"/>
+
+  <path d="M248 229C242 224 234 221 225 221C209 221 196 234 196 251C196 268 209 281 225 281C233 281 241 278 247 273" stroke="#E6FFFB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M262 223V288" stroke="#ECFEFF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M262 223H278C287 223 294 230 294 239C294 247 287 254 278 254H268" stroke="#ECFEFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <circle cx="356" cy="222" r="8" fill="#5EEAD4"/>
+  <circle cx="174" cy="334" r="7" fill="#22D3EE"/>
+  <circle cx="222" cy="154" r="6" fill="#7DD3FC"/>
+
+  <path d="M388 136L392 144L400 148L392 152L388 160L384 152L376 148L384 144L388 136Z" fill="#CCFBF1" fill-opacity="0.8"/>
+</svg>

@@ -72,26 +72,23 @@ $this->dispatch('modal.toggle', id: 'user-sheet');
 
 ## Header Options (Important)
 
-Built-in shell header options:
+Standalone now supports a named `header` slot with explicit override behavior.
 
-- `heading`
-- `description`
-- `showClose`
+When `x-slot:header` is present:
 
-If these are set, the package renders the default header.
+- Built-in `heading`/`description` are not rendered
+- Built-in close icon is not rendered
+- This is true even if the header slot is intentionally empty
 
-If you want a fully custom header style, leave `heading`/`description` empty and render your own header markup at the top of the modal body content.
+### Header Slot With Classes And Attributes
 
-Currently, standalone mode supports a named `footer` slot. There is no dedicated named `header` slot in the standalone component.
-
-### Custom Header Body Pattern
+Header slot attributes/classes are merged onto the header wrapper, so this works:
 
 ```blade
-<x-corepine.modal id="billing-help" type="modal" :show-close="false">
-    <div class="mb-4 border-b pb-3">
-        <h2 class="text-lg font-semibold">Billing Help</h2>
-        <p class="text-sm text-zinc-500">Choose what you want to do next.</p>
-    </div>
+<x-corepine.modal id="billing-help" type="modal">
+    <x-slot:header class="font-bold text-lg" data-testid="custom-header">
+        Custom header
+    </x-slot:header>
 
     <p class="text-sm">Custom content...</p>
 
@@ -100,6 +97,24 @@ Currently, standalone mode supports a named `footer` slot. There is no dedicated
     </x-slot:footer>
 </x-corepine.modal>
 ```
+
+### Intentionally Empty Header (No Close Icon)
+
+```blade
+<x-corepine.modal id="empty-header-example" type="modal">
+    <x-slot:header class="min-h-8"></x-slot:header>
+
+    <p class="text-sm">Body content without the built-in header UI.</p>
+</x-corepine.modal>
+```
+
+### Built-In Header (No Header Slot)
+
+If you do not provide `x-slot:header`, the built-in header uses:
+
+- `heading`
+- `description`
+- `showClose`
 
 ## Standalone Component Attributes
 
@@ -130,6 +145,11 @@ These are the main attributes available on `<x-corepine.modal />`:
 | `showClose` | `bool` | `true` | Built-in close button |
 | `class` | `string` | `''` | Extra panel classes |
 | `modalAttributes` | `array` | `[]` | Bulk attribute payload (merged) |
+
+Standalone named slots:
+
+- `x-slot:header`: full header override (including intentionally empty override)
+- `x-slot:footer`: custom footer content
 
 ## Event Names
 

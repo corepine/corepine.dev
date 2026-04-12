@@ -9,6 +9,11 @@ Corepine Modal ships Blade components for host setup, rendering, and actions.
 - `<x-corepine.modal.layout />`: shell layout helper for custom composition
 - `<x-corepine.modal.footer />`: shell footer rendering helper
 
+## Standalone Slots
+
+- `x-slot:header`: overrides built-in standalone header (`heading`/`description`/`showClose`)
+- `x-slot:footer`: renders custom standalone footer
+
 ## Action Components
 
 - `<x-corepine.modal.actions.open />`: declarative open trigger wrapper
