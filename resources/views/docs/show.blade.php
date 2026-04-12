@@ -9,19 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <script>
+        (() => {
+            const KEY = 'corepine-theme';
+            const stored = localStorage.getItem(KEY);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = stored === 'dark' || (stored !== 'light' && prefersDark);
+
+            document.documentElement.classList.toggle('dark', isDark);
+            document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+        })();
+    </script>
+
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
-
-    <script>
-        (() => {
-            const stored = localStorage.getItem('corepine-theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (stored === 'dark' || (!stored && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            }
-        })();
-    </script>
 </head>
 <body
     x-data="{ mobileNavOpen: false }"
@@ -197,10 +199,25 @@
 
 <script>
     (() => {
+        const KEY = 'corepine-theme';
         const root = document.documentElement;
         const button = document.getElementById('theme-toggle');
         const light = button?.querySelector('.theme-toggle-light');
         const dark = button?.querySelector('.theme-toggle-dark');
+
+        const resolveTheme = () => {
+            const stored = localStorage.getItem(KEY);
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            return stored === 'dark' || (stored !== 'light' && prefersDark) ? 'dark' : 'light';
+        };
+
+        const applyTheme = (theme) => {
+            const isDark = theme === 'dark';
+
+            root.classList.toggle('dark', isDark);
+            root.style.colorScheme = isDark ? 'dark' : 'light';
+        };
 
         const syncIcons = () => {
             const isDark = root.classList.contains('dark');
@@ -209,11 +226,25 @@
         };
 
         button?.addEventListener('click', () => {
-            root.classList.toggle('dark');
-            localStorage.setItem('corepine-theme', root.classList.contains('dark') ? 'dark' : 'light');
+            const nextTheme = root.classList.contains('dark') ? 'light' : 'dark';
+            localStorage.setItem(KEY, nextTheme);
+            applyTheme(nextTheme);
             syncIcons();
         });
 
+        window.addEventListener('pageshow', () => {
+            applyTheme(resolveTheme());
+            syncIcons();
+        });
+
+        window.addEventListener('storage', (event) => {
+            if (event.key === KEY) {
+                applyTheme(resolveTheme());
+                syncIcons();
+            }
+        });
+
+        applyTheme(resolveTheme());
         syncIcons();
     })();
 </script>
