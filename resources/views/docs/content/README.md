@@ -5,13 +5,13 @@
 Each package lives under its own directory:
 
 ```text
-docs-content/{project}/{version_folder}/
+resources/views/docs/content/{project}/{version_folder}/
 ```
 
 Example:
 
 ```text
-docs-content/modal/0_1x/
+resources/views/docs/content/modal/0_1x/
 ```
 
 ## Required Files Per Version
@@ -41,4 +41,3 @@ Current behavior:
 
 - H2 and H3 are shown in the in-page sidebar.
 - H4+ are hidden from the in-page sidebar.
-

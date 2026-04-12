@@ -33,7 +33,7 @@ class DocsService
 
     public function contentPath(string $project): string
     {
-        $path = $this->project($project)['content_path'] ?? base_path("docs-content/{$project}");
+        $path = $this->project($project)['content_path'] ?? resource_path("views/docs/content/{$project}");
 
         return rtrim($path, '/');
     }

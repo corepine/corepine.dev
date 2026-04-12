@@ -23,7 +23,11 @@
         })();
     </script>
 </head>
-<body class="min-h-full bg-zinc-100 text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
+<body
+    x-data="{ mobileNavOpen: false }"
+    x-on:keydown.escape.window="mobileNavOpen = false"
+    class="min-h-full bg-zinc-100 text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100"
+>
 <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(20,184,166,0.14),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,116,144,0.12),transparent_40%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(13,148,136,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,116,144,0.16),transparent_40%)]"></div>
     <div class="absolute inset-0 bg-[linear-gradient(rgba(24,24,27,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(24,24,27,0.03)_1px,transparent_1px)] bg-[size:22px_22px] dark:bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)]"></div>
@@ -31,6 +35,15 @@
 
 <header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-zinc-100/85 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/85">
     <div class="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <button
+            type="button"
+            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 lg:hidden dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500"
+            aria-label="Open navigation"
+            x-on:click="mobileNavOpen = true"
+        >
+            ☰
+        </button>
+
         <a href="/" class="font-space text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</a>
         <span class="hidden rounded-full border border-teal-300/70 bg-teal-100 px-2.5 py-1 text-xs font-medium text-teal-800 dark:border-teal-900 dark:bg-teal-950 dark:text-teal-300 sm:inline-flex">
             {{ $projectConfig['label'] ?? ucfirst($project) }} Docs
@@ -65,33 +78,67 @@
     </div>
 </header>
 
-<div class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-8 xl:grid-cols-[260px_minmax(0,1fr)_220px]">
-    <aside class="rounded-2xl border border-zinc-200 bg-white/70 p-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/60 lg:sticky lg:top-24 lg:h-[calc(100vh-7.5rem)] lg:overflow-y-auto">
-        <div class="space-y-6">
-            @foreach ($navigation as $section)
-                <div>
-                    @if ($section['title'] !== '')
-                        <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">{{ $section['title'] }}</h3>
-                    @endif
+<div
+    x-cloak
+    x-show="mobileNavOpen"
+    class="relative z-50 lg:hidden"
+    aria-modal="true"
+    role="dialog"
+>
+    <div
+        x-show="mobileNavOpen"
+        x-transition.opacity
+        class="fixed inset-0 bg-zinc-950/55"
+        x-on:click="mobileNavOpen = false"
+    ></div>
 
-                    <ul class="space-y-1">
-                        @foreach ($section['items'] as $item)
-                            <li>
-                                <a
-                                    href="{{ $item['url'] }}"
-                                    class="flex items-center justify-between rounded-lg px-2.5 py-2 text-sm transition {{ $item['is_active'] ? 'bg-teal-100 text-teal-900 dark:bg-teal-900/35 dark:text-teal-200' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100' }}"
-                                >
-                                    <span>{{ $item['label'] }}</span>
-                                    @if ($item['badge'])
-                                        <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-[10px] uppercase tracking-wide text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">{{ $item['badge'] }}</span>
-                                    @endif
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endforeach
+    <aside
+        x-show="mobileNavOpen"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="-translate-x-full opacity-0"
+        x-transition:enter-end="translate-x-0 opacity-100"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="translate-x-0 opacity-100"
+        x-transition:leave-end="-translate-x-full opacity-0"
+        class="fixed inset-y-0 left-0 w-[85vw] max-w-xs overflow-y-auto border-r border-zinc-200 bg-zinc-100 p-4 shadow-2xl dark:border-zinc-800 dark:bg-zinc-950"
+    >
+        <div class="mb-4 flex items-center justify-between">
+            <p class="font-space text-base font-semibold tracking-tight">Documentation</p>
+            <button
+                type="button"
+                class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+                x-on:click="mobileNavOpen = false"
+                aria-label="Close navigation"
+            >
+                ✕
+            </button>
         </div>
+
+        <label class="sr-only" for="mobile-version-switch">Version</label>
+        <select
+            id="mobile-version-switch"
+            class="mb-5 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-teal-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:border-teal-500"
+            onchange="if (this.value) window.location.href = this.value"
+        >
+            @foreach ($versions as $folder => $routeVersion)
+                <option
+                    value="{{ docs()->url($project, $currentSlug, $routeVersion) }}"
+                    @selected($routeVersion === $version)
+                >
+                    {{ $routeVersion }}@if($routeVersion === $latestVersion) · latest @endif
+                </option>
+            @endforeach
+        </select>
+
+        <div x-on:click="if ($event.target.closest('a')) mobileNavOpen = false">
+            @include('docs.partials.sidebar-nav', ['navigation' => $navigation])
+        </div>
+    </aside>
+</div>
+
+<div class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-8 xl:grid-cols-[260px_minmax(0,1fr)_220px]">
+    <aside class="hidden rounded-2xl border border-zinc-200 bg-white/70 p-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/60 lg:sticky lg:top-24 lg:block lg:h-[calc(100vh-7.5rem)] lg:overflow-y-auto">
+        @include('docs.partials.sidebar-nav', ['navigation' => $navigation])
     </aside>
 
     <main class="rounded-2xl border border-zinc-200 bg-white/75 p-6 shadow-[0_1px_0_rgba(255,255,255,0.7)] backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70 sm:p-10">
