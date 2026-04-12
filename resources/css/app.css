@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import 'highlight.js/styles/github-dark.css';
 @custom-variant dark (&:where(.dark, .dark *));
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -68,6 +69,27 @@
 
     .docs-markdown pre code {
         @apply bg-transparent p-0 text-zinc-100;
+    }
+
+    .docs-markdown table {
+        @apply my-6 w-full border-collapse overflow-x-auto rounded-xl border border-zinc-200 text-left text-sm dark:border-zinc-700;
+        display: block;
+    }
+
+    .docs-markdown thead {
+        @apply bg-zinc-100 dark:bg-zinc-800/70;
+    }
+
+    .docs-markdown th {
+        @apply border-b border-zinc-200 px-4 py-2.5 font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100;
+    }
+
+    .docs-markdown td {
+        @apply border-b border-zinc-200 px-4 py-2.5 text-zinc-700 dark:border-zinc-800 dark:text-zinc-300;
+    }
+
+    .docs-markdown tbody tr:last-child td {
+        @apply border-b-0;
     }
 
     .docs-markdown blockquote {

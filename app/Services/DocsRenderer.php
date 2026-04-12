@@ -5,7 +5,7 @@ namespace App\Services;
 use DOMDocument;
 use DOMXPath;
 use Illuminate\Support\Str;
-use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\GithubFlavoredMarkdownConverter;
 
 class DocsRenderer
 {
@@ -16,7 +16,7 @@ class DocsRenderer
 
     public function render(string $markdown, array $context): array
     {
-        $converter = new CommonMarkConverter([
+        $converter = new GithubFlavoredMarkdownConverter([
             'html_input' => 'allow',
             'allow_unsafe_links' => false,
         ]);
@@ -203,4 +203,3 @@ class DocsRenderer
         return $sanitized === '' ? $defaultSlug : $sanitized;
     }
 }
-
