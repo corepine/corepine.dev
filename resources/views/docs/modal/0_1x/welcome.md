@@ -37,11 +37,9 @@ Full guide: [Types & Positioning](doc:modal-types-positioning)
 
 ## Suggested Learning Path
 
-1. [Installation](doc:installation)
-2. [Setup](doc:setup)
-3. [Tailwind Setup](doc:tailwind-setup)
-4. [Quick Start](doc:quick-start)
-5. [Open / Close APIs](doc:open-close-apis)
+1. [Installation & Setup](doc:installation)
+2. [Quick Start](doc:quick-start)
+3. [Open / Close APIs](doc:open-close-apis)
 
 ## For Package Authors
 
