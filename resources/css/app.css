@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-@import 'highlight.js/styles/github-dark.css';
 @custom-variant dark (&:where(.dark, .dark *));
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -27,6 +26,52 @@
 
     .dark {
         color-scheme: dark;
+    }
+
+    .docs-markdown {
+        --docs-code-border: color-mix(in srgb, rgb(212 212 216) 85%, transparent);
+        --docs-code-toolbar-border: color-mix(in srgb, rgb(228 228 231) 88%, transparent);
+        --docs-code-toolbar-fg: rgb(82 82 91);
+        --docs-code-copy-bg: color-mix(in srgb, rgb(244 244 245) 92%, transparent);
+        --docs-code-copy-border: color-mix(in srgb, rgb(212 212 216) 86%, transparent);
+        --docs-code-copy-fg: rgb(63 63 70);
+        --docs-code-copy-bg-hover: rgb(244 244 245);
+        --docs-code-copy-border-hover: rgb(161 161 170);
+        --docs-code-plain: #2e3440;
+        --docs-code-comment: #616e88;
+        --docs-code-keyword: #5e81ac;
+        --docs-code-string: #6b8f71;
+        --docs-code-title: #5e81ac;
+        --docs-code-number: #b07d9c;
+        --docs-code-builtin: #8fbcbb;
+        --docs-code-type: #5a8690;
+        --docs-code-meta: #7b88a1;
+        --docs-code-tag: #5e81ac;
+        --docs-code-attr: #4c566a;
+        --docs-code-subst: #3b4252;
+    }
+
+    .dark .docs-markdown {
+        --docs-code-border: color-mix(in srgb, rgb(63 63 70) 88%, transparent);
+        --docs-code-toolbar-border: color-mix(in srgb, rgb(63 63 70) 74%, transparent);
+        --docs-code-toolbar-fg: rgb(161 161 170);
+        --docs-code-copy-bg: color-mix(in srgb, rgb(39 39 42) 92%, transparent);
+        --docs-code-copy-border: color-mix(in srgb, rgb(63 63 70) 90%, transparent);
+        --docs-code-copy-fg: rgb(228 228 231);
+        --docs-code-copy-bg-hover: rgb(39 39 42);
+        --docs-code-copy-border-hover: rgb(113 113 122);
+        --docs-code-plain: #d8dee9;
+        --docs-code-comment: #616e88;
+        --docs-code-keyword: #81a1c1;
+        --docs-code-string: #a3be8c;
+        --docs-code-title: #88c0d0;
+        --docs-code-number: #b48ead;
+        --docs-code-builtin: #ebcb8b;
+        --docs-code-type: #8fbcbb;
+        --docs-code-meta: #5e81ac;
+        --docs-code-tag: #81a1c1;
+        --docs-code-attr: #d8dee9;
+        --docs-code-subst: #e5e9f0;
     }
 }
 
@@ -64,11 +109,146 @@
     }
 
     .docs-markdown pre {
-        @apply my-6 overflow-x-auto rounded-xl border border-zinc-200 bg-zinc-950 p-4 text-zinc-100 shadow-sm dark:border-zinc-700;
+        @apply my-0 overflow-x-auto rounded-none border-0 bg-transparent p-0 text-inherit shadow-none;
     }
 
     .docs-markdown pre code {
-        @apply bg-transparent p-0 text-zinc-100;
+        @apply block min-w-max bg-transparent p-3.5 pt-3 text-sm text-inherit;
+    }
+
+    .docs-markdown .docs-code-block {
+        @apply my-6 overflow-hidden rounded-2xl border bg-zinc-50 shadow-sm dark:bg-transparent;
+        border-color: var(--docs-code-border);
+    }
+
+    .docs-markdown .docs-code-toolbar {
+        @apply flex items-center justify-between gap-3 px-4 py-2.5;
+        border-bottom: 1px solid var(--docs-code-toolbar-border);
+        background: transparent;
+    }
+
+    .docs-markdown .docs-code-language {
+        @apply font-space text-[0.68rem] font-semibold uppercase tracking-[0.18em];
+        color: var(--docs-code-toolbar-fg);
+    }
+
+    .docs-markdown .docs-code-copy {
+        @apply inline-flex items-center gap-2 rounded-lg border px-2.5 py-1.5 text-[0.72rem] font-medium transition;
+        border-color: var(--docs-code-copy-border);
+        background: var(--docs-code-copy-bg);
+        color: var(--docs-code-copy-fg);
+    }
+
+    .docs-markdown .docs-code-copy:hover {
+        border-color: var(--docs-code-copy-border-hover);
+        background: var(--docs-code-copy-bg-hover);
+    }
+
+    .docs-markdown .docs-code-copy[data-copied='true'] {
+        @apply text-teal-700 dark:text-teal-300;
+    }
+
+    .docs-markdown .docs-code-copy svg {
+        @apply h-4 w-4;
+    }
+
+    .docs-markdown .docs-code-pre {
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in srgb, rgb(161 161 170) 55%, transparent) transparent;
+    }
+
+    .docs-markdown .docs-code-pre::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .docs-markdown .docs-code-pre::-webkit-scrollbar-thumb {
+        @apply rounded-full;
+        background: color-mix(in srgb, rgb(161 161 170) 55%, transparent);
+    }
+
+    .docs-markdown .docs-code-pre::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .docs-markdown .docs-code.hljs,
+    .docs-markdown .docs-code .hljs {
+        background: transparent !important;
+    }
+
+    .docs-markdown .docs-code.hljs {
+        color: var(--docs-code-plain);
+    }
+
+    .docs-markdown .docs-code .hljs-comment,
+    .docs-markdown .docs-code .hljs-quote,
+    .docs-markdown .docs-code .hljs-doctag {
+        color: var(--docs-code-comment);
+    }
+
+    .docs-markdown .docs-code .hljs-keyword,
+    .docs-markdown .docs-code .hljs-selector-tag,
+    .docs-markdown .docs-code .hljs-literal,
+    .docs-markdown .docs-code .hljs-name {
+        color: var(--docs-code-keyword);
+    }
+
+    .docs-markdown .docs-code .hljs-string,
+    .docs-markdown .docs-code .hljs-regexp,
+    .docs-markdown .docs-code .hljs-addition,
+    .docs-markdown .docs-code .hljs-attribute,
+    .docs-markdown .docs-code .hljs-template-tag,
+    .docs-markdown .docs-code .hljs-template-variable {
+        color: var(--docs-code-string);
+    }
+
+    .docs-markdown .docs-code .hljs-title,
+    .docs-markdown .docs-code .hljs-title.class_,
+    .docs-markdown .docs-code .hljs-title.class_.inherited__,
+    .docs-markdown .docs-code .hljs-function .hljs-title,
+    .docs-markdown .docs-code .hljs-section {
+        color: var(--docs-code-title);
+    }
+
+    .docs-markdown .docs-code .hljs-number,
+    .docs-markdown .docs-code .hljs-symbol,
+    .docs-markdown .docs-code .hljs-bullet {
+        color: var(--docs-code-number);
+    }
+
+    .docs-markdown .docs-code .hljs-built_in,
+    .docs-markdown .docs-code .hljs-variable,
+    .docs-markdown .docs-code .hljs-code {
+        color: var(--docs-code-builtin);
+    }
+
+    .docs-markdown .docs-code .hljs-type,
+    .docs-markdown .docs-code .hljs-class,
+    .docs-markdown .docs-code .hljs-selector-class,
+    .docs-markdown .docs-code .hljs-selector-attr {
+        color: var(--docs-code-type);
+    }
+
+    .docs-markdown .docs-code .hljs-meta,
+    .docs-markdown .docs-code .hljs-meta .hljs-keyword,
+    .docs-markdown .docs-code .hljs-selector-pseudo {
+        color: var(--docs-code-meta);
+    }
+
+    .docs-markdown .docs-code .hljs-tag,
+    .docs-markdown .docs-code .hljs-selector-id {
+        color: var(--docs-code-tag);
+    }
+
+    .docs-markdown .docs-code .hljs-attr,
+    .docs-markdown .docs-code .hljs-property,
+    .docs-markdown .docs-code .hljs-params {
+        color: var(--docs-code-attr);
+    }
+
+    .docs-markdown .docs-code .hljs-subst,
+    .docs-markdown .docs-code .hljs-punctuation,
+    .docs-markdown .docs-code .hljs-operator {
+        color: var(--docs-code-subst);
     }
 
     .docs-markdown table {
