@@ -12,6 +12,8 @@ A user edit modal that:
 - Calls a Livewire method to persist changes
 - Closes itself after save
 
+This example uses `actions` because the footer only needs buttons. If your footer needs richer content like an input or comment composer, use a custom footer instead.
+
 ## Step 1: Create A Modal Class
 
 ```php
@@ -144,6 +146,12 @@ $this->dispatch('modal.open',
 - `actions`: footer buttons and behavior
 - `dismissible`: outside click closes modal
 - `closeOnEscape`: escape closes modal
+
+Rule of thumb:
+
+- use `actions` for button-driven footers
+- use custom footer rendering for richer interactive footer content
+- use `shell=false` only when you want to fully own the modal chrome
 
 Deep dive: [Modal Attributes](doc:modal-attributes)
 

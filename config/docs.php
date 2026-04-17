@@ -17,5 +17,15 @@ return [
                 '0_1x' => '0.1x',
             ],
         ],
+        'threads' => [
+            'label' => 'Threads',
+            'description' => 'Threaded comments and voting for Laravel + Livewire apps.',
+            'default_slug' => 'welcome',
+            'navigation_file' => '_nav.json',
+            'content_path' => resource_path('views/docs/threads'),
+            'versions' => [
+                '0_1x' => '0.1x',
+            ],
+        ],
     ],
 ];

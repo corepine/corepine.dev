@@ -25,6 +25,7 @@ Current example:
 
 ```text
 resources/views/docs/modal/0_1x/
+resources/views/docs/threads/0_1x/
 ```
 
 Each version folder should contain:
@@ -206,7 +207,9 @@ After docs changes, quickly verify:
 
 1. `/` loads
 2. `/modal/docs` loads
-3. `/modal/docs/quick-start` loads
-4. One or two sidebar links load
-5. Theme toggle cycles all 3 modes
-6. `doc:` links keep version context on non-latest URLs
+3. `/threads/docs` loads
+4. `/modal/docs/quick-start` loads
+5. `/threads/docs/installation` loads
+6. One or two sidebar links load
+7. Theme toggle cycles all 3 modes
+8. `doc:` links keep version context on non-latest URLs

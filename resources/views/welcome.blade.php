@@ -12,34 +12,28 @@
 
     <script>
         (() => {
-            const LEGACY_KEY = 'corepine-theme';
-            const KEY = 'theme';
+            const STORAGE_KEY = 'corepine-theme';
+            const LEGACY_KEY = 'theme';
 
-            const readStoredPreference = () => {
-                try {
-                    const legacy = localStorage.getItem(LEGACY_KEY);
-                    const stored = localStorage.getItem(KEY);
-
-                    if ((stored !== 'light' && stored !== 'dark' && stored !== 'system') && (legacy === 'light' || legacy === 'dark')) {
-                        localStorage.setItem(KEY, legacy);
-                        localStorage.removeItem(LEGACY_KEY);
-
-                        return legacy;
-                    }
-
-                    if (stored === 'light' || stored === 'dark' || stored === 'system') {
-                        localStorage.removeItem(LEGACY_KEY);
-
-                        return stored;
-                    }
-                } catch (error) {
-                    // Ignore storage access issues and fall back to system mode.
+            const normalizePreference = (value) => {
+                if (value === 'light' || value === 'dark' || value === 'system') {
+                    return value;
                 }
 
                 return 'system';
             };
 
-            const preference = readStoredPreference();
+            let preference = 'system';
+
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_KEY);
+                preference = normalizePreference(stored);
+                localStorage.setItem(STORAGE_KEY, preference);
+                localStorage.removeItem(LEGACY_KEY);
+            } catch (error) {
+                // Ignore storage access errors and keep system default.
+            }
+
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const isDark = preference === 'dark' || (preference === 'system' && prefersDark);
 
@@ -79,7 +73,8 @@
         <nav class="ml-auto hidden items-center gap-2 text-sm md:flex">
             <a href="#packages" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Packages</a>
             <a href="#showcase" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Showcase</a>
-            <a href="/modal/docs" class="rounded-lg bg-teal-600 px-3 py-2 font-medium text-white transition hover:bg-teal-500">Docs</a>
+            <a href="/modal/docs" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Modal Docs</a>
+            <a href="/threads/docs" class="rounded-lg bg-teal-600 px-3 py-2 font-medium text-white transition hover:bg-teal-500">Threads Docs</a>
         </nav>
 
         <button
@@ -130,6 +125,9 @@
                 <a href="/modal/docs" class="inline-flex items-center rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-500">
                     Explore Modal Docs
                 </a>
+                <a href="/threads/docs" class="inline-flex items-center rounded-xl bg-cyan-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-cyan-500">
+                    Explore Threads Docs
+                </a>
                 <a href="#packages" class="inline-flex items-center rounded-xl border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500">
                     View Package Roadmap
                 </a>
@@ -160,16 +158,16 @@
                 </div>
 
                 <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">corepine/modal</p>
-                    <p class="font-space mt-2 text-xl font-semibold">Ship interactions with zero glue code.</p>
+                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">corepine/threads</p>
+                    <p class="font-space mt-2 text-xl font-semibold">Threaded comments ready in minutes.</p>
                     <p class="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                        Add polished modal workflows, event hooks, and theme tokens in minutes. Built for practical Laravel teams.
+                        Add nested discussion, votes, and polymorphic model support with one Livewire component.
                     </p>
 
                     <div class="mt-5 grid gap-2 text-sm">
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Accessible keyboard and focus behavior</div>
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Fast setup with predictable defaults</div>
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Layout and style control for your brand</div>
+                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Polymorphic comment targets and commenters</div>
+                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Nested replies with optional upvote/downvote UX</div>
+                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Fluent panel provider for app-wide policy control</div>
                     </div>
                 </div>
             </div>
@@ -180,7 +178,7 @@
         <div class="rounded-3xl border border-zinc-200 bg-white/80 p-6 dark:border-zinc-800 dark:bg-zinc-900/70 sm:p-8">
             <h2 class="font-space text-3xl font-bold tracking-tight">Package Waves</h2>
             <p class="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-300">
-                Start with Modal docs now, then layer additional packages as they launch. This structure is designed so each package keeps its own versioned docs while sharing the same Corepine experience.
+                Corepine packages keep versioned docs per package while sharing one consistent developer experience.
             </p>
 
             <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -190,14 +188,14 @@
                     <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Dialog and workflow components for confirmations, forms, and product actions.</p>
                 </article>
                 <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Next</p>
-                    <h3 class="font-space mt-2 text-xl font-semibold">Commerce Tools</h3>
-                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Checkout helpers, discount flows, product modals, and post-purchase UX.</p>
+                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Now</p>
+                    <h3 class="font-space mt-2 text-xl font-semibold">Threads</h3>
+                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Threaded comments, nested replies, and moderation-friendly interactions for model pages.</p>
                 </article>
                 <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
                     <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Next</p>
-                    <h3 class="font-space mt-2 text-xl font-semibold">Social & Business</h3>
-                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Community prompts, moderation dialogs, and internal workflow modules.</p>
+                    <h3 class="font-space mt-2 text-xl font-semibold">Commerce & Workflows</h3>
+                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Checkout helpers, discount journeys, and internal business flow modules.</p>
                 </article>
             </div>
         </div>
@@ -210,9 +208,14 @@
                     <h2 class="font-space text-3xl font-bold tracking-tight">Showcase Ready</h2>
                     <p class="mt-2 text-zinc-600 dark:text-zinc-300">Drop your polished screenshots here as packages go live.</p>
                 </div>
-                <a href="/modal/docs" class="rounded-lg border border-zinc-300 px-3 py-2 text-sm font-medium transition hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
-                    Open docs
-                </a>
+                <div class="flex items-center gap-2">
+                    <a href="/modal/docs" class="rounded-lg border border-zinc-300 px-3 py-2 text-sm font-medium transition hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
+                        Open Modal docs
+                    </a>
+                    <a href="/threads/docs" class="rounded-lg border border-zinc-300 px-3 py-2 text-sm font-medium transition hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
+                        Open Threads docs
+                    </a>
+                </div>
             </div>
 
             <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -222,11 +225,11 @@
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
                     <div class="aspect-[4/3] rounded-xl border border-dashed border-zinc-300 bg-zinc-100/80 dark:border-zinc-700 dark:bg-zinc-900"></div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Commerce package screenshot slot</p>
+                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Threads package screenshot slot</p>
                 </div>
                 <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
                     <div class="aspect-[4/3] rounded-xl border border-dashed border-zinc-300 bg-zinc-100/80 dark:border-zinc-700 dark:bg-zinc-900"></div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Social/business package screenshot slot</p>
+                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Commerce and workflow package screenshot slot</p>
                 </div>
             </div>
         </div>
@@ -239,8 +242,8 @@
 
 <script>
     (() => {
-        const LEGACY_KEY = 'corepine-theme';
-        const KEY = 'theme';
+        const STORAGE_KEY = 'corepine-theme';
+        const LEGACY_KEY = 'theme';
         const CYCLE = ['light', 'dark', 'system'];
         const LABELS = {
             light: 'Light',
@@ -256,28 +259,28 @@
             return;
         }
 
-        const readStoredPreference = () => {
-            try {
-                const legacy = localStorage.getItem(LEGACY_KEY);
-                const stored = localStorage.getItem(KEY);
-
-                if ((stored !== 'light' && stored !== 'dark' && stored !== 'system') && (legacy === 'light' || legacy === 'dark')) {
-                    localStorage.setItem(KEY, legacy);
-                    localStorage.removeItem(LEGACY_KEY);
-
-                    return legacy;
-                }
-
-                if (stored === 'light' || stored === 'dark' || stored === 'system') {
-                    localStorage.removeItem(LEGACY_KEY);
-
-                    return stored;
-                }
-            } catch (error) {
-                // Ignore storage access issues and fall back to system mode.
+        const normalizePreference = (value) => {
+            if (value === 'light' || value === 'dark' || value === 'system') {
+                return value;
             }
 
             return 'system';
+        };
+
+        const readStoredPreference = () => {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                const legacy = localStorage.getItem(LEGACY_KEY);
+                const normalized = normalizePreference(stored ?? legacy);
+                localStorage.setItem(STORAGE_KEY, normalized);
+                localStorage.removeItem(LEGACY_KEY);
+
+                return normalized;
+            } catch (error) {
+                // Ignore storage access errors and use current in-memory state.
+            }
+
+            return normalizePreference(root.dataset.themePreference);
         };
 
         const resolveTheme = (preference) => {
@@ -311,21 +314,14 @@
         };
 
         const setStoredPreference = (preference) => {
-            try {
-                if (preference === 'light' || preference === 'dark') {
-                    localStorage.setItem(KEY, preference);
-                } else {
-                    localStorage.removeItem(KEY);
-                }
+            const normalizedPreference = normalizePreference(preference);
 
+            try {
+                localStorage.setItem(STORAGE_KEY, normalizedPreference);
                 localStorage.removeItem(LEGACY_KEY);
             } catch (error) {
                 // Ignore storage access issues and keep in-memory state.
             }
-        };
-
-        const normalizePreference = (preference) => {
-            return CYCLE.includes(preference) ? preference : 'system';
         };
 
         const cyclePreference = () => {
@@ -363,7 +359,7 @@
 
         window.addEventListener('pageshow', refreshFromStoredPreference);
         window.addEventListener('storage', (event) => {
-            if (event.key === KEY || event.key === LEGACY_KEY) {
+            if (event.key === STORAGE_KEY || event.key === LEGACY_KEY) {
                 refreshFromStoredPreference();
             }
         });

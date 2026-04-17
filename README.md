@@ -8,7 +8,8 @@ Corepine focuses on plug-and-go package building blocks for real product teams, 
 
 - Marketing landing page (`/`)
 - Versioned package docs
-- First package docs: Modal (`/modal/docs`)
+- Package docs: Modal (`/modal/docs`)
+- Package docs: Threads (`/threads/docs`)
 
 ## Local Development
 

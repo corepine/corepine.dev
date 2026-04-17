@@ -1,0 +1,29 @@
+{
+  "sections": [
+    {
+      "title": "Getting Started",
+      "items": [
+        { "label": "Welcome", "slug": "welcome" },
+        { "label": "Installation", "slug": "installation" },
+        { "label": "Setup", "slug": "setup" },
+        { "label": "Quick Start", "slug": "quick-start" }
+      ]
+    },
+    {
+      "title": "Customization",
+      "items": [
+        { "label": "Panel Provider", "slug": "panel-provider" },
+        { "label": "Actions", "slug": "actions" },
+        { "label": "Configuration", "slug": "configuration" }
+      ]
+    },
+    {
+      "title": "Usage",
+      "items": [
+        { "label": "Programmatic Comments", "slug": "programmatic-comments" },
+        { "label": "Votes", "slug": "votes" },
+        { "label": "Relationships", "slug": "relationships" }
+      ]
+    }
+  ]
+}

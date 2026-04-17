@@ -12,12 +12,25 @@ Corepine Modal ships Blade components for host setup, rendering, and actions.
 ## Standalone Slots
 
 - `x-slot:header`: overrides built-in standalone header (`heading`/`description`/`showClose`)
-- `x-slot:footer`: renders custom standalone footer
+- `x-slot:footer`: renders custom standalone footer, including richer content such as inputs or composed actions
 
 ## Action Components
 
 - `<x-corepine.modal.actions.open />`: declarative open trigger wrapper
 - `<x-corepine.modal.actions.close />`: declarative close trigger wrapper
+
+## Footer Composition Guidance
+
+Use declarative `actions` when you only need footer buttons.
+
+Use `x-slot:footer` or `<x-corepine.modal.footer />` when the footer needs arbitrary UI such as:
+
+- comment inputs
+- upload controls
+- helper text
+- mixed button and form layouts
+
+Keep the shell enabled for those cases unless you need full manual modal chrome.
 
 ## Example: Open Wrapper
 

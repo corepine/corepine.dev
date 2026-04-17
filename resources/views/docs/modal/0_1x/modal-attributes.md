@@ -38,12 +38,12 @@ Learn these before everything else:
 | `destroyOnClose` | `bool` | `true` | Remove layer state after close. |
 | `dispatchCloseEvent` | `bool` | `false` | Emit close event for the component layer. |
 | `blur` | `bool` | `false` | Scrim blur effect. |
-| `shell` | `bool` | `true` | Built-in shell (header/body/footer). |
+| `shell` | `bool` | `true` | Built-in shell (header/body/footer). Set `false` only for fully manual modal chrome. |
 | `heading` | `string \| null` | `null` | Shell heading text. |
 | `description` | `string \| null` | `null` | Shell description text. |
 | `showClose` | `bool` | `true` | Show close icon in shell header. |
 | `footerActionsAlignment` | `Alignment \| string` | `end` | Footer action alignment. |
-| `actions` | `array` | `[]` | Declarative footer actions. |
+| `actions` | `array` | `[]` | Declarative footer buttons. Use custom footer content for richer interactive footers. |
 | `class` | `string` | `''` | Extra panel class names. |
 
 ## Type Behavior Rules
@@ -89,6 +89,16 @@ Learn these before everything else:
     'dragCloseThreshold' => 0.35,
 ]
 ```
+
+## Footer Guidance
+
+Use `actions` for simple shell footer buttons such as `Cancel`, `Save`, or `Delete`.
+
+If your footer needs richer content such as an input, comment composer, upload UI, or mixed layout, use custom footer rendering instead of encoding that into `actions`.
+
+- Standalone Blade mode: use `x-slot:footer`
+- Custom shell composition: use `<x-corepine.modal.footer />`
+- Full manual modal layout: set `shell=false`
 
 ## Related
 
