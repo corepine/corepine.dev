@@ -25,7 +25,7 @@ $this->closeModal(
     dispatchTo: ['orders.table' => ['sync-user' => ['user' => 5]]],
 );
 $this->closeTopModal(
-    count: 2,
+    layers: 2,
     dispatch: ['users-refreshed' => ['user' => 5]],
 );
 $this->closeAll(
@@ -38,7 +38,7 @@ What each method does:
 - `openModal(component, arguments)`: opens a standard modal stack item
 - `openBottomSheet(component, arguments)`: opens as a sheet from bottom
 - `closeModal(destroy?, dispatch?, dispatchTo?)`: closes current top layer and can dispatch follow-up events after close
-- `closeTopModal(count, destroy?, dispatch?, dispatchTo?)`: closes top `count` layers and can dispatch follow-up events after close
+- `closeTopModal(layers, destroy?, dispatch?, dispatchTo?)`: closes top `layers` layers and can dispatch follow-up events after close
 - `closeAll(destroy?, dispatch?, dispatchTo?)`: clears the full stack and can dispatch follow-up events after close
 
 `dispatch` emits regular Livewire/browser events after the close completes.
@@ -55,7 +55,7 @@ $this->dispatch('modal.open',
     arguments: ['user' => 5],
 );
 
-$this->dispatch('modal.close', count: 1);
+$this->dispatch('modal.close', layers: 1);
 $this->dispatch('modal.close-all');
 ```
 
@@ -74,7 +74,7 @@ Alpine style with `@click`:
 
     <button
         type="button"
-        @click="$dispatch('modal.close', { count: 1 })"
+        @click="$dispatch('modal.close', { layers: 1 })"
     >
         Close Top
     </button>
@@ -93,7 +93,7 @@ Livewire attribute style with `wire:click`:
 
 <button
     type="button"
-    wire:click="$dispatch('modal.close', { count: 1 })"
+    wire:click="$dispatch('modal.close', { layers: 1 })"
 >
     Close Top
 </button>
@@ -111,7 +111,7 @@ Livewire attribute style with `wire:click`:
 </x-corepine.modal.actions.open>
 
 <x-corepine.modal.actions.close
-    count="1"
+    layers="1"
     :destroy="true"
     :dispatch="['users-refreshed' => ['user' => $user->id]]"
     :dispatch-to="['orders.table' => ['sync-user' => ['user' => $user->id]]]"
@@ -139,15 +139,12 @@ For standalone Blade modals (`<x-corepine.modal id="..." />`), the close helper 
 If the close helper is rendered inside a standalone modal, it automatically detects the nearest modal id and closes that modal.
 
 ```blade
-<x-corepine.modal id="user-sheet" type="drawer" heading="Rollup Post">
-    <x-slot:header class="flex items-start justify-between gap-4">
-        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Our Modals</h2>
+<x-corepine.modal id="user-sheet" type="drawer">
+    <x-slot:header>
+        <h2 >Our Modals</h2>
 
-        <x-corepine.modal.close class="rounded-md border p-2">
-            <span class="sr-only">Close</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+        <x-corepine.modal.close>
+            Close
         </x-corepine.modal.close>
     </x-slot:header>
 

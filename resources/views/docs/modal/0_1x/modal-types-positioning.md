@@ -88,36 +88,47 @@ For `sheet`, both are always bottom.
 
 ## Examples
 
+These examples use the full `modalAttributes()` method because that is how you normally define them in a modal class.
+
 ### Top Modal
 
 ```php
-[
-    'type' => 'modal',
-    'placement' => 'top',
-    'origin' => 'top',
-]
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'modal',
+        'placement' => 'top',
+        'origin' => 'top',
+    ];
+}
 ```
 
 ### Left Drawer
 
 ```php
-[
-    'type' => 'drawer',
-    'placement' => 'left',
-]
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'drawer',
+        'placement' => 'left',
+    ];
+}
 ```
 
 ### Draggable Sheet With Taller Start Height
 
 ```php
-[
-    'type' => 'sheet',
-    'height' => '70vh',
-    'maxHeight' => '90vh',
-    'draggable' => true,
-    'showDragHandle' => true,
-    'dragCloseThreshold' => 0.35,
-]
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'sheet',
+        'height' => '70vh',
+        'maxHeight' => '90vh',
+        'draggable' => true,
+        'showDragHandle' => true,
+        'dragCloseThreshold' => 0.35,
+    ];
+}
 ```
 
 ## Continue

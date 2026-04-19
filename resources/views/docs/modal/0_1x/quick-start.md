@@ -14,20 +14,21 @@ A user edit modal that:
 
 This example uses `actions` because the footer only needs buttons. If your footer needs richer content like an input or comment composer, use a custom footer instead.
 
-## Step 1: Create A Modal Class
+## Step 1: Create A Modal File
+
+For example, create `resources/views/livewire/modals/edit-user.blade.php`:
 
 ```php
 <?php
-
-namespace App\Livewire\Modals;
 
 use App\Models\User;
 use Corepine\Modal\Actions\Action;
 use Corepine\Modal\Enums\ModalType;
 use Corepine\Modal\Modal;
 use Corepine\Support\Enums\Placement;
+use Illuminate\Support\Facades\Gate;
 
-class EditUser extends Modal
+new class extends Modal
 {
     public User $user;
 
@@ -35,6 +36,8 @@ class EditUser extends Modal
 
     public function mount(User $user): void
     {
+        Gate::authorize('update', $user);
+
         $this->user = $user;
         $this->name = $user->name;
     }
@@ -60,17 +63,21 @@ class EditUser extends Modal
 
     public function save(): void
     {
-       // ...
+        Gate::authorize('update', $this->user);
+
+        // ...
         $this->closeModal();
     }
+};
+?>
 
-    public function render()
-    {
-        return view('livewire.modals.edit-user');
-    }
-}
+<div>
+    <label for="edit-user-name">Name</label>
+    <input id="edit-user-name" type="text" wire:model="name" />
+</div>
 ```
 
+Security note: modal components do not automatically perform authentication or authorization checks for you. Add your own access checks where needed, then see [Security](doc:security) for patterns such as auth checks, policies, and re-authorizing mutating methods.
 
 ## Step 3: Open The Modal From Blade
 

@@ -11,7 +11,8 @@
     {
       "title": "Concepts",
       "items": [
-        { "label": "Types & Placements", "slug": "modal-types-positioning" }
+        { "label": "Types & Placements", "slug": "modal-types-positioning" },
+        { "label": "Security", "slug": "security", "badge": "new" }
       ]
     },
     {

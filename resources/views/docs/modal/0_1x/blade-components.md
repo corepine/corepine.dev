@@ -9,6 +9,8 @@ Corepine Modal ships Blade components for host setup, rendering, and actions.
 - `<x-corepine.modal.layout />`: shell layout helper for custom composition when you want to own the modal structure
 - `<x-corepine.modal.footer />`: shell footer rendering helper
 
+If `<x-corepine.modal.layout />` receives submit attributes such as `wire:submit` or `x-on:submit`, it automatically renders its outer wrapper as a form.
+
 ## Standalone Slots
 
 - `x-slot:header`: overrides built-in standalone header (`heading`/`description`/`showClose`)
@@ -57,7 +59,7 @@ Keep the shell enabled for those cases unless you need full manual modal chrome.
 
 ```blade
 <x-corepine.modal.actions.close
-    count="1"
+    layers="1"
     :destroy="true"
     :dispatch="['users-refreshed' => ['user' => $user->id]]"
     :dispatch-to="['orders.table' => ['sync-user' => ['user' => $user->id]]]"

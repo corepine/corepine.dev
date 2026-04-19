@@ -3,15 +3,15 @@
 Corepine Modal exposes incoming and outgoing events.
 
 - Incoming events are commands sent to the modal host.
-- Outgoing events are notifications emitted by the host after state changes.
+- Outgoing events are notifications dispatched by the host after state changes.
 - Close commands can also carry post-close dispatch instructions.
 
 ## Default Incoming Events
 
 - `modal.open`: open a modal component/layer
 - `modal.open-sheet`: open as sheet mode
-- `modal.close`: close specific/current layer and optionally pass `destroy`, `dispatch`, or `dispatchTo`
-- `modal.close-top`: close N layers from top and optionally pass `count`, `destroy`, `dispatch`, or `dispatchTo`
+- `modal.close`: close specific/current layer and optionally pass `layers`, `destroy`, `dispatch`, or `dispatchTo`
+- `modal.close-top`: close N layers from top and optionally pass `layers`, `destroy`, `dispatch`, or `dispatchTo`
 - `modal.close-all`: close the entire stack and optionally pass `destroy`, `dispatch`, or `dispatchTo`
 - `modal.destroy`: remove modal state entry
 - `modal.reset`: reset host modal state
@@ -19,18 +19,18 @@ Corepine Modal exposes incoming and outgoing events.
 
 ## Default Outgoing Events
 
-- `modal.opened`: emitted after a layer opens
-- `modal.closed`: emitted after a layer closes
-- `modal.changed`: emitted when stack state changes
-- `modal.all-closed`: emitted when stack becomes empty
+- `modal.opened`: dispatched after a layer opens
+- `modal.closed`: dispatched after a layer closes
+- `modal.changed`: dispatched when stack state changes
+- `modal.all-closed`: dispatched when stack becomes empty
 - `modal.component-closed`: optional component-level close event when the modal enables `dispatchCloseEvent`
 
 ## Post-Close Dispatch Payloads
 
-`dispatch` and `dispatchTo` are not part of the built-in outgoing event list above. They are extra events you ask the modal to emit after a close succeeds.
+`dispatch` and `dispatchTo` are not part of the built-in outgoing event list above. They are extra events you ask the modal to dispatch after a close succeeds.
 
-- `dispatch`: emit normal Livewire/browser events after close
-- `dispatchTo`: emit targeted Livewire events to a named component after close
+- `dispatch`: dispatch normal Livewire/browser events after close
+- `dispatchTo`: dispatch targeted Livewire events to a named component after close
 
 These payloads can be sent with `modal.close`, `modal.close-top`, and `modal.close-all`, or configured directly on modal actions and modal components.
 
@@ -48,7 +48,7 @@ $this->closeModal(
 );
 ```
 
-If you want a modal component to emit events every time it closes, define the close hooks on the modal class:
+If you want a modal component to dispatch events every time it closes, define the close hooks on the modal class:
 
 ```php
 protected function dispatchCloseEvents(): array

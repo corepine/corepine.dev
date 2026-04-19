@@ -57,7 +57,7 @@ Use `attributes([...])` when you need HTML or Livewire attributes on the rendere
 ## Common Fluent Helpers
 
 - `method()` / `action()`
-- `close(count, destroy, closeAll)`
+- `close(layers, destroy, closeAll)`
 - `dispatch()` / `dispatchTo()` on close actions
 - `disabled()`
 - `visible()`
