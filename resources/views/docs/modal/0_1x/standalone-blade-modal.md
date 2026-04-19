@@ -70,6 +70,37 @@ $this->dispatch('modal.close', id: 'user-sheet');
 $this->dispatch('modal.toggle', id: 'user-sheet');
 ```
 
+## Standalone Close Helper
+
+Inside a standalone modal, `<x-corepine.modal.close />` automatically detects the nearest standalone modal id and closes that modal.
+
+```blade
+<x-corepine.modal id="user-sheet" type="drawer" heading="Rollup Post">
+    <x-slot:header class="flex items-start justify-between gap-4">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Our Modals</h2>
+
+        <x-corepine.modal.close class="rounded-md border p-2">
+            <span class="sr-only">Close</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </x-corepine.modal.close>
+    </x-slot:header>
+
+    <p class="text-sm text-zinc-600 dark:text-zinc-300">Standalone modal body</p>
+</x-corepine.modal>
+```
+
+If you want to target a specific standalone modal explicitly, use `modal-id`:
+
+```blade
+<x-corepine.modal.close modal-id="user-sheet">
+    Close
+</x-corepine.modal.close>
+```
+
+Use `modal-id` instead of `id` so you can still use the normal HTML `id` attribute on the rendered button.
+
 ## Header Options (Important)
 
 Standalone now supports a named `header` slot with explicit override behavior.

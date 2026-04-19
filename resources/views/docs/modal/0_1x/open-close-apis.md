@@ -99,6 +99,39 @@ Livewire attribute style with `wire:click`:
 
 These wrappers are useful for reusable, declarative UI elements.
 
+### Standalone Modal Close Helper
+
+For standalone Blade modals (`<x-corepine.modal id="..." />`), the close helper can now target the standalone modal directly.
+
+If the close helper is rendered inside a standalone modal, it automatically detects the nearest modal id and closes that modal.
+
+```blade
+<x-corepine.modal id="user-sheet" type="drawer" heading="Rollup Post">
+    <x-slot:header class="flex items-start justify-between gap-4">
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Our Modals</h2>
+
+        <x-corepine.modal.close class="rounded-md border p-2">
+            <span class="sr-only">Close</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </x-corepine.modal.close>
+    </x-slot:header>
+
+    <p>Body content...</p>
+</x-corepine.modal>
+```
+
+If you need to close a different standalone modal explicitly, pass `modal-id`:
+
+```blade
+<x-corepine.modal.close modal-id="user-sheet">
+    Close
+</x-corepine.modal.close>
+```
+
+`modal-id` is separate from the button's normal HTML `id` attribute.
+
 ## Optional Non-Livewire JS Fallback
 
 If you are outside Livewire, browser events are still supported (`window.dispatchEvent(new CustomEvent(...))`).
