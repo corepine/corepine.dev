@@ -14,7 +14,7 @@ These concepts apply to:
 Learn these before everything else:
 
 - `type`
-- `position`
+- `placement`
 - `heading`
 - `description`
 - `actions`
@@ -26,8 +26,8 @@ Learn these before everything else:
 | Key | Type | Default | What It Controls |
 | --- | --- | --- | --- |
 | `type` | `modal \| drawer \| sheet` | `modal` | Visual presentation mode. |
-| `position` | `Placement \| string` | by type | Panel placement. `sheet` is always bottom. |
-| `origin` | `Placement \| string` | follows type/position | Transform origin for motion feel. |
+| `placement` | `Placement \| string` | by type | Panel placement. `sheet` is always bottom. |
+| `origin` | `Placement \| string` | follows type/placement | Transform origin for motion feel. |
 | `size` | `string` | `default` | Width token from config or custom classes. |
 | `height` | `string \| number \| null` | `null` | Panel height (or initial sheet height). |
 | `maxHeight` | `string \| number \| null` | `null` | Maximum panel height cap. |
@@ -50,11 +50,11 @@ Learn these before everything else:
 
 ## Type Behavior Rules
 
-- `sheet` always resolves to `position=bottom` and `origin=bottom`.
+- `sheet` always resolves to `placement=bottom` and `origin=bottom`.
 - `drawer` only accepts `left` and `right`.
 - `modal` accepts `center`, `top`, `bottom`, `left`, `right`.
-- Invalid drawer position falls back to `right`.
-- Invalid modal position falls back to `center`.
+- Invalid drawer placement falls back to `right`.
+- Invalid modal placement falls back to `center`.
 
 ## Example Presets
 
@@ -65,7 +65,7 @@ public static function modalAttributes(): array
 {
     return [
         'type' => 'modal',
-        'position' => 'center',
+        'placement' => 'center',
         'heading' => 'Edit Profile',
         'dismissible' => true,
     ];
@@ -79,7 +79,7 @@ public static function modalAttributes(): array
 {
     return [
         'type' => 'drawer',
-        'position' => 'right',
+        'placement' => 'right',
         'size' => 'xl',
     ];
 }

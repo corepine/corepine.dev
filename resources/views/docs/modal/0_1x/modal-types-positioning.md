@@ -1,4 +1,4 @@
-# Types & Positioning
+# Types & Placements
 
 Corepine Modal supports three presentation types. Choosing the right one improves UX more than styling tweaks.
 
@@ -15,14 +15,14 @@ public static function modalAttributes(): array
 {
     return [
         'type' => 'modal',
-        'position' => 'center',
+        'placement' => 'center',
         'origin' => 'center',
         'heading' => 'Edit User',
     ];
 }
 ```
 
-`modal` supports these positions:
+`modal` supports these placements:
 
 - `center`
 - `top`
@@ -39,13 +39,13 @@ public static function modalAttributes(): array
 {
     return [
         'type' => 'drawer',
-        'position' => 'right',
+        'placement' => 'right',
         'heading' => 'Filters',
     ];
 }
 ```
 
-Drawer position rules:
+Drawer placement rules:
 
 - Valid: `left`, `right`
 - Any invalid value falls back to `right`
@@ -69,20 +69,20 @@ public static function modalAttributes(): array
 
 Sheet behavior rules:
 
-- Position is always `bottom`
+- Placement is always `bottom`
 - Origin is always `bottom`
 - `draggable` defaults to enabled for sheets
 - `showDragHandle` follows `draggable` by default
 - `dragCloseThreshold` controls how far users drag before closing
 
-## Position vs Origin
+## Placement vs Origin
 
-- `position` controls where the panel appears.
+- `placement` controls where the panel appears.
 - `origin` controls transform origin (animation direction emphasis).
 
 For `modal`, you can set both.
 
-For `drawer`, origin follows side position.
+For `drawer`, origin follows side placement.
 
 For `sheet`, both are always bottom.
 
@@ -93,7 +93,7 @@ For `sheet`, both are always bottom.
 ```php
 [
     'type' => 'modal',
-    'position' => 'top',
+    'placement' => 'top',
     'origin' => 'top',
 ]
 ```
@@ -103,7 +103,7 @@ For `sheet`, both are always bottom.
 ```php
 [
     'type' => 'drawer',
-    'position' => 'left',
+    'placement' => 'left',
 ]
 ```
 

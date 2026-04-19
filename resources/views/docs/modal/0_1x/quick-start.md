@@ -43,7 +43,7 @@ class EditUser extends Modal
     {
         return [
             'type' => ModalType::Modal,
-            'position' => Placement::Center,
+            'placement' => Placement::Center,
             'origin' => Placement::Center,
             'shell' => true,
             'heading' => 'Edit User',
@@ -121,7 +121,7 @@ $this->dispatch('modal.open',
 ## Most Important Attributes To Learn First
 
 - `type`: chooses `modal`, `drawer`, or `sheet`
-- `position`: controls placement
+- `placement`: controls placement
 - `heading` and `description`: shell header text
 - `actions`: footer buttons and behavior
 - `dismissible`: outside click closes modal
@@ -143,5 +143,5 @@ Details and examples: [Standalone Blade Modal](doc:standalone-blade-modal)
 
 ## Next Pages
 
-- Learn type behavior and placement rules: [Types & Positioning](doc:modal-types-positioning)
+- Learn type behavior and placement rules: [Types & Placements](doc:modal-types-positioning)
 - Learn all open/close options: [Open / Close APIs](doc:open-close-apis)

@@ -20,7 +20,7 @@ If you are new to modal systems, think of it this way: you open small focused UI
 - Use `drawer` for contextual editing when users should still feel connected to the page underneath.
 - Use `sheet` for mobile-first interactions and quick actions near the bottom of the screen.
 
-Full guide: [Types & Positioning](doc:modal-types-positioning)
+Full guide: [Types & Placements](doc:modal-types-positioning)
 
 ## Requirements
 

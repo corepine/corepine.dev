@@ -2,7 +2,7 @@
 
 Standalone Blade modals use the same modal system as the normal Livewire modal flow.
 
-The same core attributes still apply, such as `type`, `position`, `heading`, `description`, and `showClose`. See [Attributes](#standalone-component-attributes).
+The same core attributes still apply, such as `type`, `placement`, `heading`, `description`, and `showClose`. See [Attributes](#standalone-component-attributes).
 
 Use standalone mode when you want that modal behavior without creating a Livewire modal class.
 
@@ -215,7 +215,7 @@ These are the main attributes available on `<x-corepine.modal />`:
 | `drawer` | `bool \| null` | `null` | Legacy/shortcut to force drawer mode |
 | `sheet` | `bool \| null` | `null` | Legacy/shortcut to force sheet mode |
 | `bottomSheet` | `bool \| null` | `null` | Legacy sheet alias |
-| `position` | `string \| null` | by type | Placement (`sheet` always bottom) |
+| `placement` | `string \| null` | by type | Placement (`sheet` always bottom) |
 | `origin` | `string \| null` | by type | Transform origin |
 | `size` | `string` | `default` | Width token or class string |
 | `height` | `string \| number \| null` | `null` | Panel/initial sheet height |
@@ -253,6 +253,6 @@ If you are outside Livewire, you can still trigger standalone modals with browse
 
 ## Continue
 
-- Full type and position behavior: [Types & Positioning](doc:modal-types-positioning)
+- Full type and placement behavior: [Types & Placements](doc:modal-types-positioning)
 - Full attribute reference (shared concepts): [Modal Attributes](doc:modal-attributes)
 - Manual shell composition for `shell=false`: [Custom Layouts](doc:custom-layouts)
