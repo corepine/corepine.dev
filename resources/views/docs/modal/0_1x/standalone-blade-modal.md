@@ -109,7 +109,6 @@ When `x-slot:header` is present:
 
 - Built-in `heading`/`description` are not rendered
 - Built-in close icon is not rendered
-- This is true even if the header slot is intentionally empty
 
 ### Header Slot With Classes And Attributes
 
@@ -129,12 +128,10 @@ Header slot attributes/classes are merged onto the header wrapper, so this works
 </x-corepine.modal>
 ```
 
-### Intentionally Empty Header (No Close Icon)
+### No Built-In Header
 
 ```blade
 <x-corepine.modal id="empty-header-example" type="modal">
-    <x-slot:header class="min-h-8"></x-slot:header>
-
     <p class="text-sm">Body content without the built-in header UI.</p>
 </x-corepine.modal>
 ```
@@ -181,7 +178,7 @@ These are the main attributes available on `<x-corepine.modal />`:
 
 Standalone named slots:
 
-- `x-slot:header`: full header override (including intentionally empty override)
+- `x-slot:header`: full header override
 - `x-slot:footer`: custom footer content
 
 ## Event Names

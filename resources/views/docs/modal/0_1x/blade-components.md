@@ -19,7 +19,7 @@ Corepine Modal ships Blade components for host setup, rendering, and actions.
 - `x-slot:header` on `<x-corepine.modal.layout />`: overrides built-in layout header (`heading`/`description`/`showClose`)
 - `x-slot:footer` on `<x-corepine.modal.layout />`: renders a composed footer area
 
-If the layout `header` slot exists, the layout component ignores `heading`, `description`, and `showClose`. This is also true for an intentionally empty header slot.
+If the layout `header` slot exists, the layout component ignores `heading`, `description`, and `showClose`.
 
 If no `header` slot is provided, the built-in close icon is now auto-shown only when the built-in header has a `heading` or `description`. Use `showClose="true"` if you want the close icon without header text.
 
