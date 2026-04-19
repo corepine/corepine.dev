@@ -1,8 +1,12 @@
 # Standalone Blade Modal
 
-Use standalone mode when you want a modal UI without creating a Livewire modal class.
+Standalone Blade modals use the same modal system as the normal Livewire modal flow.
 
-Good for simple dialogs, quick sheets, and static interaction blocks.
+The same core attributes still apply, such as `type`, `position`, `heading`, `description`, and `showClose`. See [Attributes](#standalone-component-attributes).
+
+Use standalone mode when you want that modal behavior without creating a Livewire modal class.
+
+It is especially useful for simple modals, quick sheets, and static interaction blocks.
 
 ## A Basic Example
 
@@ -94,8 +98,6 @@ Global host:
 
 ## Header And Footer Options
 
-Once the base modal makes sense, you can decide how much of the built-in chrome you want to keep.
-
 ### Built-In Header And Docked Footer
 
 If you pass `heading` or `description`, the built-in header is rendered.
@@ -137,8 +139,9 @@ You can still keep the docked footer at the bottom with `x-slot:footer`:
         <button type="button">Done</button>
     </x-slot:footer>
 </x-corepine.modal>
+```
 
-The classes and attributes on `x-slots` are merged onto the rendered wrappers:
+The classes and attributes on `x-slots` are merged onto the rendered wrappers.
  
 ## Standalone Close Helper
 
