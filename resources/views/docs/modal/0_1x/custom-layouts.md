@@ -33,11 +33,69 @@ Then render your own layout in the modal view:
     description="Search and view users in your system."
 >
     {{-- Content --}}
-    
+
 </x-corepine.modal.layout>
 ```
 
 In this mode, `<x-corepine.modal.layout />` becomes your shell helper.
+
+## Submit Directly From The Layout
+
+If you put a submit handler on the layout itself, the outer wrapper automatically becomes a real `<form>`.
+
+You can do this with `wire:submit...` or `x-on:submit...`.
+
+That means you do not need to create another form inside the modal.
+
+```blade
+<x-corepine.modal.layout
+    heading="Manage Users"
+    description="Search and view users in your system."
+    wire:submit="save"
+>
+    {{-- Content --}}
+
+    <x-slot:footer>
+        <button type="submit">
+            Save
+        </button>
+    </x-slot:footer>
+</x-corepine.modal.layout>
+```
+
+When submit attributes are present, the layout:
+
+- renders the outer wrapper as a form
+- includes CSRF automatically for non-GET forms
+- spoofs `PUT`, `PATCH`, and `DELETE` methods when needed
+
+## Modal Form
+
+This is the usual pattern when your modal is really a form:
+
+```blade
+<x-corepine.modal.layout
+    heading="Manage Users"
+    description="Search and view users in your system."
+    wire:submit="save"
+>
+    {{-- Content --}}
+
+    <x-slot:footer>
+        <x-corepine.modal.close>
+            Cancel
+        </x-corepine.modal.close>
+
+        <button type="submit">
+            Save
+        </button>
+    </x-slot:footer>
+</x-corepine.modal.layout>
+```
+
+Because the layout becomes the form, you do not need to add another `<form>` inside it.
+
+The standalone `<x-corepine.modal />` component supports the same submit-aware form behavior too.
 
 ## Adding A Footer
 
@@ -94,11 +152,6 @@ When `x-slot:header` is present:
 
 If you do not provide a custom `header` slot, the built-in close icon is auto by default. That means it appears only when built-in `heading` or `description` text exists, unless you explicitly set `showClose=true`.
 
-## Rule Of Thumb
-
-- Use built-in shell plus `actions` for simple confirm/cancel dialogs
-- Use built-in shell plus custom footer for richer footer content
-- Use `shell=false` plus `<x-corepine.modal.layout />` when you want full manual layout control
 
 ## Related
 

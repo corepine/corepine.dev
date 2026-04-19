@@ -142,6 +142,40 @@ You can still keep the docked footer at the bottom with `x-slot:footer`:
 ```
 
 The classes and attributes on `x-slots` are merged onto the rendered wrappers.
+
+## Modal Form
+
+If you put a submit handler on `<x-corepine.modal />`, the modal panel itself becomes a real `<form>`.
+
+You can do this with `wire:submit...` or `x-on:submit...`.
+
+```blade
+<x-corepine.modal
+    id="billing-help"
+    type="modal"
+    heading="Billing Help"
+    description="Quick answers for your billing questions."
+    wire:submit="save"
+>
+    {{-- Content --}}
+
+    <x-slot:footer>
+        <x-corepine.modal.close>
+            Cancel
+        </x-corepine.modal.close>
+
+        <button type="submit">
+            Save
+        </button>
+    </x-slot:footer>
+</x-corepine.modal>
+```
+
+When submit attributes are present, the modal:
+
+- renders the panel as a form
+- includes CSRF automatically for non-GET forms
+- spoofs `PUT`, `PATCH`, and `DELETE` methods when needed
  
 ## Standalone Close Helper
 
