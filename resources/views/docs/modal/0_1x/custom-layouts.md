@@ -6,14 +6,9 @@ This is the usual pattern when `shell=false`.
 
 ## When To Use This
 
-Use a custom layout when you need:
+Use a custom layout when the built-in shell is too limited.
 
-- a fully custom header
-- a toolbar or search UI above the body
-- a composed footer with forms, filters, counters, or mixed actions
-- your own spacing and section structure
-
-If you only need standard heading, description, close button, and simple footer buttons, keep the built-in shell.
+If you only need the standard heading, description, close button, and simple footer actions, keep the built-in shell.
 
 ## Basic Pattern
 
@@ -38,6 +33,7 @@ Then render your own layout in the modal view:
     description="Search and view users in your system."
 >
     {{-- Content --}}
+    
 </x-corepine.modal.layout>
 ```
 
@@ -54,16 +50,13 @@ If you want a footer that is docked to the bottom automatically, use the `footer
     heading="Manage Users"
     description="Search and view users in your system."
 >
+
     {{-- Content --}}
 
     <x-slot:footer>
         <x-corepine.modal.close>
             Cancel
         </x-corepine.modal.close>
-
-        <button type="button">
-            Save
-        </button>
     </x-slot:footer>
 </x-corepine.modal.layout>
 ```
@@ -100,41 +93,6 @@ When `x-slot:header` is present:
 - your custom header is rendered instead
 
 If you do not provide a custom `header` slot, the built-in close icon is auto by default. That means it appears only when built-in `heading` or `description` text exists, unless you explicitly set `showClose=true`.
-
-## Full Example
-
-Here is a fuller example with heading, description, custom content, and footer actions:
-
-```blade
-<x-corepine.modal.layout
-    heading="Manage Users"
-    description="Search and view users in your system."
->
-    {{-- Content --}}
-
-    <x-slot:footer>
-        <x-corepine.modal.close>
-            Cancel
-        </x-corepine.modal.close>
-
-        <button type="button">
-            Save
-        </button>
-    </x-slot:footer>
-</x-corepine.modal.layout>
-```
-
-## No Built-In Header
-
-If you want no built-in header chrome at all, just omit `heading` and `description`:
-
-```blade
-<x-corepine.modal.layout>
-    {{-- Content --}}
-</x-corepine.modal.layout>
-```
-
-Because `showClose` is auto by default, omitting `heading` and `description` also keeps the built-in close button hidden.
 
 ## Rule Of Thumb
 
