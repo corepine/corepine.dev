@@ -47,6 +47,10 @@ Keep the shell enabled for those cases unless you need full manual modal chrome.
 <x-corepine.modal.actions.open component="modals.edit-user" :arguments="['user' => $user->id]">
     <button type="button">Edit</button>
 </x-corepine.modal.actions.open>
+
+<x-corepine.modal.actions.open modal-id="user-sheet">
+    <button type="button">Open Sheet</button>
+</x-corepine.modal.actions.open>
 ```
 
 ## Example: Close Wrapper
@@ -65,6 +69,8 @@ Keep the shell enabled for those cases unless you need full manual modal chrome.
 `dispatch` fires regular follow-up events after close.
 
 `dispatchTo` fires targeted Livewire events after close.
+
+Use `modal-id` on open/close helpers when you want to target a standalone modal by id.
 
 ## Continue
 

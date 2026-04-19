@@ -106,6 +106,10 @@ Livewire attribute style with `wire:click`:
     <button type="button">Edit</button>
 </x-corepine.modal.actions.open>
 
+<x-corepine.modal.actions.open modal-id="user-sheet">
+    <button type="button">Open Sheet</button>
+</x-corepine.modal.actions.open>
+
 <x-corepine.modal.actions.close
     count="1"
     :destroy="true"
@@ -117,6 +121,16 @@ Livewire attribute style with `wire:click`:
 ```
 
 These wrappers are useful for reusable, declarative UI elements.
+
+### Standalone Modal Open Helper
+
+If you want to open a standalone Blade modal by id, pass `modal-id`:
+
+```blade
+<x-corepine.modal.actions.open modal-id="user-sheet">
+    <button type="button">Open Sheet</button>
+</x-corepine.modal.actions.open>
+```
 
 ### Standalone Modal Close Helper
 
@@ -149,7 +163,7 @@ If you need to close a different standalone modal explicitly, pass `modal-id`:
 </x-corepine.modal.close>
 ```
 
-`modal-id` is separate from the button's normal HTML `id` attribute.
+`modal-id` is separate from the button's normal HTML `id` attribute and is supported by both open and close helpers.
 
 ## Optional Non-Livewire JS Fallback
 
