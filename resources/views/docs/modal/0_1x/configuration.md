@@ -4,56 +4,55 @@ Corepine Modal configuration lives in `config/corepine-modal.php`.
 
 You get this file after publishing config.
 
-## Main Sections
+## Example Config File
+
+This is the shape of the config in one place:
+
+```php
+return [
+    'events' => [
+        'listen' => [
+            'open' => 'corepine.modal.open',
+            'close' => 'corepine.modal.close',
+        ],
+        'dispatch' => [
+            'opened' => 'corepine.modal.opened',
+            'closed' => 'corepine.modal.closed',
+        ],
+    ],
+
+    'defaults' => [
+        'attributes' => [
+            'closeOnEscape' => true,
+            'dismissible' => true,
+            'size' => 'lg',
+            'blur' => true,
+        ],
+    ],
+
+    'sizes' => [
+        'default' => 'max-w-xl sm:max-w-full',
+        'editor' => 'max-w-[960px]',
+        'wide-sheet' => 'max-w-[1200px]',
+    ],
+];
+```
+
+## Main Parts
 
 - `events.listen`: incoming command event names
 - `events.dispatch`: outgoing notification event names
 - `defaults.attributes`: global default modal attributes
 - `sizes`: reusable width tokens
 
-## Example: Customize Defaults
+## Using A Size Token
 
-```php
-'defaults' => [
-    'attributes' => [
-        'closeOnEscape' => true,
-        'dismissible' => true,
-        'size' => 'lg',
-        'blur' => true,
-    ],
-],
-```
-
-## Example: Add Size Tokens
-
-```php
-'sizes' => [
-    'default' => 'max-w-xl sm:max-w-full',
-    'editor' => 'max-w-[960px]',
-    'wide-sheet' => 'max-w-[1200px]',
-],
-```
-
-Then use it in modal attributes:
+Once a size token exists in config, use it in modal attributes:
 
 ```php
 [
     'size' => 'editor',
 ]
-```
-
-## Example: Namespace Events
-
-```php
-'events' => [
-    'listen' => [
-        'open' => 'corepine.modal.open',
-        'close' => 'corepine.modal.close',
-    ],
-    'dispatch' => [
-        'opened' => 'corepine.modal.opened',
-    ],
-],
 ```
 
 ## Recommended Strategy
