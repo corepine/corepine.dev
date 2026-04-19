@@ -38,25 +38,20 @@ Then render your own layout in the modal view:
     description="Search and view users in your system."
     :showClose="false"
 >
-    <div class="space-y-4">
-        <p class="text-sm text-zinc-600 dark:text-zinc-300">
-            Search and view users in your system.
-        </p>
-    </div>
+    
+       {{--Content--}}
 
     <x-slot:footer>
-        <div class="flex w-full justify-end gap-2">
-            <x-corepine.modal.close>
-                Cancel
-            </x-corepine.modal.close>
+        <div class="flex justify-end">
+            <x-corepine.modal.close> Cancel </x-corepine.modal.close>
 
-            <button type="button" class="rounded-md bg-zinc-900 px-3 py-2 text-sm text-white dark:bg-zinc-100 dark:text-zinc-900">
-                Save
-            </button>
+            <button type="button">Save</button>
         </div>
     </x-slot:footer>
 </x-corepine.modal.layout>
 ```
+
+
 
 In this mode, `<x-corepine.modal.layout />` becomes your shell helper.
 
@@ -74,12 +69,10 @@ If you do not provide a custom `header` slot, the built-in close icon is auto by
 ## Custom Header Example
 
 ```blade
-<x-corepine.modal.layout
->
+<x-corepine.modal.layout>
+
     <x-slot:header>
-        <h2>
-            Team Directory
-        </h2>
+        <h2> Team Directory </h2>
 
         <x-corepine.modal.close>
             Close
