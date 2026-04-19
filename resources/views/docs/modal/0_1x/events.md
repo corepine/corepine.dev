@@ -4,14 +4,15 @@ Corepine Modal exposes incoming and outgoing events.
 
 - Incoming events are commands sent to the modal host.
 - Outgoing events are notifications emitted by the host after state changes.
+- Close commands can also carry post-close dispatch instructions.
 
 ## Default Incoming Events
 
 - `modal.open`: open a modal component/layer
 - `modal.open-sheet`: open as sheet mode
-- `modal.close`: close specific/current layer
-- `modal.close-top`: close N layers from top
-- `modal.close-all`: close the entire stack
+- `modal.close`: close specific/current layer and optionally pass `destroy`, `dispatch`, or `dispatchTo`
+- `modal.close-top`: close N layers from top and optionally pass `count`, `destroy`, `dispatch`, or `dispatchTo`
+- `modal.close-all`: close the entire stack and optionally pass `destroy`, `dispatch`, or `dispatchTo`
 - `modal.destroy`: remove modal state entry
 - `modal.reset`: reset host modal state
 - `modal.toggle`: toggle by id
@@ -22,7 +23,50 @@ Corepine Modal exposes incoming and outgoing events.
 - `modal.closed`: emitted after a layer closes
 - `modal.changed`: emitted when stack state changes
 - `modal.all-closed`: emitted when stack becomes empty
-- `modal.component-closed`: optional component-level close event
+- `modal.component-closed`: optional component-level close event when the modal enables `dispatchCloseEvent`
+
+## Post-Close Dispatch Payloads
+
+`dispatch` and `dispatchTo` are not part of the built-in outgoing event list above. They are extra events you ask the modal to emit after a close succeeds.
+
+- `dispatch`: emit normal Livewire/browser events after close
+- `dispatchTo`: emit targeted Livewire events to a named component after close
+
+These payloads can be sent with `modal.close`, `modal.close-top`, and `modal.close-all`, or configured directly on modal actions and modal components.
+
+```php
+$this->closeModal(
+    destroy: false,
+    dispatch: [
+        'users-refreshed' => ['user' => $this->user->id],
+    ],
+    dispatchTo: [
+        'orders.table' => [
+            'sync-user' => ['user' => $this->user->id],
+        ],
+    ],
+);
+```
+
+If you want a modal component to emit events every time it closes, define the close hooks on the modal class:
+
+```php
+protected function dispatchCloseEvents(): array
+{
+    return [
+        'users-refreshed' => ['user' => $this->user->id],
+    ];
+}
+
+protected function dispatchCloseEventsTo(): array
+{
+    return [
+        'orders.table' => [
+            'sync-user' => ['user' => $this->user->id],
+        ],
+    ];
+}
+```
 
 ## Listening In JavaScript
 

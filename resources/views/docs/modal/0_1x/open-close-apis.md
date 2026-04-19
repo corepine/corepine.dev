@@ -19,17 +19,31 @@ $this->openModal('modals.edit-user', ['user' => 5]);
 $this->openBottomSheet('modals.user-sheet', ['user' => 5]);
 
 $this->closeModal();
-$this->closeTopModal(2);
-$this->closeAll();
+$this->closeModal(
+    destroy: false,
+    dispatch: ['users-refreshed' => ['user' => 5]],
+    dispatchTo: ['orders.table' => ['sync-user' => ['user' => 5]]],
+);
+$this->closeTopModal(
+    count: 2,
+    dispatch: ['users-refreshed' => ['user' => 5]],
+);
+$this->closeAll(
+    dispatchTo: ['orders.table' => ['sync-user' => ['user' => 5]]],
+);
 ```
 
 What each method does:
 
 - `openModal(component, arguments)`: opens a standard modal stack item
 - `openBottomSheet(component, arguments)`: opens as a sheet from bottom
-- `closeModal()`: closes current top layer
-- `closeTopModal(count)`: closes top `count` layers
-- `closeAll()`: clears the full stack
+- `closeModal(destroy?, dispatch?, dispatchTo?)`: closes current top layer and can dispatch follow-up events after close
+- `closeTopModal(count, destroy?, dispatch?, dispatchTo?)`: closes top `count` layers and can dispatch follow-up events after close
+- `closeAll(destroy?, dispatch?, dispatchTo?)`: clears the full stack and can dispatch follow-up events after close
+
+`dispatch` emits regular Livewire/browser events after the close completes.
+
+`dispatchTo` emits targeted Livewire events after the close completes.
 
 ## Dispatch Events From Livewire PHP
 
@@ -92,7 +106,12 @@ Livewire attribute style with `wire:click`:
     <button type="button">Edit</button>
 </x-corepine.modal.actions.open>
 
-<x-corepine.modal.actions.close count="1" :destroy="true">
+<x-corepine.modal.actions.close
+    count="1"
+    :destroy="true"
+    :dispatch="['users-refreshed' => ['user' => $user->id]]"
+    :dispatch-to="['orders.table' => ['sync-user' => ['user' => $user->id]]]"
+>
     Close
 </x-corepine.modal.actions.close>
 ```

@@ -2,6 +2,8 @@
 
 This page is the complete reference for `modalAttributes()` and runtime modal options.
 
+Unless noted otherwise, every PHP example on this page shows the return value of `public static function modalAttributes(): array`.
+
 These concepts apply to:
 
 - Livewire modal class mode (`extends Corepine\Modal\Modal`)
@@ -38,10 +40,10 @@ Learn these before everything else:
 | `destroyOnClose` | `bool` | `true` | Remove layer state after close. |
 | `dispatchCloseEvent` | `bool` | `false` | Emit close event for the component layer. |
 | `blur` | `bool` | `false` | Scrim blur effect. |
-| `shell` | `bool` | `true` | Built-in shell (header/body/footer). Set `false` only for fully manual modal chrome. |
+| `shell` | `bool` | `true` | Built-in shell (header/body/footer). Set `false` when you want to render your own chrome, usually with `<x-corepine.modal.layout />`. |
 | `heading` | `string \| null` | `null` | Shell heading text. |
 | `description` | `string \| null` | `null` | Shell description text. |
-| `showClose` | `bool` | `true` | Show close icon in shell header. |
+| `showClose` | `bool \| null` | `auto` | Show close icon in shell header. Auto means the icon appears only when built-in `heading` or `description` content exists. Ignored when a custom layout or standalone `header` slot overrides the built-in header. |
 | `footerActionsAlignment` | `Alignment \| string` | `end` | Footer action alignment. |
 | `actions` | `array` | `[]` | Declarative footer buttons. Use custom footer content for richer interactive footers. |
 | `class` | `string` | `''` | Extra panel class names. |
@@ -59,35 +61,44 @@ Learn these before everything else:
 ### Standard Dialog
 
 ```php
-[
-    'type' => 'modal',
-    'position' => 'center',
-    'heading' => 'Edit Profile',
-    'dismissible' => true,
-]
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'modal',
+        'position' => 'center',
+        'heading' => 'Edit Profile',
+        'dismissible' => true,
+    ];
+}
 ```
 
 ### Right Drawer
 
 ```php
-[
-    'type' => 'drawer',
-    'position' => 'right',
-    'size' => 'xl',
-]
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'drawer',
+        'position' => 'right',
+        'size' => 'xl',
+    ];
+}
 ```
 
 ### Draggable Bottom Sheet
 
 ```php
-[
-    'type' => 'sheet',
-    'height' => '70vh',
-    'maxHeight' => '90vh',
-    'draggable' => true,
-    'showDragHandle' => true,
-    'dragCloseThreshold' => 0.35,
-]
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'sheet',
+        'height' => '70vh',
+        'maxHeight' => '90vh',
+        'draggable' => true,
+        'showDragHandle' => true,
+        'dragCloseThreshold' => 0.35,
+    ];
+}
 ```
 
 ## Footer Guidance
@@ -98,10 +109,22 @@ If your footer needs richer content such as an input, comment composer, upload U
 
 - Standalone Blade mode: use `x-slot:footer`
 - Custom shell composition: use `<x-corepine.modal.footer />`
-- Full manual modal layout: set `shell=false`
+- Full manual modal layout: set `shell=false` and render `<x-corepine.modal.layout />`
+
+## Header Override Rule
+
+If you render a custom `header` slot on `<x-corepine.modal />` or `<x-corepine.modal.layout />`, the built-in header props stop applying for that component instance.
+
+- `heading` is ignored
+- `description` is ignored
+- `showClose` is ignored
+- the custom header markup is rendered instead
+
+Without a custom header slot, `showClose` is auto by default. That means the built-in close icon stays hidden when both `heading` and `description` are empty, unless you explicitly set `showClose=true`.
 
 ## Related
 
 - Action payloads and fluent API: [Declarative Actions](doc:declarative-actions)
 - Standalone-specific attribute usage: [Standalone Blade Modal](doc:standalone-blade-modal)
+- Manual shell composition: [Custom Layouts](doc:custom-layouts)
 - Runtime behavior and custom events: [Events](doc:events)

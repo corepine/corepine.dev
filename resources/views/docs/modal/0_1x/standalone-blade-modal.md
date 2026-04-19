@@ -147,6 +147,8 @@ If you do not provide `x-slot:header`, the built-in header uses:
 - `description`
 - `showClose`
 
+By default, `showClose` is auto. If both `heading` and `description` are empty, the built-in close button stays hidden unless you explicitly pass `show-close="true"`.
+
 ## Standalone Component Attributes
 
 These are the main attributes available on `<x-corepine.modal />`:
@@ -173,7 +175,7 @@ These are the main attributes available on `<x-corepine.modal />`:
 | `blur` | `bool` | `false` | Backdrop blur |
 | `heading` | `string \| null` | `null` | Built-in header title |
 | `description` | `string \| null` | `null` | Built-in header subtitle |
-| `showClose` | `bool` | `true` | Built-in close button |
+| `showClose` | `bool \| null` | `auto` | Built-in close button. Auto shows it only when built-in `heading` or `description` exists. |
 | `class` | `string` | `''` | Extra panel classes |
 | `modalAttributes` | `array` | `[]` | Bulk attribute payload (merged) |
 

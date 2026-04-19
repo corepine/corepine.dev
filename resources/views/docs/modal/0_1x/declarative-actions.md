@@ -6,6 +6,8 @@ This keeps your modal shell consistent while still calling component methods.
 
 Use `actions` when your footer is button-driven.
 
+`actions` accepts an array of action definitions.
+
 If you need richer footer content such as inputs, comment composers, uploads, or mixed layouts, keep the shell and render a custom footer instead of stretching `actions` beyond buttons.
 
 ## Two Action Types
@@ -18,38 +20,45 @@ If you need richer footer content such as inputs, comment composers, uploads, or
 ```php
 use Corepine\Modal\Actions\Action;
 
-'actions' => [
-    Action::make('cancel')
-        ->label('Cancel')
-        ->close(),
+public static function modalAttributes(): array
+{
+    return [
+        'actions' => [
+            Action::make('cancel')
+                ->label('Cancel')
+                ->attributes([
+                    'class' => 'min-w-24',
+                ])
+                ->dispatch([
+                    'users-refreshed' => ['user' => 5],
+                ])
+                ->dispatchTo([
+                    'orders.table' => [
+                        'sync-user' => ['user' => 5],
+                    ],
+                ])
+                ->close(),
 
-    Action::make('save')
-        ->label('Save')
-        ->primary()
-        ->action('save'),
-]
+            Action::make('save')
+                ->label('Save')
+                ->primary()
+                ->attributes([
+                    'wire:loading.attr' => 'disabled',
+                    'wire:target' => 'save',
+                ])
+                ->action('save'),
+        ],
+    ];
+}
 ```
 
-## Equivalent Array Example
-
-```php
-'actions' => [
-    [
-        'type' => 'close',
-        'label' => 'Cancel',
-    ],
-    [
-        'type' => 'method',
-        'label' => 'Save',
-        'method' => 'save',
-    ],
-]
-```
+Use `attributes([...])` when you need HTML or Livewire attributes on the rendered action button.
 
 ## Common Fluent Helpers
 
 - `method()` / `action()`
 - `close(count, destroy, closeAll)`
+- `dispatch()` / `dispatchTo()` on close actions
 - `disabled()`
 - `visible()`
 - `color()` and shortcuts (`primary`, `danger`, `success`, `warning`, `info`, `gray`, `dark`)
@@ -66,9 +75,11 @@ For most CRUD modals, start with:
 
 Then expand with color/disabled/visibility rules as needed.
 
-## When Not To Use `actions`
+## Footer Guidance
 
-Use a custom footer when the footer needs arbitrary UI, for example:
+Use `actions` when the footer is mostly buttons.
+
+Use a custom footer when the footer needs richer UI, for example:
 
 - text inputs or comment fields
 - helper text or validation messaging

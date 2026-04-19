@@ -14,13 +14,6 @@ If you are new to modal systems, think of it this way: you open small focused UI
 - Standalone Blade modals when you do not need a Livewire modal class
 - Configurable events, useful for package authors and larger apps
 
-## How The System Works
-
-1. You render one global modal host in your layout.
-2. You define one or more modal UIs (Livewire class based or standalone Blade).
-3. You open/close them with events or helper methods.
-4. The host manages state, layering, escape behavior, and transitions.
-
 ## Which Mode Should You Choose?
 
 - Use `modal` for confirmations, short forms, and focused tasks.

@@ -60,14 +60,7 @@ class EditUser extends Modal
 
     public function save(): void
     {
-        $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-        ]);
-
-        $this->user->update([
-            'name' => $this->name,
-        ]);
-
+       // ...
         $this->closeModal();
     }
 
@@ -78,19 +71,6 @@ class EditUser extends Modal
 }
 ```
 
-## Step 2: Add The Modal View
-
-```blade
-<div class="space-y-4">
-    <label class="block text-sm font-medium">Name</label>
-
-    <input
-        type="text"
-        wire:model.defer="name"
-        class="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700 dark:bg-zinc-900"
-    />
-</div>
-```
 
 ## Step 3: Open The Modal From Blade
 

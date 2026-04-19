@@ -84,13 +84,6 @@ npm run dev
 
 If styles still look unchanged, restart the watcher once.
 
-## Quick Verification Checklist
-
-- The modal opens when you dispatch `modal.open`
-- Escape closes the modal when `closeOnEscape` is enabled
-- The package CSS is imported in your app stylesheet
-- Stack mode has one global `<x-corepine.modal.assets />` host in the layout
-
 ## Next Step
 
 Build your first modal flow here: [Quick Start](doc:quick-start)
