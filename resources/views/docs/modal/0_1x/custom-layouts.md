@@ -82,9 +82,9 @@ This is the usual pattern when your modal is really a form:
     {{-- Content --}}
 
     <x-slot:footer>
-        <x-corepine.modal.close>
+        <x-corepine.modal.actions.close>
             Cancel
-        </x-corepine.modal.close>
+        </x-corepine.modal.actions.close>
 
         <button type="submit">
             Save
@@ -112,9 +112,9 @@ If you want a footer that is docked to the bottom automatically, use the `footer
     {{-- Content --}}
 
     <x-slot:footer>
-        <x-corepine.modal.close>
+        <x-corepine.modal.actions.close>
             Cancel
-        </x-corepine.modal.close>
+        </x-corepine.modal.actions.close>
     </x-slot:footer>
 </x-corepine.modal.layout>
 ```
@@ -128,9 +128,9 @@ You can also take full control of the header by providing a `header` slot:
     <x-slot:header>
         <h2>Team Directory</h2>
 
-        <x-corepine.modal.close>
+        <x-corepine.modal.actions.close>
             Close
-        </x-corepine.modal.close>
+        </x-corepine.modal.actions.close>
     </x-slot:header>
 
     {{-- Content --}}

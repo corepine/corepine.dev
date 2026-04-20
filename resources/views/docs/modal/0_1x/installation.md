@@ -24,14 +24,7 @@ This installs the package and registers its service provider.
 php artisan vendor:publish --tag=corepine-modal-config
 ```
 
-This creates `config/corepine-modal.php`.
-
-The config file is where you change:
-
-- Event names such as `modal.open` and `modal.close`
-- Default modal behavior such as `dismissible` and `closeOnEscape`
-- Reusable size tokens for wider editors or custom layouts
-
+This publishes `config/corepine-modal.php`.
 Reference page: [Configuration](doc:configuration)
 
 ## Step 3: Add Modal Assets To Your Layout
@@ -47,9 +40,6 @@ This host:
 - Mounts the Livewire modal manager
 - Listens for modal events
 - Manages parent/child modal stack state
-- Renders overlays, transitions, and shell output
-
-Without this host, `modal.open` events fire but nothing appears.
 
 ## Step 4: Import Package CSS Into Your App Build
 
@@ -58,12 +48,6 @@ Import the package stylesheet into your main app CSS so modal styles are compile
 ```css
 @import "../../vendor/corepine/modal/resources/css/app.css";
 ```
-
-Use this when:
-
-- You already manage styles through `resources/css/app.css`
-- You want the package styles bundled with the rest of your frontend assets
-- You want a single Tailwind-driven CSS workflow in the app
 
 ## Step 5: Understand The Two Runtime Modes
 

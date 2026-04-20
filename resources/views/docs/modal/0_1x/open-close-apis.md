@@ -143,9 +143,9 @@ If the close helper is rendered inside a standalone modal, it automatically dete
     <x-slot:header>
         <h2 >Our Modals</h2>
 
-        <x-corepine.modal.close>
+        <x-corepine.modal.actions.close>
             Close
-        </x-corepine.modal.close>
+        </x-corepine.modal.actions.close>
     </x-slot:header>
 
     <p>Body content...</p>
@@ -155,9 +155,9 @@ If the close helper is rendered inside a standalone modal, it automatically dete
 If you need to close a different standalone modal explicitly, pass `modal-id`:
 
 ```blade
-<x-corepine.modal.close modal-id="user-sheet">
+<x-corepine.modal.actions.close modal-id="user-sheet">
     Close
-</x-corepine.modal.close>
+</x-corepine.modal.actions.close>
 ```
 
 `modal-id` is separate from the button's normal HTML `id` attribute and is supported by both open and close helpers.

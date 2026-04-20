@@ -157,13 +157,9 @@ You can do this with `wire:submit...` or `x-on:submit...`.
     description="Quick answers for your billing questions."
     wire:submit="save"
 >
-    {{-- Content --}}
+   <p> Content </p>
 
     <x-slot:footer>
-        <x-corepine.modal.close>
-            Cancel
-        </x-corepine.modal.close>
-
         <button type="submit">
             Save
         </button>
@@ -179,16 +175,16 @@ When submit attributes are present, the modal:
  
 ## Standalone Close Helper
 
-Inside a standalone modal, `<x-corepine.modal.close />` automatically detects the nearest standalone modal id and closes that modal.
+Inside a standalone modal, `<x-corepine.modal.actions.close />` automatically detects the nearest standalone modal id and closes that modal.
 
 ```blade
-<x-corepine.modal id="billing-help" type="modal" heading="Billing Help">
-    <p>Standalone modal body</p>
+<x-corepine.modal id="billing-help">
+    ...
 
     <x-slot:footer>
-        <x-corepine.modal.close>
+        <x-corepine.modal.actions.close>
             Close
-        </x-corepine.modal.close>
+        </x-corepine.modal.actions.close>
     </x-slot:footer>
 </x-corepine.modal>
 ```
@@ -196,9 +192,9 @@ Inside a standalone modal, `<x-corepine.modal.close />` automatically detects th
 If you want to target a specific standalone modal explicitly, use `modal-id`:
 
 ```blade
-<x-corepine.modal.close modal-id="billing-help">
+<x-corepine.modal.actions.close modal-id="billing-help">
     Close
-</x-corepine.modal.close>
+</x-corepine.modal.actions.close>
 ```
 
 Use `modal-id` instead of `id` so you can still use the normal HTML `id` attribute on the rendered button.
