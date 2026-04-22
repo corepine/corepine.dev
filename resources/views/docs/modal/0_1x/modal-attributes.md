@@ -1,17 +1,15 @@
 # Modal Attributes
 
-This page is the complete reference for `modalAttributes()` and runtime modal options.
+This guide provides a complete reference for `modalAttributes()` and runtime modal options.
 
-Unless noted otherwise, every PHP example on this page shows the return value of `public static function modalAttributes(): array`.
-
-These concepts apply to:
+The concepts on this page apply to both:
 
 - Livewire modal class mode (`extends Corepine\Modal\Modal`)
 - Standalone Blade mode (`<x-corepine.modal ... />`)
 
-## Start Here First (Beginner Set)
+## Start Here First
 
-Learn these before everything else:
+If you are new to modal configuration, start with these core attributes:
 
 - `type`
 - `placement`

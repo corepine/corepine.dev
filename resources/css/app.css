@@ -254,6 +254,8 @@
     .docs-markdown table {
         @apply my-6 w-full border-collapse overflow-x-auto rounded-xl border border-zinc-200 text-left text-sm dark:border-zinc-700;
         display: block;
+        max-width: 100%;
+        white-space: nowrap;
     }
 
     .docs-markdown thead {
@@ -262,10 +264,19 @@
 
     .docs-markdown th {
         @apply border-b border-zinc-200 px-4 py-2.5 font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100;
+        white-space: nowrap;
     }
 
     .docs-markdown td {
         @apply border-b border-zinc-200 px-4 py-2.5 text-zinc-700 dark:border-zinc-800 dark:text-zinc-300;
+        white-space: nowrap;
+    }
+
+    .docs-markdown th code,
+    .docs-markdown td code {
+        white-space: nowrap;
+        word-break: normal;
+        overflow-wrap: normal;
     }
 
     .docs-markdown tbody tr:last-child td {
