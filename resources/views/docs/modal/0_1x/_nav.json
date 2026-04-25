@@ -19,6 +19,7 @@
       "title": "Usage",
       "items": [
         { "label": "Open / Close APIs", "slug": "open-close-apis" },
+        { "label": "Isolate", "slug": "isolate", "badge": "new" },
         { "label": "Standalone Blade Modal", "slug": "standalone-blade-modal", "badge": "new" },
         { "label": "Custom Layouts", "slug": "custom-layouts", "badge": "new" }
       ]

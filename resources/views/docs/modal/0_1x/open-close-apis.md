@@ -45,6 +45,20 @@ What each method does:
 
 `dispatchTo` emits targeted Livewire events after the close completes.
 
+## Open A Layer Above The Current Visible Modal
+
+If you want the next modal to appear above the current modal while keeping the previous layer visible, open it with `isolate=true`:
+
+```php
+$this->openModal('modals.confirm-delete', ['user' => 5], [
+    'isolate' => true,
+]);
+```
+
+This still uses the same stack.
+
+The difference is only presentation: the parent layer stays visible under the new active modal.
+
 ## Dispatch Events From Livewire PHP
 
 Use this when you want to trigger modals from another Livewire component:
@@ -168,5 +182,6 @@ If you are outside Livewire, browser events are still supported (`window.dispatc
 
 ## Continue
 
+- Keep the parent modal visible under a child modal: [Isolate](doc:isolate)
 - No Livewire modal class mode: [Standalone Blade Modal](doc:standalone-blade-modal)
 - Event name customization: [Events](doc:events)
