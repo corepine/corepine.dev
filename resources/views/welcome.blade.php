@@ -73,8 +73,7 @@
         <nav class="ml-auto hidden items-center gap-2 text-sm md:flex">
             <a href="#packages" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Packages</a>
             <a href="#showcase" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Showcase</a>
-            <a href="/modal/docs" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Modal Docs</a>
-            <a href="/threads/docs" class="rounded-lg bg-teal-600 px-3 py-2 font-medium text-white transition hover:bg-teal-500">Threads Docs</a>
+            <a href="/modal/docs" class="rounded-lg bg-teal-600 px-3 py-2 font-medium text-white transition hover:bg-teal-500">Modal Docs</a>
         </nav>
 
         <button
@@ -125,9 +124,6 @@
                 <a href="/modal/docs" class="inline-flex items-center rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-500">
                     Explore Modal Docs
                 </a>
-                <a href="/threads/docs" class="inline-flex items-center rounded-xl bg-cyan-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-cyan-500">
-                    Explore Threads Docs
-                </a>
                 <a href="#packages" class="inline-flex items-center rounded-xl border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500">
                     View Package Roadmap
                 </a>
@@ -158,16 +154,16 @@
                 </div>
 
                 <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">corepine/threads</p>
-                    <p class="font-space mt-2 text-xl font-semibold">Threaded comments ready in minutes.</p>
+                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">corepine/modal</p>
+                    <p class="font-space mt-2 text-xl font-semibold">Stacked modals, drawers, and sheets ready to ship.</p>
                     <p class="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                        Add nested discussion, votes, and polymorphic model support with one Livewire component.
+                        Build confirmations, task flows, and layered UI without rewriting modal state management in every project.
                     </p>
 
                     <div class="mt-5 grid gap-2 text-sm">
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Polymorphic comment targets and commenters</div>
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Nested replies with optional upvote/downvote UX</div>
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Fluent panel provider for app-wide policy control</div>
+                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Modal, drawer, and sheet presentation modes</div>
+                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Stacked flows with isolate, close helpers, and events</div>
+                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Standalone Blade usage and Livewire modal classes</div>
                     </div>
                 </div>
             </div>
@@ -188,9 +184,9 @@
                     <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Dialog and workflow components for confirmations, forms, and product actions.</p>
                 </article>
                 <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Now</p>
-                    <h3 class="font-space mt-2 text-xl font-semibold">Threads</h3>
-                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Threaded comments, nested replies, and moderation-friendly interactions for model pages.</p>
+                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Soon</p>
+                    <h3 class="font-space mt-2 text-xl font-semibold">More Packages</h3>
+                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Additional Corepine packages are still in development and will show up here when they are ready.</p>
                 </article>
                 <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
                     <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Next</p>
@@ -206,30 +202,61 @@
             <div class="flex flex-wrap items-end justify-between gap-3">
                 <div>
                     <h2 class="font-space text-3xl font-bold tracking-tight">Showcase Ready</h2>
-                    <p class="mt-2 text-zinc-600 dark:text-zinc-300">Drop your polished screenshots here as packages go live.</p>
+                    <p class="mt-2 text-zinc-600 dark:text-zinc-300">Use this area to highlight Modal for now, then add more package screenshots later.</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <a href="/modal/docs" class="rounded-lg border border-zinc-300 px-3 py-2 text-sm font-medium transition hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
                         Open Modal docs
-                    </a>
-                    <a href="/threads/docs" class="rounded-lg border border-zinc-300 px-3 py-2 text-sm font-medium transition hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
-                        Open Threads docs
                     </a>
                 </div>
             </div>
 
             <div class="mt-6 grid gap-4 md:grid-cols-3">
                 <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <div class="aspect-[4/3] rounded-xl border border-dashed border-zinc-300 bg-zinc-100/80 dark:border-zinc-700 dark:bg-zinc-900"></div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Modal package screenshot slot</p>
+                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
+                        <img
+                            src="{{ asset('assets/modal/centered-modal-light.png') }}"
+                            alt="Centered modal screenshot"
+                            class="h-full w-full object-cover dark:hidden"
+                        >
+                        <img
+                            src="{{ asset('assets/modal/centered-modal-dark.png') }}"
+                            alt="Centered modal screenshot"
+                            class="hidden h-full w-full object-cover dark:block"
+                        >
+                    </div>
+                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Centered modal</p>
                 </div>
+        
                 <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <div class="aspect-[4/3] rounded-xl border border-dashed border-zinc-300 bg-zinc-100/80 dark:border-zinc-700 dark:bg-zinc-900"></div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Threads package screenshot slot</p>
+                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
+                        <img
+                            src="{{ asset('assets/modal/bottom-sheet-light.png') }}"
+                            alt="Bottom sheet screenshot"
+                            class="h-full w-full object-cover dark:hidden"
+                        >
+                        <img
+                            src="{{ asset('assets/modal/bottom-sheet-dark.png') }}"
+                            alt="Bottom sheet screenshot"
+                            class="hidden h-full w-full object-cover dark:block"
+                        >
+                    </div>
+                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Bottom sheet</p>
                 </div>
-                <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <div class="aspect-[4/3] rounded-xl border border-dashed border-zinc-300 bg-zinc-100/80 dark:border-zinc-700 dark:bg-zinc-900"></div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Commerce and workflow package screenshot slot</p>
+                        <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
+                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
+                        <img
+                            src="{{ asset('assets/modal/drawer-right-light.png') }}"
+                            alt="Right drawer modal screenshot"
+                            class="h-full w-full object-right dark:hidden"
+                        >
+                        <img
+                            src="{{ asset('assets/modal/drawer-right-dark.png') }}"
+                            alt="Right drawer modal screenshot"
+                            class="hidden h-full w-full object-right dark:block"
+                        >
+                    </div>
+                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Right drawer</p>
                 </div>
             </div>
         </div>
