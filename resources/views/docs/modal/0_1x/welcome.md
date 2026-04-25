@@ -2,6 +2,8 @@
 
 Corepine Modal is a stack-based modal system for Laravel Livewire.
 
+![centered modal](image:modal/centered-modal)
+
 If you are new to modal systems, think of it this way: you open small focused UI panels on top of your current page, complete a task, then close them without leaving the page.
 
 ## What You Get
@@ -10,7 +12,7 @@ If you are new to modal systems, think of it this way: you open small focused UI
 - `drawer` for left/right side panels
 - `sheet` for bottom mobile-style panels
 - Stack support (open a child modal above a parent modal)
-- Typed modal classes (`extends Corepine\Modal\Modal`)
+- Resolve models from modal arguments (for example pass a user id and resolve `User` in `mount()`)
 - Standalone Blade modals when you do not need a Livewire modal class
 - Configurable events, useful for package authors and larger apps
 

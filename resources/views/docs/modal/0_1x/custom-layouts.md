@@ -1,16 +1,16 @@
 # Custom Layouts
 
-Use custom layouts when you want full control over modal chrome while still keeping Corepine Modal stack behavior, transitions, overlay handling, and close APIs.
+Use custom layouts when you need full control over modal chrome while still keeping Corepine Modal stack behavior, transitions, overlay handling, and close APIs.
 
-This is the usual pattern when `shell=false`.
+This is the recommended pattern when `shell=false`.
 
 ## When To Use This
 
-Use a custom layout when the built-in shell is too limited.
+Use a custom layout when the built-in shell is too limited for your UI.
 
-If you only need the standard heading, description, close button, and simple footer actions, keep the built-in shell.
+If you only need a standard heading, description, close button, and simple footer actions, keep the built-in shell.
 
-## Basic Pattern
+## Disabling layout
 
 Disable the host shell in `modalAttributes()`:
 
@@ -20,12 +20,25 @@ public static function modalAttributes(): array
     return [
         'shell' => false,
         'dismissible' => true,
+        'class'=>'h-[90vh]'
         'closeOnEscape' => true,
     ];
 }
 ```
 
-Then render your own layout in the modal view:
+Then render your own view structure in the modal template:
+
+```blade
+<div>
+    No shell
+</div>
+```
+
+
+## Custom Layout Component
+
+If you prefer to keep the built-in structured modal layout, render your layout component directly in the modal view:
+
 
 ```blade
 <x-corepine.modal.layout
@@ -37,31 +50,9 @@ Then render your own layout in the modal view:
 </x-corepine.modal.layout>
 ```
 
-In this mode, `<x-corepine.modal.layout />` becomes your shell helper.
+In this mode, `<x-corepine.modal.layout />` acts as your shell helper.
 
 ## Submit Directly From The Layout
-
-If you put a submit handler on the layout itself, the outer wrapper automatically becomes a real `<form>`.
-
-You can do this with `wire:submit...` or `x-on:submit...`.
-
-That means you do not need to create another form inside the modal.
-
-```blade
-<x-corepine.modal.layout
-    heading="Manage Users"
-    description="Search and view users in your system."
-    wire:submit="save"
->
-    {{-- Content --}}
-
-    <x-slot:footer>
-        <button type="submit">
-            Save
-        </button>
-    </x-slot:footer>
-</x-corepine.modal.layout>
-```
 
 When submit attributes are present, the layout:
 
@@ -81,15 +72,10 @@ This is the usual pattern when your modal is really a form:
 >
     {{-- Content --}}
 
-    <x-slot:footer>
-        <x-corepine.modal.actions.close>
-            Cancel
-        </x-corepine.modal.actions.close>
 
-        <button type="submit">
-            Save
-        </button>
-    </x-slot:footer>
+    <button type="submit">
+        Save
+    </button>
 </x-corepine.modal.layout>
 ```
 
@@ -97,61 +83,28 @@ Because the layout becomes the form, you do not need to add another `<form>` ins
 
 The standalone `<x-corepine.modal />` component supports the same submit-aware form behavior too.
 
-## Adding A Footer
+## Custom Header And Footer
 
-You can add footer actions with the `footer` slot:
+If you want full control over the modal chrome, provide both `header` and `footer` slots on the same layout.
 
-If you want a footer that is docked to the bottom automatically, use the `footer` slot and the layout will place it in the bottom footer area for you.
 
-```blade
-<x-corepine.modal.layout
-    heading="Manage Users"
-    description="Search and view users in your system."
->
-
-    {{-- Content --}}
-
-    <x-slot:footer>
-        <x-corepine.modal.actions.close>
-            Cancel
-        </x-corepine.modal.actions.close>
-    </x-slot:footer>
-</x-corepine.modal.layout>
-```
-
-## Custom Header
-
-You can also take full control of the header by providing a `header` slot:
+![centered modal](image:modal/custom-header-footer)
 
 ```blade
 <x-corepine.modal.layout>
-    <x-slot:header>
-        <h2>Team Directory</h2>
+    <x-slot name="header">
+        <h2>Custom Header Content</h2>
+    </x-slot>
 
-        <x-corepine.modal.actions.close>
-            Close
-        </x-corepine.modal.actions.close>
-    </x-slot:header>
+    <div class="px-6 py-5">
+        Content
+    </div>
 
-    {{-- Content --}}
-
-    <x-slot:footer>
-        <button>
-            Done
-        </button>
-    </x-slot:footer>
+    <x-slot name="footer">
+        <h2>Custom Footer Content</h2>
+    </x-slot>
 </x-corepine.modal.layout>
 ```
-
-`<x-corepine.modal.layout />` supports a named `header` slot.
-
-When `x-slot:header` is present:
-
-- `heading`, `description`, and `showClose` are ignored
-- your custom header is rendered instead
-
-If you do not provide a custom `header` slot, the built-in close icon is auto by default. That means it appears only when built-in `heading` or `description` text exists, unless you explicitly set `showClose=true`.
-
 
 ## Related
 

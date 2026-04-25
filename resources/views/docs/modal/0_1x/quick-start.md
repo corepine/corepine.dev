@@ -1,154 +1,105 @@
 # Quick Start
 
-This guide builds a real modal from start to finish and explains each part in plain language.
+Build your first modal.
 
-## What We Are Building
+Corepine modals are basically normal Livewire components. The main difference is:
 
-A user edit modal that:
+- your component extends `Corepine\Modal\Modal`
+- you define modal UI and behavior in `modalAttributes()`
 
-- Opens from Livewire using dispatch events
-- Shows heading/description with the built-in shell
-- Includes footer actions (`Cancel` and `Save`)
-- Calls a Livewire method to persist changes
-- Closes itself after save
+## Step 1: Create A Livewire Component
 
-This example uses `actions` because the footer only needs buttons. If your footer needs richer content like an input or comment composer, use a custom footer instead.
+```bash
+php artisan make:livewire user-list
+```
 
-## Step 1: Create A Modal File
+This creates a livewire component at:
 
-For example, create `resources/views/livewire/modals/edit-user.blade.php`:
+- `resources/views/components/⚡user-list.blade.php`
+
+Update that file with a simple list and one `Delete` action:
 
 ```php
 <?php
 
 use App\Models\User;
-use Corepine\Modal\Actions\Action;
-use Corepine\Modal\Enums\ModalType;
 use Corepine\Modal\Modal;
-use Corepine\Support\Enums\Placement;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Gate;
 
 new class extends Modal
 {
-    public User $user;
+    public Collection $users;
 
-    public string $name = '';
-
-    public function mount(User $user): void
+    public function mount(): void
     {
-        Gate::authorize('update', $user);
-
-        $this->user = $user;
-        $this->name = $user->name;
+        $this->loadUsers();
     }
 
     public static function modalAttributes(): array
     {
         return [
-            'type' => ModalType::Modal,
-            'placement' => Placement::Center,
-            'origin' => Placement::Center,
-            'shell' => true,
-            'heading' => 'Edit User',
-            'description' => 'Update account details',
-            'showClose' => true,
-            'dismissible' => true,
-            'closeOnEscape' => true,
-            'actions' => [
-                Action::make('cancel')->label('Cancel')->close(),
-                Action::make('save')->label('Save')->primary()->action('save'),
-            ],
+            'heading' => 'Users',
+            'description' => 'Simple list with delete action',
         ];
     }
 
-    public function save(): void
+    public function deleteUser(int $userId): void
     {
-        Gate::authorize('update', $this->user);
+        $user = User::findOrFail($userId);
 
-        // ...
-        $this->closeModal();
+        Gate::authorize('delete', $user);
+
+        $user->delete();
+
+        $this->loadUsers();
+    }
+
+    protected function loadUsers(): void
+    {
+        $this->users = User::query()
+            ->orderBy('name')
+            ->limit(10)
+            ->get();
     }
 };
 ?>
 
 <div>
-    <label for="edit-user-name">Name</label>
-    <input id="edit-user-name" type="text" wire:model="name" />
+    <ul class="space-y-2">
+        @forelse ($users as $user)
+            <li class="flex items-center justify-between">
+                <span>{{ $user->name }}</span>
+
+                <button
+                    type="button"
+                    wire:click="deleteUser({{ $user->id }})"
+                >
+                    Delete
+                </button>
+            </li>
+        @empty
+            <li>No users found.</li>
+        @endforelse
+    </ul>
 </div>
 ```
 
-Security note: modal components do not automatically perform authentication or authorization checks for you. Add your own access checks where needed, then see [Security](doc:security) for patterns such as auth checks, policies, and re-authorizing mutating methods.
+## Step 2: Open The Modal
 
-## Step 3: Open The Modal From Blade
-
-If you use Alpine syntax, you can use `@click` with `$dispatch`:
-
-```blade
-<div x-data>
-    <button
-        type="button"
-        @click="$dispatch('modal.open', { component: 'modals.edit-user', arguments: { user: {{ $user->id }} } })"
-    >
-        Edit User
-    </button>
-</div>
-```
-
-If you prefer Livewire attribute syntax, use `wire:click`:
+Use `wire:click` on your button:
 
 ```blade
 <button
     type="button"
-    wire:click="$dispatch('modal.open', { component: 'modals.edit-user', arguments: { user: {{ $user->id }} } })"
+    wire:click="$dispatch('modal.open', { component: 'user-list' })"
 >
-    Edit User
+    Open Users
 </button>
 ```
 
-Both forms dispatch the same modal event payload.
 
-## Step 4: Open The Modal (Livewire PHP Class)
 
-You can dispatch from any Livewire component method:
+## Next: Modal Attributes
 
-```php
-$this->dispatch('modal.open',
-    component: 'modals.edit-user',
-    arguments: ['user' => $userId],
-);
-```
-
-## What Just Happened?
-
-- The modal host listens for `modal.open`.
-- It pushes `modals.edit-user` to the modal stack.
-- Shell UI renders heading, description, close icon, and footer actions.
-- Clicking `Save` triggers the `save()` method from your `Action::action('save')` definition.
-
-## Most Important Attributes To Learn First
-
-- `type`: chooses `modal`, `drawer`, or `sheet`
-- `placement`: controls placement
-- `heading` and `description`: shell header text
-- `actions`: footer buttons and behavior
-- `dismissible`: outside click closes modal
-- `closeOnEscape`: escape closes modal
-
-Rule of thumb:
-
-- use `actions` for button-driven footers
-- use custom footer rendering for richer interactive footer content
-- use `shell=false` only when you want to fully own the modal chrome
-
-Deep dive: [Modal Attributes](doc:modal-attributes)
-
-## Optional Non-Livewire Fallback
-
-If you are outside Livewire, you can still use browser events (`window.dispatchEvent`).
-
-Details and examples: [Standalone Blade Modal](doc:standalone-blade-modal)
-
-## Next Pages
-
-- Learn type behavior and placement rules: [Types & Placements](doc:modal-types-positioning)
-- Learn all open/close options: [Open / Close APIs](doc:open-close-apis)
+If you want to customize behavior, layout, or styling, continue here: [Modal Attributes](doc:modal-attributes)

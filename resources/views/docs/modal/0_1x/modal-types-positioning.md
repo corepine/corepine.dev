@@ -4,9 +4,10 @@ Corepine Modal supports three presentation types. Choosing the right one improve
 
 ## `modal`: Centered Dialog
 
-
-
 Use `modal` for short, focused actions:
+
+![centered modal](image:modal/centered-modal)
+
 
 - Confirm delete
 - Edit a few fields
@@ -36,6 +37,9 @@ public static function modalAttributes(): array
 
 Use `drawer` when users should keep page context while editing details.
 
+![drawer modal](image:modal/drawer-right)
+
+
 ```php
 public static function modalAttributes(): array
 {
@@ -55,6 +59,8 @@ Drawer placement rules:
 ## `sheet`: Bottom Sheet
 
 Use `sheet` for mobile-friendly actions and short workflows near the bottom edge.
+
+![dbottom-sheet](image:modal/bottom-sheet)
 
 ```php
 public static function modalAttributes(): array

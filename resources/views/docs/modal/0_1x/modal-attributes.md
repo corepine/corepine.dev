@@ -99,6 +99,23 @@ public static function modalAttributes(): array
 }
 ```
 
+## Class Override Guidance
+
+If you prefer a class-first approach, use `class` to define panel styling.
+
+This works well for width, height, spacing, rounding, and other project-specific visual overrides.
+
+```php
+public static function modalAttributes(): array
+{
+    return [
+        'type' => 'modal',
+        'placement' => 'center',
+        'class' => 'max-w-3xl h-[70vh] rounded-2xl billing-help-modal',
+    ];
+}
+```
+
 ## Footer Guidance
 
 Use `actions` for simple shell footer buttons such as `Cancel`, `Save`, or `Delete`.
