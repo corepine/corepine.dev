@@ -251,6 +251,22 @@
         color: var(--docs-code-subst);
     }
 
+    .docs-markdown .docs-screenshot-set {
+        @apply my-6 block overflow-hidden rounded-2xl border border-zinc-200 bg-white/70 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70;
+    }
+
+    .docs-markdown .docs-screenshot {
+        @apply block w-full;
+    }
+
+    .docs-markdown .docs-screenshot-light {
+        @apply block dark:hidden;
+    }
+
+    .docs-markdown .docs-screenshot-dark {
+        @apply hidden dark:block;
+    }
+
     .docs-markdown table {
         @apply my-6 w-full border-collapse overflow-x-auto rounded-xl border border-zinc-200 text-left text-sm dark:border-zinc-700;
         display: block;

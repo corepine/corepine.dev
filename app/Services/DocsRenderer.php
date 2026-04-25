@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use DOMDocument;
+use DOMElement;
 use DOMXPath;
 use Illuminate\Support\Str;
 use League\CommonMark\GithubFlavoredMarkdownConverter;
@@ -43,6 +44,14 @@ class DocsRenderer
         foreach ($xpath->query('//a[@href]') as $anchor) {
             $href = (string) $anchor->getAttribute('href');
             $anchor->setAttribute('href', $this->rewriteHref($href, $context));
+        }
+
+        foreach ($xpath->query('//img[@src]') as $image) {
+            if (! $image instanceof DOMElement) {
+                continue;
+            }
+
+            $this->rewriteImage($dom, $image, $context);
         }
 
         $seenIds = [];
@@ -143,6 +152,135 @@ class DocsRenderer
         }
 
         return $this->docs->url($project, $target, $version);
+    }
+
+    protected function rewriteImage(DOMDocument $dom, DOMElement $image, array $context): void
+    {
+        $src = trim((string) $image->getAttribute('src'));
+
+        if (! str_starts_with($src, 'image:')) {
+            return;
+        }
+
+        $resolved = $this->resolveImageTarget(substr($src, 6), $context);
+
+        if ($resolved === null) {
+            return;
+        }
+
+        $replacement = $resolved['dark'] !== null
+            ? $this->buildThemedImageNode($dom, $image, $resolved['light'], $resolved['dark'])
+            : $this->buildSingleImageNode($dom, $image, $resolved['light']);
+
+        $image->parentNode?->replaceChild($replacement, $image);
+    }
+
+    protected function resolveImageTarget(string $target, array $context): ?array
+    {
+        $target = trim($target, " \t\n\r\0\x0B/");
+
+        if ($target === '') {
+            return null;
+        }
+
+        $currentProject = trim((string) ($context['project'] ?? ''));
+        $package = $currentProject;
+        $base = $target;
+
+        if (str_contains($target, '/')) {
+            [$package, $base] = explode('/', $target, 2);
+            $package = trim($package, '/');
+            $base = trim($base, '/');
+        }
+
+        if ($package === '' || $base === '') {
+            return null;
+        }
+
+        $light = $this->resolvePublicAssetPath("assets/{$package}/{$base}-light");
+        $dark = $this->resolvePublicAssetPath("assets/{$package}/{$base}-dark");
+
+        if ($light !== null && $dark !== null) {
+            return ['light' => $light, 'dark' => $dark];
+        }
+
+        if ($light !== null) {
+            return ['light' => $light, 'dark' => null];
+        }
+
+        if ($dark !== null) {
+            return ['light' => $dark, 'dark' => null];
+        }
+
+        $single = $this->resolvePublicAssetPath("assets/{$package}/{$base}");
+
+        if ($single !== null) {
+            return ['light' => $single, 'dark' => null];
+        }
+
+        return null;
+    }
+
+    protected function resolvePublicAssetPath(string $pathWithoutExtension): ?string
+    {
+        foreach (['png', 'webp', 'jpg', 'jpeg', 'gif', 'svg'] as $extension) {
+            $relativePath = "{$pathWithoutExtension}.{$extension}";
+            $absolutePath = public_path($relativePath);
+
+            if (is_file($absolutePath)) {
+                return asset($relativePath);
+            }
+        }
+
+        return null;
+    }
+
+    protected function buildThemedImageNode(
+        DOMDocument $dom,
+        DOMElement $sourceImage,
+        string $lightSrc,
+        string $darkSrc,
+    ): DOMElement {
+        $wrapper = $dom->createElement('span');
+        $wrapper->setAttribute('class', 'docs-screenshot-set');
+
+        $wrapper->appendChild($this->buildImageElement($dom, $sourceImage, $lightSrc, 'docs-screenshot docs-screenshot-light'));
+        $wrapper->appendChild($this->buildImageElement($dom, $sourceImage, $darkSrc, 'docs-screenshot docs-screenshot-dark'));
+
+        return $wrapper;
+    }
+
+    protected function buildSingleImageNode(
+        DOMDocument $dom,
+        DOMElement $sourceImage,
+        string $src,
+    ): DOMElement {
+        $wrapper = $dom->createElement('span');
+        $wrapper->setAttribute('class', 'docs-screenshot-set');
+        $wrapper->appendChild($this->buildImageElement($dom, $sourceImage, $src, 'docs-screenshot'));
+
+        return $wrapper;
+    }
+
+    protected function buildImageElement(
+        DOMDocument $dom,
+        DOMElement $sourceImage,
+        string $src,
+        string $class,
+    ): DOMElement {
+        $image = $dom->createElement('img');
+        $image->setAttribute('src', $src);
+        $image->setAttribute('class', $class);
+        $image->setAttribute('loading', 'lazy');
+        $image->setAttribute('decoding', 'async');
+
+        foreach (['alt', 'title', 'width', 'height'] as $attribute) {
+            if ($sourceImage->hasAttribute($attribute)) {
+                $image->setAttribute($attribute, (string) $sourceImage->getAttribute($attribute));
+            }
+        }
+
+        return $image;
     }
 
     protected function splitFragment(string $value): array

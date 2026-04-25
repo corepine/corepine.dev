@@ -4,6 +4,8 @@ Corepine Modal supports three presentation types. Choosing the right one improve
 
 ## `modal`: Centered Dialog
 
+
+
 Use `modal` for short, focused actions:
 
 - Confirm delete

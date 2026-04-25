@@ -11,7 +11,7 @@ Request flow:
 2. [DocsController](/Users/namu/Desktop/workspace/corepine.dev/app/Http/Controllers/DocsController.php) resolves project/version/slug through [DocsService](/Users/namu/Desktop/workspace/corepine.dev/app/Services/DocsService.php).
 3. Markdown is rendered by [DocsRenderer](/Users/namu/Desktop/workspace/corepine.dev/app/Services/DocsRenderer.php).
 4. Renderer rewrites docs links and builds heading TOC.
-5. Output is shown in [docs/show.blade.php](/Users/namu/Desktop/workspace/corepine.dev/resources/views/docs/show.blade.php), which extends [layouts/docs.blade.php](/Users/namu/Desktop/workspace/corepine.dev/resources/views/layouts/docs.blade.php).
+5. Output is shown in [docs-page.blade.php](/Users/namu/Desktop/workspace/corepine.dev/resources/views/docs-page.blade.php), which extends [layouts/docs.blade.php](/Users/namu/Desktop/workspace/corepine.dev/resources/views/layouts/docs.blade.php).
 
 ## 2. Folder Structure
 
@@ -130,7 +130,66 @@ Same link on latest docs page becomes:
 
 - `/modal/docs/setup`
 
-## 6. Sidebar + In-Page TOC
+## 6. Screenshots And Docs Images
+
+Docs screenshots live in `public/assets/{package}/`.
+
+Current example folder:
+
+```text
+public/assets/modal/
+```
+
+Recommended naming:
+
+- `edit-user-form-light.png`
+- `edit-user-form-dark.png`
+- `modal-drawer-left-light.png`
+- `modal-drawer-left-dark.png`
+
+Use markdown image syntax with the custom `image:` prefix:
+
+```md
+![Edit user form](image:modal/edit-user-form)
+![Left drawer](image:modal/modal-drawer-left)
+```
+
+If you are already inside the same project docs, you can also omit the package prefix:
+
+```md
+![Left drawer](image:modal-drawer-left)
+```
+
+How resolution works:
+
+- `image:modal/edit-user-form` tries `public/assets/modal/edit-user-form-light.*`
+- it also tries `public/assets/modal/edit-user-form-dark.*`
+- if both exist, docs automatically switch by the current docs theme
+- if only one exists, that one is rendered
+- if neither themed file exists, renderer falls back to `public/assets/modal/edit-user-form.*`
+
+Supported file extensions:
+
+- `.png`
+- `.webp`
+- `.jpg`
+- `.jpeg`
+- `.gif`
+- `.svg`
+
+Important authoring rule:
+
+- always write a good alt text in the markdown image syntax
+
+Example:
+
+```md
+![Standalone billing help modal](image:modal/billing-help)
+```
+
+This image rewriting happens in [DocsRenderer](/Users/namu/Desktop/workspace/corepine.dev/app/Services/DocsRenderer.php), and the themed image styles live in [resources/css/app.css](/Users/namu/Desktop/workspace/corepine.dev/resources/css/app.css).
+
+## 7. Sidebar + In-Page TOC
 
 Left sidebar:
 
@@ -156,7 +215,7 @@ Current setup is H2 and H3 only:
 
 If you want to include H4 later, change `max_level` to `4` in this one place.
 
-## 7. Add A New Page
+## 8. Add A New Page
 
 1. Create markdown file in the active version folder:
    - Example: `resources/views/docs/modal/0_1x/new-page.md`
@@ -166,7 +225,7 @@ If you want to include H4 later, change `max_level` to `4` in this one place.
 4. Open route and verify:
    - `/modal/docs/new-page` (latest)
 
-## 8. Upgrade To A New Docs Version
+## 9. Upgrade To A New Docs Version
 
 Use this checklist whenever you release a new docs version:
 
@@ -182,7 +241,7 @@ Use this checklist whenever you release a new docs version:
    - Old links with `/0.1x/...` should still work
 6. Spot-check a few `doc:` and relative links from both versions.
 
-## 9. Add A New Package Project
+## 10. Add A New Package Project
 
 1. Create content folder:
    - `resources/views/docs/{new-project}/{version_folder}/`
@@ -193,15 +252,15 @@ Use this checklist whenever you release a new docs version:
 
 No route file changes are needed for each new project because the route is dynamic.
 
-## 10. Theme + Layout Notes
+## 11. Theme + Layout Notes
 
 - Docs page shell is in [layouts/docs.blade.php](/Users/namu/Desktop/workspace/corepine.dev/resources/views/layouts/docs.blade.php).
 - Landing page is [welcome.blade.php](/Users/namu/Desktop/workspace/corepine.dev/resources/views/welcome.blade.php).
 - Theme toggle uses one button that cycles `light -> dark -> system`.
-- Stored preference key: `localStorage.theme`.
-- Legacy key `corepine-theme` is automatically migrated.
+- Stored preference key: `localStorage.corepine-theme`.
+- Legacy key `theme` is automatically migrated.
 
-## 11. Quick Maintenance Checks
+## 12. Quick Maintenance Checks
 
 After docs changes, quickly verify:
 
@@ -213,3 +272,4 @@ After docs changes, quickly verify:
 6. One or two sidebar links load
 7. Theme toggle cycles all 3 modes
 8. `doc:` links keep version context on non-latest URLs
+9. One `image:` screenshot renders correctly in both light and dark mode
