@@ -18,7 +18,7 @@ composer require corepine/modal
 
 This installs the package and registers its service provider.
 
-## Step 2: Publish Config (Recommended)
+## Step 2: Publish Config 
 
 ```bash
 php artisan vendor:publish --tag=corepine-modal-config

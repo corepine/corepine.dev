@@ -37,6 +37,7 @@ If you are new to modal configuration, start with these core attributes:
 | `closeAllOnEscape` | `bool` | `false` | Escape closes entire stack. |
 | `destroyOnClose` | `bool` | `true` | Remove layer state after close. |
 | `dispatchCloseEvent` | `bool` | `false` | Emit close event for the component layer. |
+| `isolate` | `bool` | `false` | Keep previous stack layers visible underneath the active modal. |
 | `blur` | `bool` | `false` | Scrim blur effect. |
 | `shell` | `bool` | `true` | Built-in shell (header/body/footer). Set `false` when you want to render your own chrome, usually with `<x-corepine.modal.layout />`. |
 | `heading` | `string \| null` | `null` | Shell heading text. |
@@ -111,35 +112,15 @@ public static function modalAttributes(): array
     return [
         'type' => 'modal',
         'placement' => 'center',
-        'class' => 'max-w-3xl h-[70vh] rounded-2xl billing-help-modal',
+        'class' => 'h-[70vh] rounded-2xl',
     ];
 }
 ```
 
-## Footer Guidance
-
-Use `actions` for simple shell footer buttons such as `Cancel`, `Save`, or `Delete`.
-
-If your footer needs richer content such as an input, comment composer, upload UI, or mixed layout, use custom footer rendering instead of encoding that into `actions`.
-
-- Standalone Blade mode: use `x-slot:footer`
-- Custom shell composition: use `<x-corepine.modal.footer />`
-- Full manual modal layout: set `shell=false` and render `<x-corepine.modal.layout />`
-
-## Header Override Rule
-
-If you render a custom `header` slot on `<x-corepine.modal />` or `<x-corepine.modal.layout />`, the built-in header props stop applying for that component instance.
-
-- `heading` is ignored
-- `description` is ignored
-- `showClose` is ignored
-- the custom header markup is rendered instead
-
-Without a custom header slot, `showClose` is auto by default. That means the built-in close icon stays hidden when both `heading` and `description` are empty, unless you explicitly set `showClose=true`.
-
 ## Related
 
+- Layer visibility behavior: [Isolate](doc:isolate)
 - Action payloads and fluent API: [Declarative Actions](doc:declarative-actions)
 - Standalone-specific attribute usage: [Standalone Blade Modal](doc:standalone-blade-modal)
-- Manual shell composition: [Custom Layouts](doc:custom-layouts)
+- Manual shell composition: [Layout](doc:layout)
 - Runtime behavior and custom events: [Events](doc:events)

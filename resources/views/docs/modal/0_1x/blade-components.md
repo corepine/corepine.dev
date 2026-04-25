@@ -76,6 +76,6 @@ Use `modal-id` on open/close helpers when you want to target a standalone modal 
 
 ## Continue
 
-- Full manual composition with `shell=false`: [Custom Layouts](doc:custom-layouts)
+- Full manual composition with `shell=false`: [Layout](doc:layout)
 - Open/close behavior and stack methods: [Open / Close APIs](doc:open-close-apis)
 - Host requirement and standalone mode: [Standalone Blade Modal](doc:standalone-blade-modal)

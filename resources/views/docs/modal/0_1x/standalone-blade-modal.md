@@ -1,45 +1,10 @@
 # Standalone Blade Modal
 
-Standalone Blade modals use the same modal system as the normal Livewire modal flow.
+Use standalone mode when you want modal behavior without creating a Livewire modal class.
 
-The same core attributes still apply, such as `type`, `placement`, `heading`, `description`, and `showClose`. See [Attributes](#standalone-component-attributes).
+It is useful for simple dialogs, quick sheets, and static interaction blocks.
 
-Use standalone mode when you want that modal behavior without creating a Livewire modal class.
-
-It is especially useful for simple modals, quick sheets, and static interaction blocks.
-
-## A Basic Example
-
-This is the full shape of a standalone modal:
-
-```blade
-<x-corepine.modal
-    id="billing-help"
-    type="modal"
-    heading="Billing Help"
-    description="Quick answers for your billing questions."
->
-    <p>Standalone modal body</p>
-
-    <x-slot:footer>
-        <button type="button">Done</button>
-    </x-slot:footer>
-</x-corepine.modal>
-```
-
-What this gives you:
-
-- built-in header from `heading` and `description`
-- modal body from the default slot
-- footer docked to the bottom from `x-slot:footer`
-
-## Opening The Modal
-
-There are multiple ways to open a standalone modal.
-
-The common requirement is that the modal has an `id`.
-
-### Alpine `@click`
+## Basic Example
 
 ```blade
 <div x-data>
@@ -49,206 +14,69 @@ The common requirement is that the modal has an `id`.
     >
         Open Billing Help
     </button>
+
+    <x-corepine.modal
+        id="billing-help"
+        type="modal"
+        heading="Billing Help"
+        description="Quick answers for your billing questions."
+    >
+        <p>Standalone modal body</p>
+
+        <x-slot:footer>
+            <x-corepine.modal.actions.close>
+                Done
+            </x-corepine.modal.actions.close>
+        </x-slot:footer>
+    </x-corepine.modal>
 </div>
 ```
 
-### Livewire Blade `wire:click`
+This is the basic standalone flow:
 
-```blade
-<button
-    type="button"
-    wire:click="$dispatch('modal.open', { id: 'billing-help' })"
->
-    Open Billing Help
-</button>
-```
+- give the modal an `id`
+- dispatch `modal.open` with that `id`
+- render content inside `<x-corepine.modal />`
 
-### Livewire PHP
-
-```php
-$this->dispatch('modal.open', id: 'billing-help');
-```
-
-### Open Helper
-
-If you prefer a Blade helper instead of dispatching the event yourself, you can use `<x-corepine.modal.actions.open />` with `modal-id`:
-
-```blade
-<x-corepine.modal.actions.open modal-id="billing-help">
-    Open Billing Help
-</x-corepine.modal.actions.open>
-```
-
-To close it, dispatch `modal.close` with the same `id`:
-
-```php
-$this->dispatch('modal.close', id: 'billing-help');
-```
+For header, footer, form, and shell composition patterns, continue to [Layout](doc:layout).
 
 ## Host Requirement
 
 - Standalone-only usage: host is optional
 - Mixed app (stack modals + standalone): still render the global host once
 
-Global host:
-
 ```blade
 <x-corepine.modal.assets />
 ```
 
-## Header And Footer Options
-
-### Built-In Header And Docked Footer
-
-If you pass `heading` or `description`, the built-in header is rendered.
-
-If you add `x-slot:footer`, the footer is automatically docked to the bottom.
-
-```blade
-<x-corepine.modal
-    id="billing-help"
-    type="modal"
-    heading="Billing Help"
-    description="Quick answers for your billing questions."
->
-    <p>Standalone modal body</p>
-
-    <x-slot:footer>
-        <button>Done</button>
-    </x-slot:footer>
-</x-corepine.modal>
-```
-
-If both `heading` and `description` are empty, the built-in close button stays hidden unless you explicitly pass `show-close="true"`.
-
-### Custom Header
-
-If you need your own header, provide `x-slot:header`.
-
-You can still keep the docked footer at the bottom with `x-slot:footer`:
-
-```blade
-<x-corepine.modal id="billing-help" type="modal">
-    <x-slot:header class="font-bold">
-        Custom header
-    </x-slot:header>
-
-    <p>Custom content...</p>
-
-    <x-slot:footer>
-        <button type="button">Done</button>
-    </x-slot:footer>
-</x-corepine.modal>
-```
-
-The classes and attributes on `x-slots` are merged onto the rendered wrappers.
-
-## Modal Form
-
-If you put a submit handler on `<x-corepine.modal />`, the modal panel itself becomes a real `<form>`.
-
-You can do this with `wire:submit...` or `x-on:submit...`.
-
-```blade
-<x-corepine.modal
-    id="billing-help"
-    type="modal"
-    heading="Billing Help"
-    description="Quick answers for your billing questions."
-    wire:submit="save"
->
-   <p> Content </p>
-
-    <x-slot:footer>
-        <button type="submit">
-            Save
-        </button>
-    </x-slot:footer>
-</x-corepine.modal>
-```
-
-When submit attributes are present, the modal:
-
-- renders the panel as a form
-- includes CSRF automatically for non-GET forms
-- spoofs `PUT`, `PATCH`, and `DELETE` methods when needed
- 
-## Standalone Close Helper
-
-Inside a standalone modal, `<x-corepine.modal.actions.close />` automatically detects the nearest standalone modal id and closes that modal.
-
-```blade
-<x-corepine.modal id="billing-help">
-    ...
-
-    <x-slot:footer>
-        <x-corepine.modal.actions.close>
-            Close
-        </x-corepine.modal.actions.close>
-    </x-slot:footer>
-</x-corepine.modal>
-```
-
-If you want to target a specific standalone modal explicitly, use `modal-id`:
-
-```blade
-<x-corepine.modal.actions.close modal-id="billing-help">
-    Close
-</x-corepine.modal.actions.close>
-```
-
-Use `modal-id` instead of `id` so you can still use the normal HTML `id` attribute on the rendered button.
-
 ## Standalone Component Attributes
 
-These are the main attributes available on `<x-corepine.modal />`:
+These are the most common attributes available on `<x-corepine.modal />`:
 
 | Attribute | Type | Default | Meaning |
 | --- | --- | --- | --- |
 | `id` | `string \| null` | `null` | Target id for open/close/toggle events |
 | `open` | `bool` | `false` | Initial open state |
 | `type` | `modal \| drawer \| sheet` | inferred | Presentation mode |
-| `drawer` | `bool \| null` | `null` | Legacy/shortcut to force drawer mode |
-| `sheet` | `bool \| null` | `null` | Legacy/shortcut to force sheet mode |
-| `bottomSheet` | `bool \| null` | `null` | Legacy sheet alias |
 | `placement` | `string \| null` | by type | Placement (`sheet` always bottom) |
 | `origin` | `string \| null` | by type | Transform origin |
 | `size` | `string` | `default` | Width token or class string |
-| `height` | `string \| number \| null` | `null` | Panel/initial sheet height |
+| `height` | `string \| number \| null` | `null` | Panel or initial sheet height |
 | `maxHeight` | `string \| number \| null` | `null` | Max height limit |
 | `draggable` | `bool \| null` | type-aware | Sheet drag behavior |
 | `showDragHandle` | `bool \| null` | type-aware | Drag handle visibility |
 | `dragCloseThreshold` | `float \| null` | `0.3` | Drag-to-close threshold |
 | `dismissible` | `bool \| null` | `true` | Click outside closes panel |
-| `closeOnEscape` | `bool` | `true` | Escape closes top/current modal |
+| `closeOnEscape` | `bool` | `true` | Escape closes the current modal |
 | `closeAllOnEscape` | `bool` | `false` | Escape closes all layers |
 | `blur` | `bool` | `false` | Backdrop blur |
 | `heading` | `string \| null` | `null` | Built-in header title |
 | `description` | `string \| null` | `null` | Built-in header subtitle |
 | `showClose` | `bool \| null` | `auto` | Built-in close button. Auto shows it only when built-in `heading` or `description` exists. |
 | `class` | `string` | `''` | Extra panel classes |
-| `modalAttributes` | `array` | `[]` | Bulk attribute payload (merged) |
-
-Standalone named slots:
-
-- `x-slot:header`: full header override
-- `x-slot:footer`: custom footer content docked to the bottom
-
-## Optional Non-Livewire Fallback
-
-If you are outside Livewire, you can still trigger standalone modals with browser events:
-
-```html
-<button
-    type="button"
-    onclick="window.dispatchEvent(new CustomEvent('modal.open', { detail: { id: 'billing-help' } }))"
->
-    Open Billing Help
-</button>
-```
 
 ## Continue
 
 - Full type and placement behavior: [Types & Placements](doc:modal-types-positioning)
-- Full attribute reference (shared concepts): [Modal Attributes](doc:modal-attributes)
-- Manual shell composition for `shell=false`: [Custom Layouts](doc:custom-layouts)
+- Full attribute reference: [Modal Attributes](doc:modal-attributes)
+- Header, footer, and shell composition: [Layout](doc:layout)

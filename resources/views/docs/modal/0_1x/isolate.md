@@ -4,6 +4,8 @@
 
 Use it when you want to open a new modal on top of the current one without visually replacing the modal underneath.
 
+![centered modal](image:modal/isolate)
+
 ## What It Does
 
 By default, Corepine Modal keeps previous layers in the stack, but only the active top layer is shown.
