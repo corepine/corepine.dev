@@ -3,83 +3,48 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Corepine · Plug-and-Go Laravel Packages</title>
-    <meta name="description" content="Corepine builds production-ready Laravel packages you can install and ship fast: ecommerce, social, and business flows with polished defaults.">
+    <title>Corepine · Artisan tools you can ship today</title>
+    <meta name="description" content="Corepine is home to polished Artisan tools with documentation you can publish and ship.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <script>
-        (() => {
-            const STORAGE_KEY = 'corepine-theme';
-            const LEGACY_KEY = 'theme';
-
-            const normalizePreference = (value) => {
-                if (value === 'light' || value === 'dark' || value === 'system') {
-                    return value;
-                }
-
-                return 'system';
-            };
-
-            let preference = 'system';
-
-            try {
-                const stored = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_KEY);
-                preference = normalizePreference(stored);
-                localStorage.setItem(STORAGE_KEY, preference);
-                localStorage.removeItem(LEGACY_KEY);
-            } catch (error) {
-                // Ignore storage access errors and keep system default.
-            }
-
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const isDark = preference === 'dark' || (preference === 'system' && prefersDark);
-
-            document.documentElement.classList.toggle('dark', isDark);
-            document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
-            document.documentElement.dataset.themePreference = preference;
-        })();
-    </script>
+    @include('partials.theme-head')
 
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 </head>
-<body class="min-h-full bg-zinc-100 text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100">
-<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute -top-40 left-1/2 h-[36rem] w-[36rem] -translate-x-1/2 rounded-full bg-teal-500/25 blur-3xl dark:bg-teal-500/30"></div>
-    <div class="absolute -bottom-40 right-0 h-[28rem] w-[28rem] rounded-full bg-cyan-400/20 blur-3xl dark:bg-cyan-400/20"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(24,24,27,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(24,24,27,0.045)_1px,transparent_1px)] bg-[size:26px_26px] dark:bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)]"></div>
-</div>
+<body class="corepine-page min-h-full bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+<div class="corepine-grid pointer-events-none fixed inset-0 -z-10 opacity-70 dark:opacity-40"></div>
 
-<header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-zinc-100/80 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/80">
-    <div class="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <a href="/" class="inline-flex items-center gap-2.5 rounded-lg px-1 py-0.5">
+<header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/90 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/90">
+    <div class="mx-auto flex w-full max-w-7xl items-center gap-6 px-4 py-4 sm:px-6 lg:px-8">
+        <a href="/" class="inline-flex items-center gap-3">
             <img
                 src="{{ asset('brand/corepine-logo-mark.svg') }}"
                 alt="Corepine logo"
-                class="h-8 w-8 rounded-md"
+                class="h-8 w-8"
                 width="32"
                 height="32"
             >
-            <span class="font-space text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</span>
+            <span>
+                <span class="font-space block text-xl font-semibold tracking-tight">Corepine</span>
+                <span class="block text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Laravel packages</span>
+            </span>
         </a>
-        <span class="hidden rounded-full border border-zinc-300 bg-white px-2.5 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 sm:inline-flex">
-            Laravel Packages
-        </span>
 
-        <nav class="ml-auto hidden items-center gap-2 text-sm md:flex">
-            <a href="#packages" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Packages</a>
-            <a href="#showcase" class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-zinc-200/70 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100">Showcase</a>
-            <a href="/modal/docs" class="rounded-lg bg-teal-600 px-3 py-2 font-medium text-white transition hover:bg-teal-500">Modal Docs</a>
+        <nav class="ml-auto hidden items-center gap-8 text-sm md:flex">
+            <a href="#products" class="text-zinc-600 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50">Products</a>
+            <a href="#principles" class="text-zinc-600 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50">Principles</a>
+            <a href="#documentation" class="text-zinc-600 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50">Documentation</a>
         </nav>
+
+        <a href="/modal/docs" class="hidden border border-teal-600 bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-500 md:inline-flex">
+            Modal docs
+        </a>
 
         <button
             type="button"
             data-theme-toggle
-            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
+            class="inline-flex h-10 w-10 items-center justify-center border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
             aria-label="Theme toggle"
         >
             <span class="sr-only">Toggle theme</span>
@@ -106,293 +71,252 @@
 </header>
 
 <main>
-    <section class="mx-auto grid w-full max-w-7xl gap-10 px-4 pt-16 pb-14 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:px-8 lg:pt-24">
-        <div class="animate-[fade-in_700ms_ease-out]">
-            <span class="inline-flex items-center rounded-full border border-teal-400/50 bg-teal-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-teal-800 dark:border-teal-700 dark:bg-teal-950 dark:text-teal-300">
-                Corepine for Laravel
-            </span>
-
-            <h1 class="font-space mt-5 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-zinc-100">
-                Plug-and-go Laravel packages for teams that ship weekly.
-            </h1>
-
-            <p class="mt-6 max-w-xl text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-                Corepine delivers production-ready package flows for ecommerce, social, and business products so you can spend less time wiring basics and more time building what makes your app unique.
-            </p>
-
-            <div class="mt-8 flex flex-wrap items-center gap-3">
-                <a href="/modal/docs" class="inline-flex items-center rounded-xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-500">
-                    Explore Modal Docs
-                </a>
-                <a href="#packages" class="inline-flex items-center rounded-xl border border-zinc-300 bg-white px-5 py-3 text-sm font-semibold text-zinc-700 transition hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500">
-                    View Package Roadmap
-                </a>
-            </div>
-
-            <div class="mt-10 grid max-w-xl gap-3 sm:grid-cols-3">
-                <div class="rounded-xl border border-zinc-200 bg-white/80 p-3 dark:border-zinc-800 dark:bg-zinc-900/70">
-                    <p class="text-xs uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400">Focus</p>
-                    <p class="mt-1 font-semibold">Ecommerce</p>
-                </div>
-                <div class="rounded-xl border border-zinc-200 bg-white/80 p-3 dark:border-zinc-800 dark:bg-zinc-900/70">
-                    <p class="text-xs uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400">Focus</p>
-                    <p class="mt-1 font-semibold">Social</p>
-                </div>
-                <div class="rounded-xl border border-zinc-200 bg-white/80 p-3 dark:border-zinc-800 dark:bg-zinc-900/70">
-                    <p class="text-xs uppercase tracking-[0.14em] text-zinc-500 dark:text-zinc-400">Focus</p>
-                    <p class="mt-1 font-semibold">Business</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="relative animate-[fade-up_800ms_ease-out]">
-            <div class="rounded-3xl border border-zinc-200 bg-white/85 p-6 shadow-xl shadow-zinc-900/5 dark:border-zinc-800 dark:bg-zinc-900/80 dark:shadow-black/25">
-                <div class="mb-5 flex items-center gap-2">
-                    <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
+    <section class="border-b border-zinc-200 dark:border-zinc-800">
+        <div class="mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center lg:px-8 lg:py-24">
+            <div>
+                <div class="inline-flex items-center gap-2 border border-teal-200 bg-teal-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:border-teal-900/70 dark:bg-teal-950/30 dark:text-teal-300">
+                    Built for Laravel
                 </div>
 
-                <div class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">corepine/modal</p>
-                    <p class="font-space mt-2 text-xl font-semibold">Stacked modals, drawers, and sheets ready to ship.</p>
-                    <p class="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                        Build confirmations, task flows, and layered UI without rewriting modal state management in every project.
-                    </p>
+                <h1 class="font-space mt-8 max-w-4xl text-5xl font-normal tracking-[-0.06em] text-zinc-950 sm:text-6xl lg:text-[5.2rem] lg:leading-[0.94] dark:text-zinc-50">
+                    Artisan tools you can ship today.
+                </h1>
 
-                    <div class="mt-5 grid gap-2 text-sm">
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Modal, drawer, and sheet presentation modes</div>
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Stacked flows with isolate, close helpers, and events</div>
-                        <div class="rounded-lg border border-zinc-200 bg-white px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900">✓ Standalone Blade usage and Livewire modal classes</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                <p class="mt-8 max-w-2xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
+                    Corepine is the home for Laravel tools and documentation built to feel polished, stable, and ready for real teams.
+                </p>
 
-    <section id="packages" class="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div class="rounded-3xl border border-zinc-200 bg-white/80 p-6 dark:border-zinc-800 dark:bg-zinc-900/70 sm:p-8">
-            <h2 class="font-space text-3xl font-bold tracking-tight">Package Waves</h2>
-            <p class="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-300">
-                Corepine packages keep versioned docs per package while sharing one consistent developer experience.
-            </p>
-
-            <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Now</p>
-                    <h3 class="font-space mt-2 text-xl font-semibold">Modal</h3>
-                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Dialog and workflow components for confirmations, forms, and product actions.</p>
-                </article>
-                <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Soon</p>
-                    <h3 class="font-space mt-2 text-xl font-semibold">More Packages</h3>
-                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Additional Corepine packages are still in development and will show up here when they are ready.</p>
-                </article>
-                <article class="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <p class="text-xs uppercase tracking-[0.12em] text-zinc-500">Next</p>
-                    <h3 class="font-space mt-2 text-xl font-semibold">Commerce & Workflows</h3>
-                    <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-300">Checkout helpers, discount journeys, and internal business flow modules.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="showcase" class="mx-auto w-full max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div class="rounded-3xl border border-zinc-200 bg-white/80 p-6 dark:border-zinc-800 dark:bg-zinc-900/70 sm:p-8">
-            <div class="flex flex-wrap items-end justify-between gap-3">
-                <div>
-                    <h2 class="font-space text-3xl font-bold tracking-tight">Showcase Ready</h2>
-                    <p class="mt-2 text-zinc-600 dark:text-zinc-300">Use this area to highlight Modal for now, then add more package screenshots later.</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <a href="/modal/docs" class="rounded-lg border border-zinc-300 px-3 py-2 text-sm font-medium transition hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-500">
-                        Open Modal docs
+                <div class="mt-10 flex flex-wrap gap-4">
+                    <a href="/modal/docs" class="inline-flex items-center border border-teal-600 bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-500">
+                        Browse docs
+                    </a>
+                    <a href="#products" class="inline-flex items-center border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
+                        View packages
                     </a>
                 </div>
+
+                <div class="mt-12 grid max-w-3xl gap-6 border-t border-zinc-200 pt-8 text-sm dark:border-zinc-800 sm:grid-cols-3">
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Focus</p>
+                        <p class="mt-3 font-space text-xl font-semibold">Tools</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Polished building blocks for Laravel apps.</p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Standard</p>
+                        <p class="mt-3 font-space text-xl font-semibold">Reliable</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Built for real usage, not just showcase pages.</p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Docs</p>
+                        <p class="mt-3 font-space text-xl font-semibold">Shippable</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Documentation that feels ready for public release.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="mt-6 grid gap-4 md:grid-cols-3">
-                <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
-                        <img
-                            src="{{ asset('assets/modal/centered-modal-light.png') }}"
-                            alt="Centered modal screenshot"
-                            class="h-full w-full object-cover dark:hidden"
-                        >
-                        <img
-                            src="{{ asset('assets/modal/centered-modal-dark.png') }}"
-                            alt="Centered modal screenshot"
-                            class="hidden h-full w-full object-cover dark:block"
-                        >
+            <div class="relative">
+                <div class="border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+                    <div class="flex items-center justify-between border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
+                        <div>
+                            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Corepine standard</p>
+                            <p class="mt-1 font-space text-lg font-semibold">Tools built to launch cleanly</p>
+                        </div>
+                        <a href="/modal/docs" class="text-sm font-medium text-teal-700 transition hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200">
+                            Open docs
+                        </a>
                     </div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Centered modal</p>
+
+                    <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+                        <div class="border-b border-zinc-200 p-5 dark:border-zinc-800 lg:border-b-0 lg:border-r">
+                            <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                                Corepine tools are designed to ship with cleaner defaults, solid interfaces, and documentation that looks ready for customers and teams.
+                            </p>
+
+                            <div class="mt-6 space-y-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
+                                <div>
+                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Packages</p>
+                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Focused Laravel building blocks with practical defaults</p>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Documentation</p>
+                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Structured, versioned, and ready to publish</p>
+                                </div>
+                                <div>
+                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Shipping goal</p>
+                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Give each package a public-facing quality bar from day one</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid gap-0 divide-y divide-zinc-200 dark:divide-zinc-800">
+                            <div class="bg-zinc-50 p-5 dark:bg-zinc-900">
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">What Corepine is</p>
+                                <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">A home for Laravel teams that want stronger defaults and documentation that already feels launch-ready.</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Accent</p>
+                                <div class="mt-3 h-2 w-full bg-teal-500"></div>
+                            </div>
+                            <div class="p-5">
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Live now</p>
+                                <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Modal docs</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-        
-                <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
-                        <img
-                            src="{{ asset('assets/modal/bottom-sheet-light.png') }}"
-                            alt="Bottom sheet screenshot"
-                            class="h-full w-full object-cover dark:hidden"
-                        >
-                        <img
-                            src="{{ asset('assets/modal/bottom-sheet-dark.png') }}"
-                            alt="Bottom sheet screenshot"
-                            class="hidden h-full w-full object-cover dark:block"
-                        >
-                    </div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Bottom sheet</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="border-b border-zinc-200 dark:border-zinc-800">
+        <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+                <div>
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Products</p>
+                    <h2 class="font-space mt-4 text-4xl font-semibold tracking-[-0.05em] text-zinc-950 dark:text-zinc-50">
+                        Tools that feel ready from day one.
+                    </h2>
                 </div>
-                        <div class="group relative overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-950/60">
-                    <div class="aspect-[4/3] overflow-hidden rounded-xl border border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
-                        <img
-                            src="{{ asset('assets/modal/drawer-right-light.png') }}"
-                            alt="Right drawer modal screenshot"
-                            class="h-full w-full object-right dark:hidden"
-                        >
-                        <img
-                            src="{{ asset('assets/modal/drawer-right-dark.png') }}"
-                            alt="Right drawer modal screenshot"
-                            class="hidden h-full w-full object-right dark:block"
-                        >
+
+                <div class="grid gap-8 border-t border-zinc-200 pt-8 dark:border-zinc-800 sm:grid-cols-2">
+                    <article>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">Now shipping</p>
+                        <h3 class="font-space mt-3 text-2xl font-semibold">Modal</h3>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                            A polished modal package with public docs, a clear API surface, and UI flows built for real apps.
+                        </p>
+                    </article>
+
+                    <article>
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Roadmap</p>
+                        <h3 class="font-space mt-3 text-2xl font-semibold">More Corepine tools</h3>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                            Future tools will follow the same standard: polished implementation with documentation ready to publish.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="principles" class="border-b border-zinc-200 dark:border-zinc-800">
+        <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+                <div>
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Principles</p>
+                    <h2 class="font-space mt-4 text-4xl font-semibold tracking-[-0.05em] text-zinc-950 dark:text-zinc-50">
+                        Built to feel complete before launch day.
+                    </h2>
+                </div>
+
+                <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+                    <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
+                        <p class="font-space text-xl font-semibold">Shippable docs</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Every tool should have documentation that already feels publishable and stable.</p>
                     </div>
-                    <p class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Right drawer</p>
+                    <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
+                        <p class="font-space text-xl font-semibold">Clear package surfaces</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Corepine should present tools like products, not unfinished internal projects.</p>
+                    </div>
+                    <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
+                        <p class="font-space text-xl font-semibold">Consistent quality bar</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The site, package pages, and docs should all feel like one shippable system.</p>
+                    </div>
+                    <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
+                        <p class="font-space text-xl font-semibold">Simple presentation</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The layout stays restrained so the package and documentation do the talking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="documentation">
+        <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                <div class="grid gap-4 md:grid-cols-3">
+                    <figure class="border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+                        <div class="aspect-[4/3] overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+                            <img
+                                src="{{ asset('assets/modal/centered-modal-light.png') }}"
+                                alt="Centered modal screenshot"
+                                class="h-full w-full object-cover dark:hidden"
+                            >
+                            <img
+                                src="{{ asset('assets/modal/centered-modal-dark.png') }}"
+                                alt="Centered modal screenshot"
+                                class="hidden h-full w-full object-cover dark:block"
+                            >
+                        </div>
+                        <figcaption class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Centered modal</figcaption>
+                    </figure>
+
+                    <figure class="border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+                        <div class="aspect-[4/3] overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+                            <img
+                                src="{{ asset('assets/modal/bottom-sheet-light.png') }}"
+                                alt="Bottom sheet screenshot"
+                                class="h-full w-full object-cover dark:hidden"
+                            >
+                            <img
+                                src="{{ asset('assets/modal/bottom-sheet-dark.png') }}"
+                                alt="Bottom sheet screenshot"
+                                class="hidden h-full w-full object-cover dark:block"
+                            >
+                        </div>
+                        <figcaption class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Bottom sheet</figcaption>
+                    </figure>
+
+                    <figure class="border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
+                        <div class="aspect-[4/3] overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+                            <img
+                                src="{{ asset('assets/modal/drawer-right-light.png') }}"
+                                alt="Drawer modal screenshot"
+                                class="h-full w-full object-right dark:hidden"
+                            >
+                            <img
+                                src="{{ asset('assets/modal/drawer-right-dark.png') }}"
+                                alt="Drawer modal screenshot"
+                                class="hidden h-full w-full object-right dark:block"
+                            >
+                        </div>
+                        <figcaption class="mt-3 text-sm text-zinc-500 dark:text-zinc-400">Drawer</figcaption>
+                    </figure>
+                </div>
+
+                <div>
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Documentation</p>
+                    <h2 class="font-space mt-4 text-4xl font-semibold tracking-[-0.05em] text-zinc-950 dark:text-zinc-50">
+                        Documentation that ships with the tool.
+                    </h2>
+                    <p class="mt-6 text-base leading-8 text-zinc-600 dark:text-zinc-300">
+                        Corepine documentation should feel public, stable, and ready for real users from the moment a tool goes live.
+                    </p>
+
+                    <div class="mt-8 space-y-4 border-t border-zinc-200 pt-8 dark:border-zinc-800">
+                        <div>
+                            <p class="font-space text-lg font-semibold">Versioned</p>
+                        <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Each tool keeps documentation that can grow without losing structure.</p>
+                        </div>
+                        <div>
+                            <p class="font-space text-lg font-semibold">Public-facing</p>
+                            <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The docs are meant to look ready for teams, customers, and production use.</p>
+                        </div>
+                        <div>
+                            <p class="font-space text-lg font-semibold">Consistent</p>
+                            <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The package page and docs share the same quality bar and visual language.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
 
-<footer class="border-t border-zinc-200/80 py-8 text-center text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-    Corepine © {{ now()->year }} · Built for makers shipping Laravel products.
+<footer class="border-t border-zinc-200 py-8 text-center text-sm text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
+    Corepine © {{ now()->year }} · Laravel tools and docs you can ship.
 </footer>
 
-<script>
-    (() => {
-        const STORAGE_KEY = 'corepine-theme';
-        const LEGACY_KEY = 'theme';
-        const CYCLE = ['light', 'dark', 'system'];
-        const LABELS = {
-            light: 'Light',
-            dark: 'Dark',
-            system: 'System',
-        };
-        const root = document.documentElement;
-        const toggleButton = document.querySelector('[data-theme-toggle]');
-        const icons = Array.from(document.querySelectorAll('[data-theme-icon]'));
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-        if (! toggleButton || icons.length === 0) {
-            return;
-        }
-
-        const normalizePreference = (value) => {
-            if (value === 'light' || value === 'dark' || value === 'system') {
-                return value;
-            }
-
-            return 'system';
-        };
-
-        const readStoredPreference = () => {
-            try {
-                const stored = localStorage.getItem(STORAGE_KEY);
-                const legacy = localStorage.getItem(LEGACY_KEY);
-                const normalized = normalizePreference(stored ?? legacy);
-                localStorage.setItem(STORAGE_KEY, normalized);
-                localStorage.removeItem(LEGACY_KEY);
-
-                return normalized;
-            } catch (error) {
-                // Ignore storage access errors and use current in-memory state.
-            }
-
-            return normalizePreference(root.dataset.themePreference);
-        };
-
-        const resolveTheme = (preference) => {
-            if (preference === 'light' || preference === 'dark') {
-                return preference;
-            }
-
-            return mediaQuery.matches ? 'dark' : 'light';
-        };
-
-        const applyThemeAndUi = (preference) => {
-            const theme = resolveTheme(preference);
-            const isDark = theme === 'dark';
-
-            root.classList.toggle('dark', isDark);
-            root.style.colorScheme = isDark ? 'dark' : 'light';
-            root.dataset.themePreference = preference;
-
-            icons.forEach((icon) => {
-                const isVisible = icon.dataset.themeIcon === preference;
-                icon.classList.toggle('hidden', ! isVisible);
-            });
-
-            const currentIndex = CYCLE.indexOf(preference);
-            const nextPreference = CYCLE[(currentIndex + 1) % CYCLE.length];
-            const message = `Theme: ${LABELS[preference]}. Click to switch to ${LABELS[nextPreference]}.`;
-
-            toggleButton.setAttribute('aria-label', message);
-            toggleButton.setAttribute('title', message);
-            toggleButton.dataset.themeCurrent = preference;
-        };
-
-        const setStoredPreference = (preference) => {
-            const normalizedPreference = normalizePreference(preference);
-
-            try {
-                localStorage.setItem(STORAGE_KEY, normalizedPreference);
-                localStorage.removeItem(LEGACY_KEY);
-            } catch (error) {
-                // Ignore storage access issues and keep in-memory state.
-            }
-        };
-
-        const cyclePreference = () => {
-            const current = normalizePreference(toggleButton.dataset.themeCurrent ?? readStoredPreference());
-            const currentIndex = CYCLE.indexOf(current);
-            const nextPreference = CYCLE[(currentIndex + 1) % CYCLE.length];
-
-            setStoredPreference(nextPreference);
-            applyThemeAndUi(nextPreference);
-        };
-
-        const refreshFromStoredPreference = () => {
-            applyThemeAndUi(normalizePreference(readStoredPreference()));
-        };
-
-        toggleButton.addEventListener('click', cyclePreference);
-
-        if (typeof mediaQuery.addEventListener === 'function') {
-            mediaQuery.addEventListener('change', () => {
-                const preference = normalizePreference(readStoredPreference());
-
-                if (preference === 'system') {
-                    applyThemeAndUi(preference);
-                }
-            });
-        } else if (typeof mediaQuery.addListener === 'function') {
-            mediaQuery.addListener(() => {
-                const preference = normalizePreference(readStoredPreference());
-
-                if (preference === 'system') {
-                    applyThemeAndUi(preference);
-                }
-            });
-        }
-
-        window.addEventListener('pageshow', refreshFromStoredPreference);
-        window.addEventListener('storage', (event) => {
-            if (event.key === STORAGE_KEY || event.key === LEGACY_KEY) {
-                refreshFromStoredPreference();
-            }
-        });
-
-        refreshFromStoredPreference();
-    })();
-</script>
+@include('partials.theme-toggle-script')
 </body>
 </html>

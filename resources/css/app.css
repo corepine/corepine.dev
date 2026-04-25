@@ -22,10 +22,21 @@
 
     :root {
         color-scheme: light;
+        --corepine-grid-light: rgba(13, 148, 136, 0.08);
+        --corepine-grid-dark: rgba(45, 212, 191, 0.08);
     }
 
     .dark {
         color-scheme: dark;
+    }
+
+    ::selection {
+        background: rgba(13, 148, 136, 0.2);
+        color: inherit;
+    }
+
+    body {
+        min-height: 100%;
     }
 
     .docs-markdown {
@@ -39,14 +50,14 @@
         --docs-code-copy-border-hover: rgb(161 161 170);
         --docs-code-plain: #2e3440;
         --docs-code-comment: #616e88;
-        --docs-code-keyword: #5e81ac;
+        --docs-code-keyword: #0f766e;
         --docs-code-string: #6b8f71;
-        --docs-code-title: #5e81ac;
+        --docs-code-title: #0f766e;
         --docs-code-number: #b07d9c;
-        --docs-code-builtin: #8fbcbb;
-        --docs-code-type: #5a8690;
+        --docs-code-builtin: #14b8a6;
+        --docs-code-type: #0f766e;
         --docs-code-meta: #7b88a1;
-        --docs-code-tag: #5e81ac;
+        --docs-code-tag: #0f766e;
         --docs-code-attr: #4c566a;
         --docs-code-subst: #3b4252;
     }
@@ -62,30 +73,58 @@
         --docs-code-copy-border-hover: rgb(113 113 122);
         --docs-code-plain: #d8dee9;
         --docs-code-comment: #616e88;
-        --docs-code-keyword: #81a1c1;
+        --docs-code-keyword: #5eead4;
         --docs-code-string: #a3be8c;
-        --docs-code-title: #88c0d0;
+        --docs-code-title: #5eead4;
         --docs-code-number: #b48ead;
-        --docs-code-builtin: #ebcb8b;
+        --docs-code-builtin: #2dd4bf;
         --docs-code-type: #8fbcbb;
         --docs-code-meta: #5e81ac;
-        --docs-code-tag: #81a1c1;
+        --docs-code-tag: #5eead4;
         --docs-code-attr: #d8dee9;
         --docs-code-subst: #e5e9f0;
     }
 }
 
 @layer components {
+    .corepine-page {
+        background-image:
+            radial-gradient(circle at top, rgba(20, 184, 166, 0.08), transparent 32%);
+    }
+
+    .dark .corepine-page {
+        background-image:
+            radial-gradient(circle at top, rgba(13, 148, 136, 0.16), transparent 30%);
+    }
+
+    .corepine-grid {
+        background-image:
+            linear-gradient(var(--corepine-grid-light) 1px, transparent 1px),
+            linear-gradient(90deg, var(--corepine-grid-light) 1px, transparent 1px);
+        background-size: 30px 30px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.68), transparent 92%);
+    }
+
+    .dark .corepine-grid {
+        background-image:
+            linear-gradient(var(--corepine-grid-dark) 1px, transparent 1px),
+            linear-gradient(90deg, var(--corepine-grid-dark) 1px, transparent 1px);
+    }
+
+    .corepine-panel {
+        @apply border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950;
+    }
+
     .docs-markdown h1 {
-        @apply font-space mb-4 text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100;
+        @apply font-space mb-4 text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50;
     }
 
     .docs-markdown h2 {
-        @apply font-space mt-10 mb-3 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100;
+        @apply font-space mt-10 mb-3 text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50;
     }
 
     .docs-markdown h3 {
-        @apply font-space mt-6 mb-2 text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-200;
+        @apply font-space mt-6 mb-2 text-xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100;
     }
 
     .docs-markdown p {
@@ -117,7 +156,7 @@
     }
 
     .docs-markdown .docs-code-block {
-        @apply my-6 overflow-hidden rounded-2xl border bg-zinc-50 shadow-sm dark:bg-transparent;
+        @apply my-6 overflow-hidden border bg-zinc-50 shadow-sm dark:bg-transparent;
         border-color: var(--docs-code-border);
     }
 
@@ -252,7 +291,7 @@
     }
 
     .docs-markdown .docs-screenshot-set {
-        @apply my-6 block overflow-hidden rounded-2xl border border-zinc-200 bg-white/70 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70;
+        @apply my-6 block overflow-hidden border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900/70;
     }
 
     .docs-markdown .docs-screenshot {
@@ -268,7 +307,7 @@
     }
 
     .docs-markdown table {
-        @apply my-6 w-full border-collapse overflow-x-auto rounded-xl border border-zinc-200 text-left text-sm dark:border-zinc-700;
+        @apply my-6 w-full border-collapse overflow-x-auto border border-zinc-200 text-left text-sm dark:border-zinc-700;
         display: block;
         max-width: 100%;
         white-space: nowrap;
@@ -279,7 +318,7 @@
     }
 
     .docs-markdown th {
-        @apply border-b border-zinc-200 px-4 py-2.5 font-semibold text-zinc-900 dark:border-zinc-700 dark:text-zinc-100;
+        @apply border-b border-zinc-200 px-4 py-2.5 font-semibold text-zinc-950 dark:border-zinc-700 dark:text-zinc-100;
         white-space: nowrap;
     }
 

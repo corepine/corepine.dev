@@ -5,48 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $pageTitle }} · {{ $projectConfig['label'] ?? ucfirst($project) }} · Corepine</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    @include('partials.theme-head')
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
-    <script>
-        (() => {
-            const STORAGE_KEY = 'corepine-theme';
-            const LEGACY_KEY = 'theme';
-
-            const normalizePreference = (value) => {
-                if (value === 'light' || value === 'dark' || value === 'system') {
-                    return value;
-                }
-
-                return 'system';
-            };
-
-            let preference = 'system';
-
-            try {
-                const stored = localStorage.getItem(STORAGE_KEY) ?? localStorage.getItem(LEGACY_KEY);
-                preference = normalizePreference(stored);
-                localStorage.setItem(STORAGE_KEY, preference);
-                localStorage.removeItem(LEGACY_KEY);
-            } catch (error) {
-                // Ignore storage access errors and keep system default.
-            }
-
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const isDark = preference === 'dark' || (preference === 'system' && prefersDark);
-
-            document.documentElement.classList.toggle('dark', isDark);
-            document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
-            document.documentElement.dataset.themePreference = preference;
-        })();
-    </script>
-
-    
 
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -55,42 +19,44 @@
 <body
     x-data="{ mobileNavOpen: false }"
     x-on:keydown.escape.window="mobileNavOpen = false"
-    class="min-h-full bg-zinc-100 text-zinc-800 antialiased dark:bg-zinc-950 dark:text-zinc-100"
+    class="corepine-page min-h-full bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50"
 >
-<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(20,184,166,0.14),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,116,144,0.12),transparent_40%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(13,148,136,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,116,144,0.16),transparent_40%)]"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(24,24,27,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(24,24,27,0.03)_1px,transparent_1px)] bg-[size:22px_22px] dark:bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)]"></div>
-</div>
+<div class="corepine-grid pointer-events-none fixed inset-0 -z-10 opacity-60 dark:opacity-35"></div>
 
-<header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-zinc-100/85 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/85">
-    <div class="mx-auto flex w-full max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+<header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/90 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/90">
+    <div class="mx-auto flex w-full max-w-7xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
         <button
             type="button"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 lg:hidden dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500"
+            class="inline-flex h-10 w-10 items-center justify-center border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 lg:hidden dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:hover:border-zinc-500"
             aria-label="Open navigation"
             x-on:click="mobileNavOpen = true"
         >
             ☰
         </button>
 
-        <a href="/" class="inline-flex items-center gap-2.5 rounded-lg px-1 py-0.5">
+        <a href="/" class="inline-flex items-center gap-3">
             <img
                 src="{{ asset('brand/corepine-logo-mark.svg') }}"
                 alt="Corepine logo"
-                class="h-7 w-7 rounded-md"
-                width="28"
-                height="28"
+                class="h-8 w-8"
+                width="32"
+                height="32"
             >
-            <span class="font-space text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">Corepine</span>
+            <span>
+                <span class="font-space block text-lg font-semibold tracking-tight">Corepine</span>
+                <span class="block text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Documentation</span>
+            </span>
         </a>
-        <span class="hidden rounded-full border border-teal-300/70 bg-teal-100 px-2.5 py-1 text-xs font-medium text-teal-800 dark:border-teal-900 dark:bg-teal-950 dark:text-teal-300 sm:inline-flex">
-            {{ $projectConfig['label'] ?? ucfirst($project) }} Docs
+
+        <span class="hidden text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400 sm:inline-flex">
+            {{ $projectConfig['label'] ?? ucfirst($project) }}
         </span>
+
         <div class="ml-auto flex items-center gap-3">
             <label class="sr-only" for="version-switch">Version</label>
             <select
                 id="version-switch"
-                class="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-teal-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:border-teal-500"
+                class="border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-teal-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:border-teal-500"
                 onchange="if (this.value) window.location.href = this.value"
             >
                 @foreach ($versions as $folder => $routeVersion)
@@ -106,7 +72,7 @@
             <button
                 type="button"
                 data-theme-toggle
-                class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
+                class="inline-flex h-10 w-10 items-center justify-center border border-zinc-300 bg-white text-zinc-700 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
                 aria-label="Theme toggle"
             >
                 <span class="sr-only">Toggle theme</span>
@@ -155,22 +121,22 @@
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="translate-x-0 opacity-100"
         x-transition:leave-end="-translate-x-full opacity-0"
-        class="fixed inset-y-0 left-0 w-[85vw] max-w-xs overflow-y-auto border-r border-zinc-200 bg-zinc-100 p-4 shadow-2xl dark:border-zinc-800 dark:bg-zinc-950"
+        class="fixed inset-y-0 left-0 w-[85vw] max-w-xs overflow-y-auto border-r border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950"
     >
         <div class="mb-4 flex items-center justify-between gap-3">
             <div class="inline-flex items-center gap-2.5">
                 <img
                     src="{{ asset('brand/corepine-logo-mark.svg') }}"
                     alt="Corepine logo"
-                    class="h-7 w-7 rounded-md"
-                    width="28"
-                    height="28"
+                    class="h-8 w-8"
+                    width="32"
+                    height="32"
                 >
                 <p class="font-space text-base font-semibold tracking-tight">Documentation</p>
             </div>
             <button
                 type="button"
-                class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+                class="inline-flex h-10 w-10 items-center justify-center border border-zinc-300 bg-white text-zinc-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
                 x-on:click="mobileNavOpen = false"
                 aria-label="Close navigation"
             >
@@ -181,7 +147,7 @@
         <label class="sr-only" for="mobile-version-switch">Version</label>
         <select
             id="mobile-version-switch"
-            class="mb-5 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-teal-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:border-teal-500"
+            class="mb-5 w-full border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 outline-none transition focus:border-teal-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100 dark:focus:border-teal-500"
             onchange="if (this.value) window.location.href = this.value"
         >
             @foreach ($versions as $folder => $routeVersion)
@@ -199,7 +165,7 @@
                 @foreach ($navigation as $section)
                     <div>
                         @if ($section['title'] !== '')
-                            <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">{{ $section['title'] }}</h3>
+                            <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">{{ $section['title'] }}</h3>
                         @endif
 
                         <ul class="space-y-1">
@@ -207,11 +173,11 @@
                                 <li>
                                     <a
                                         href="{{ $item['url'] }}"
-                                        class="flex items-center justify-between rounded-lg px-2.5 py-2 text-sm transition {{ $item['is_active'] ? 'bg-teal-100 text-teal-900 dark:bg-teal-900/35 dark:text-teal-200' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100' }}"
+                                        class="flex items-center justify-between border-l-2 px-3 py-2 text-sm transition {{ $item['is_active'] ? 'border-teal-500 bg-teal-50 text-zinc-950 dark:bg-teal-950/20 dark:text-zinc-50' : 'border-transparent text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-zinc-100' }}"
                                     >
                                         <span>{{ $item['label'] }}</span>
                                         @if ($item['badge'])
-                                            <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-[10px] uppercase tracking-wide text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">{{ $item['badge'] }}</span>
+                                            <span class="text-[10px] uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">{{ $item['badge'] }}</span>
                                         @endif
                                     </a>
                                 </li>
@@ -224,52 +190,55 @@
     </aside>
 </div>
 
-<div class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-8 xl:grid-cols-[260px_minmax(0,1fr)_220px]">
-    <aside class="hidden rounded-2xl border border-zinc-200 bg-white/70 p-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/60 lg:sticky lg:top-24 lg:block lg:h-[calc(100vh-7.5rem)] lg:overflow-y-auto">
-        <div class="space-y-6">
-            @foreach ($navigation as $section)
-                <div>
-                    @if ($section['title'] !== '')
-                        <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">{{ $section['title'] }}</h3>
-                    @endif
+<div class="mx-auto grid w-full max-w-7xl gap-8 px-4 py-8 sm:px-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:px-8 xl:grid-cols-[240px_minmax(0,1fr)_200px]">
+    <aside class="hidden lg:block">
+        <div class="lg:sticky lg:top-24">
+            <div class="space-y-6">
+                @foreach ($navigation as $section)
+                    <div>
+                        @if ($section['title'] !== '')
+                            <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">{{ $section['title'] }}</h3>
+                        @endif
 
-                    <ul class="space-y-1">
-                        @foreach ($section['items'] as $item)
-                            <li>
-                                <a
-                                    href="{{ $item['url'] }}"
-                                    class="flex items-center justify-between rounded-lg px-2.5 py-2 text-sm transition {{ $item['is_active'] ? 'bg-teal-100 text-teal-900 dark:bg-teal-900/35 dark:text-teal-200' : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-100' }}"
-                                >
-                                    <span>{{ $item['label'] }}</span>
-                                    @if ($item['badge'])
-                                        <span class="rounded-full border border-zinc-300 px-2 py-0.5 text-[10px] uppercase tracking-wide text-zinc-500 dark:border-zinc-700 dark:text-zinc-400">{{ $item['badge'] }}</span>
-                                    @endif
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endforeach
+                        <ul class="space-y-1">
+                            @foreach ($section['items'] as $item)
+                                <li>
+                                    <a
+                                        href="{{ $item['url'] }}"
+                                        class="flex items-center justify-between border-l-2 px-3 py-2 text-sm transition {{ $item['is_active'] ? 'border-teal-500 bg-teal-50 text-zinc-950 dark:bg-teal-950/20 dark:text-zinc-50' : 'border-transparent text-zinc-700 hover:border-zinc-300 hover:bg-zinc-50 hover:text-zinc-900 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:bg-zinc-900 dark:hover:text-zinc-100' }}"
+                                    >
+                                        <span>{{ $item['label'] }}</span>
+                                        @if ($item['badge'])
+                                            <span class="text-[10px] uppercase tracking-[0.16em] text-zinc-500 dark:text-zinc-400">{{ $item['badge'] }}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </aside>
 
-    <main class="rounded-2xl border border-zinc-200 bg-white/75 p-6 shadow-[0_1px_0_rgba(255,255,255,0.7)] backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70 sm:p-10">
-        <div class="mb-8 flex flex-wrap items-center gap-3">
-            <span class="rounded-full border border-zinc-300 bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+    <main class="min-w-0 border border-zinc-200 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-950 sm:p-10">
+        <div class="mb-8 flex flex-wrap items-center gap-3 border-b border-zinc-200 pb-6 dark:border-zinc-800">
+            <span class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
                 {{ $projectConfig['label'] ?? ucfirst($project) }}
             </span>
-            <span class="rounded-full border border-zinc-300 bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
-                v{{ $version }}{{ $isLatest ? ' (latest)' : '' }}
+            <span class="h-1 w-1 rounded-full bg-teal-500"></span>
+            <span class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
+                v{{ $version }}{{ $isLatest ? ' latest' : '' }}
             </span>
         </div>
 
         @yield('docs_content')
     </main>
 
-    <aside class="hidden xl:block xl:sticky xl:top-24 xl:h-[calc(100vh-7.5rem)] xl:overflow-y-auto">
-        <div class="space-y-4">
-            <div class="rounded-2xl border border-zinc-200 bg-white/70 p-4 backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/60">
-                <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">On This Page</h3>
+    <aside class="hidden xl:block">
+        <div class="xl:sticky xl:top-24">
+            <div class="border-l border-zinc-200 pl-5 dark:border-zinc-800">
+                <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">On This Page</h3>
 
                 @if ($toc === [])
                     <p class="text-sm text-zinc-500 dark:text-zinc-400">No section headings on this page yet.</p>
@@ -285,150 +254,10 @@
                     </ul>
                 @endif
             </div>
-
-            <div class="rounded-2xl border border-teal-200 bg-teal-50/80 p-4 backdrop-blur dark:border-teal-900/70 dark:bg-teal-950/30">
-                <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-teal-700 dark:text-teal-300">Deel</p>
-                <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Building a global team? Hire in 150+ countries fast, with local compliance and global payroll handled.</p>
-                <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Book a demo now and get $500 in billing credits.</p>
-                <a
-                    href="https://deel.com/referrals/Namu-A7EK4By5"
-                    target="_blank"
-                    rel="noopener noreferrer sponsored"
-                    class="mt-3 inline-flex items-center rounded-lg border border-teal-300 bg-white px-3 py-2 text-sm font-medium text-teal-700 transition hover:border-teal-400 hover:text-teal-800 dark:border-teal-700 dark:bg-teal-950/40 dark:text-teal-300 dark:hover:border-teal-600 dark:hover:text-teal-200"
-                >
-                    Book Deel demo
-                </a>
-            </div>
         </div>
     </aside>
 </div>
 
-<script>
-    (() => {
-        const STORAGE_KEY = 'corepine-theme';
-        const LEGACY_KEY = 'theme';
-        const CYCLE = ['light', 'dark', 'system'];
-        const LABELS = {
-            light: 'Light',
-            dark: 'Dark',
-            system: 'System',
-        };
-        const root = document.documentElement;
-        const toggleButton = document.querySelector('[data-theme-toggle]');
-        const icons = Array.from(document.querySelectorAll('[data-theme-icon]'));
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-        if (! toggleButton || icons.length === 0) {
-            return;
-        }
-
-        const normalizePreference = (value) => {
-            if (value === 'light' || value === 'dark' || value === 'system') {
-                return value;
-            }
-
-            return 'system';
-        };
-
-        const readStoredPreference = () => {
-            try {
-                const stored = localStorage.getItem(STORAGE_KEY);
-                const legacy = localStorage.getItem(LEGACY_KEY);
-                const normalized = normalizePreference(stored ?? legacy);
-                localStorage.setItem(STORAGE_KEY, normalized);
-                localStorage.removeItem(LEGACY_KEY);
-
-                return normalized;
-            } catch (error) {
-                // Ignore storage access errors and use current in-memory state.
-            }
-
-            return normalizePreference(root.dataset.themePreference);
-        };
-
-        const resolveTheme = (preference) => {
-            if (preference === 'light' || preference === 'dark') {
-                return preference;
-            }
-
-            return mediaQuery.matches ? 'dark' : 'light';
-        };
-
-        const applyThemeAndUi = (preference) => {
-            const theme = resolveTheme(preference);
-            const isDark = theme === 'dark';
-
-            root.classList.toggle('dark', isDark);
-            root.style.colorScheme = isDark ? 'dark' : 'light';
-            root.dataset.themePreference = preference;
-
-            icons.forEach((icon) => {
-                const isVisible = icon.dataset.themeIcon === preference;
-                icon.classList.toggle('hidden', ! isVisible);
-            });
-
-            const currentIndex = CYCLE.indexOf(preference);
-            const nextPreference = CYCLE[(currentIndex + 1) % CYCLE.length];
-            const message = `Theme: ${LABELS[preference]}. Click to switch to ${LABELS[nextPreference]}.`;
-
-            toggleButton.setAttribute('aria-label', message);
-            toggleButton.setAttribute('title', message);
-            toggleButton.dataset.themeCurrent = preference;
-        };
-
-        const setStoredPreference = (preference) => {
-            const normalizedPreference = normalizePreference(preference);
-
-            try {
-                localStorage.setItem(STORAGE_KEY, normalizedPreference);
-                localStorage.removeItem(LEGACY_KEY);
-            } catch (error) {
-                // Ignore storage access issues and keep in-memory state.
-            }
-        };
-
-        const cyclePreference = () => {
-            const current = normalizePreference(toggleButton.dataset.themeCurrent ?? readStoredPreference());
-            const currentIndex = CYCLE.indexOf(current);
-            const nextPreference = CYCLE[(currentIndex + 1) % CYCLE.length];
-
-            setStoredPreference(nextPreference);
-            applyThemeAndUi(nextPreference);
-        };
-
-        const refreshFromStoredPreference = () => {
-            applyThemeAndUi(normalizePreference(readStoredPreference()));
-        };
-
-        toggleButton.addEventListener('click', cyclePreference);
-
-        if (typeof mediaQuery.addEventListener === 'function') {
-            mediaQuery.addEventListener('change', () => {
-                const preference = normalizePreference(readStoredPreference());
-
-                if (preference === 'system') {
-                    applyThemeAndUi(preference);
-                }
-            });
-        } else if (typeof mediaQuery.addListener === 'function') {
-            mediaQuery.addListener(() => {
-                const preference = normalizePreference(readStoredPreference());
-
-                if (preference === 'system') {
-                    applyThemeAndUi(preference);
-                }
-            });
-        }
-
-        window.addEventListener('pageshow', refreshFromStoredPreference);
-        window.addEventListener('storage', (event) => {
-            if (event.key === STORAGE_KEY || event.key === LEGACY_KEY) {
-                refreshFromStoredPreference();
-            }
-        });
-
-        refreshFromStoredPreference();
-    })();
-</script>
+@include('partials.theme-toggle-script')
 </body>
 </html>
