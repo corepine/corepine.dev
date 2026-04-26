@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Corepine · Artisan tools you can ship today</title>
-    <meta name="description" content="Corepine is home to polished Artisan tools with documentation you can publish and ship.">
+    <title>Corepine · Artisan tools for Laravel</title>
+    <meta name="description" content="Corepine is home to polished Laravel tools with documentation you can publish and ship.">
 
     @include('partials.theme-head')
 
@@ -27,7 +27,7 @@
             >
             <span>
                 <span class="font-space block text-xl font-semibold tracking-tight">Corepine</span>
-                <span class="block text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Laravel packages</span>
+                <span class="block text-xs uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Laravel tools</span>
             </span>
         </a>
 
@@ -82,8 +82,8 @@
                     Artisan tools you can ship today.
                 </h1>
 
-                <p class="mt-8 max-w-2xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
-                    Corepine is the home for Laravel tools and documentation built to feel polished, stable, and ready for real teams.
+                <p class="mt-7 max-w-2xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
+                    Corepine is home to Laravel tools and clear docs for real teams.
                 </p>
 
                 <div class="mt-10 flex flex-wrap gap-4">
@@ -91,7 +91,7 @@
                         Browse docs
                     </a>
                     <a href="#products" class="inline-flex items-center border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
-                        View packages
+                        View tools
                     </a>
                 </div>
 
@@ -99,17 +99,17 @@
                     <div>
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Focus</p>
                         <p class="mt-3 font-space text-xl font-semibold">Tools</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Polished building blocks for Laravel apps.</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Laravel building blocks with clean public docs.</p>
                     </div>
                     <div>
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Standard</p>
                         <p class="mt-3 font-space text-xl font-semibold">Reliable</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Built for real usage, not just showcase pages.</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Built for real usage, not just demos.</p>
                     </div>
                     <div>
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Docs</p>
-                        <p class="mt-3 font-space text-xl font-semibold">Shippable</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Documentation that feels ready for public release.</p>
+                        <p class="mt-3 font-space text-xl font-semibold">Ready</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Structured, versioned, and easy to publish.</p>
                     </div>
                 </div>
             </div>
@@ -129,12 +129,12 @@
                     <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
                         <div class="border-b border-zinc-200 p-5 dark:border-zinc-800 lg:border-b-0 lg:border-r">
                             <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                                Corepine tools are designed to ship with cleaner defaults, solid interfaces, and documentation that looks ready for customers and teams.
+                                Corepine tools are designed to ship with cleaner defaults, solid interfaces, and documentation ready for customers and teams.
                             </p>
 
                             <div class="mt-6 space-y-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
                                 <div>
-                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Packages</p>
+                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Tools</p>
                                     <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Focused Laravel building blocks with practical defaults</p>
                                 </div>
                                 <div>
@@ -143,7 +143,7 @@
                                 </div>
                                 <div>
                                     <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Shipping goal</p>
-                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Give each package a public-facing quality bar from day one</p>
+                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Give each release a public-facing quality bar from day one</p>
                                 </div>
                             </div>
                         </div>
@@ -151,15 +151,15 @@
                         <div class="grid gap-0 divide-y divide-zinc-200 dark:divide-zinc-800">
                             <div class="bg-zinc-50 p-5 dark:bg-zinc-900">
                                 <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">What Corepine is</p>
-                                <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">A home for Laravel teams that want stronger defaults and documentation that already feels launch-ready.</p>
-                            </div>
-                            <div class="p-5">
-                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Accent</p>
-                                <div class="mt-3 h-2 w-full bg-teal-500"></div>
+                                <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">A home for Laravel teams that want stronger defaults and launch-ready documentation.</p>
                             </div>
                             <div class="p-5">
                                 <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Live now</p>
                                 <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Modal docs</p>
+                            </div>
+                            <div class="p-5">
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Version</p>
+                                <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">0.1x</p>
                             </div>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">Now shipping</p>
                         <h3 class="font-space mt-3 text-2xl font-semibold">Modal</h3>
                         <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                            A polished modal package with public docs, a clear API surface, and UI flows built for real apps.
+                            A polished modal tool with public docs, a clear API surface, and UI flows built for real apps.
                         </p>
                     </article>
 
@@ -191,7 +191,7 @@
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Roadmap</p>
                         <h3 class="font-space mt-3 text-2xl font-semibold">More Corepine tools</h3>
                         <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                            Future tools will follow the same standard: polished implementation with documentation ready to publish.
+                            Future tools will follow the same standard: polished implementation and clear documentation.
                         </p>
                     </article>
                 </div>
@@ -215,16 +215,16 @@
                         <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Every tool should have documentation that already feels publishable and stable.</p>
                     </div>
                     <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
-                        <p class="font-space text-xl font-semibold">Clear package surfaces</p>
+                        <p class="font-space text-xl font-semibold">Clear tool surfaces</p>
                         <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Corepine should present tools like products, not unfinished internal projects.</p>
                     </div>
                     <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
                         <p class="font-space text-xl font-semibold">Consistent quality bar</p>
-                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The site, package pages, and docs should all feel like one shippable system.</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The site, tool pages, and docs should all feel like one shippable system.</p>
                     </div>
                     <div class="border-t border-zinc-200 pt-5 dark:border-zinc-800">
                         <p class="font-space text-xl font-semibold">Simple presentation</p>
-                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The layout stays restrained so the package and documentation do the talking.</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The layout stays restrained so the tool and documentation do the talking.</p>
                     </div>
                 </div>
             </div>
@@ -287,16 +287,16 @@
                 <div>
                     <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Documentation</p>
                     <h2 class="font-space mt-4 text-4xl font-semibold tracking-[-0.05em] text-zinc-950 dark:text-zinc-50">
-                        Documentation that ships with the tool.
+                        Clear docs, ready to publish.
                     </h2>
                     <p class="mt-6 text-base leading-8 text-zinc-600 dark:text-zinc-300">
-                        Corepine documentation should feel public, stable, and ready for real users from the moment a tool goes live.
+                        Corepine documentation is versioned, structured, and written for real teams using the tool.
                     </p>
 
                     <div class="mt-8 space-y-4 border-t border-zinc-200 pt-8 dark:border-zinc-800">
                         <div>
                             <p class="font-space text-lg font-semibold">Versioned</p>
-                        <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Each tool keeps documentation that can grow without losing structure.</p>
+                            <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">Each tool keeps documentation that can grow without losing structure.</p>
                         </div>
                         <div>
                             <p class="font-space text-lg font-semibold">Public-facing</p>
@@ -304,7 +304,7 @@
                         </div>
                         <div>
                             <p class="font-space text-lg font-semibold">Consistent</p>
-                            <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The package page and docs share the same quality bar and visual language.</p>
+                            <p class="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">The tool page and docs share the same quality bar and visual language.</p>
                         </div>
                     </div>
                 </div>
