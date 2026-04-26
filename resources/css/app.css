@@ -50,14 +50,14 @@
         --docs-code-copy-border-hover: rgb(161 161 170);
         --docs-code-plain: #2e3440;
         --docs-code-comment: #616e88;
-        --docs-code-keyword: #0f766e;
+        --docs-code-keyword: #5e81ac;
         --docs-code-string: #6b8f71;
-        --docs-code-title: #0f766e;
+        --docs-code-title: #5e81ac;
         --docs-code-number: #b07d9c;
-        --docs-code-builtin: #14b8a6;
-        --docs-code-type: #0f766e;
+        --docs-code-builtin: #8fbcbb;
+        --docs-code-type: #5a8690;
         --docs-code-meta: #7b88a1;
-        --docs-code-tag: #0f766e;
+        --docs-code-tag: #5e81ac;
         --docs-code-attr: #4c566a;
         --docs-code-subst: #3b4252;
     }
@@ -73,14 +73,14 @@
         --docs-code-copy-border-hover: rgb(113 113 122);
         --docs-code-plain: #d8dee9;
         --docs-code-comment: #616e88;
-        --docs-code-keyword: #5eead4;
+        --docs-code-keyword: #81a1c1;
         --docs-code-string: #a3be8c;
-        --docs-code-title: #5eead4;
+        --docs-code-title: #88c0d0;
         --docs-code-number: #b48ead;
-        --docs-code-builtin: #2dd4bf;
+        --docs-code-builtin: #ebcb8b;
         --docs-code-type: #8fbcbb;
         --docs-code-meta: #5e81ac;
-        --docs-code-tag: #5eead4;
+        --docs-code-tag: #81a1c1;
         --docs-code-attr: #d8dee9;
         --docs-code-subst: #e5e9f0;
     }

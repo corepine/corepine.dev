@@ -237,22 +237,38 @@
 
     <aside class="hidden xl:block">
         <div class="xl:sticky xl:top-24">
-            <div class="border-l border-zinc-200 pl-5 dark:border-zinc-800">
-                <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">On This Page</h3>
+            <div class="space-y-6">
+                <div class="border-l border-zinc-200 pl-5 dark:border-zinc-800">
+                    <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">On This Page</h3>
 
-                @if ($toc === [])
-                    <p class="text-sm text-zinc-500 dark:text-zinc-400">No section headings on this page yet.</p>
-                @else
-                    <ul class="space-y-2 text-sm">
-                        @foreach ($toc as $entry)
-                            <li class="{{ $entry['level'] === 3 ? 'ml-3' : '' }}">
-                                <a href="#{{ $entry['id'] }}" class="text-zinc-600 transition hover:text-teal-600 dark:text-zinc-300 dark:hover:text-teal-300">
-                                    {{ $entry['text'] }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
+                    @if ($toc === [])
+                        <p class="text-sm text-zinc-500 dark:text-zinc-400">No section headings on this page yet.</p>
+                    @else
+                        <ul class="space-y-2 text-sm">
+                            @foreach ($toc as $entry)
+                                <li class="{{ $entry['level'] === 3 ? 'ml-3' : '' }}">
+                                    <a href="#{{ $entry['id'] }}" class="text-zinc-600 transition hover:text-teal-600 dark:text-zinc-300 dark:hover:text-teal-300">
+                                        {{ $entry['text'] }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+
+                <div class="border border-teal-200 bg-teal-50/80 p-4 dark:border-teal-900/70 dark:bg-teal-950/30">
+                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:text-teal-300">Deel</p>
+                    <p class="mt-3 text-sm leading-7 text-zinc-700 dark:text-zinc-200">Building a global team? Hire in 150+ countries fast, with local compliance and global payroll handled.</p>
+                    <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">Book a demo now and get $500 in billing credits.</p>
+                    <a
+                        href="https://deel.com/referrals/Namu-A7EK4By5"
+                        target="_blank"
+                        rel="noopener noreferrer sponsored"
+                        class="mt-4 inline-flex items-center border border-teal-300 bg-white px-3 py-2 text-sm font-medium text-teal-700 transition hover:border-teal-400 hover:text-teal-800 dark:border-teal-700 dark:bg-teal-950/40 dark:text-teal-300 dark:hover:border-teal-600 dark:hover:text-teal-200"
+                    >
+                        Book Deel demo
+                    </a>
+                </div>
             </div>
         </div>
     </aside>
