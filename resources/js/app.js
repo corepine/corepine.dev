@@ -155,8 +155,105 @@ const highlightDocsCodeBlocks = () => {
     });
 };
 
+const initCursorGlow = () => {
+    const page = document.querySelector('[data-cursor-glow="true"]');
+
+    if (! page) {
+        return;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    if (! window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        return;
+    }
+
+    const glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+
+    const tail = document.createElement('div');
+    tail.className = 'cursor-glow-tail';
+
+    document.body.append(tail, glow);
+
+    let targetX = window.innerWidth / 2;
+    let targetY = window.innerHeight / 2;
+    let glowX = targetX;
+    let glowY = targetY;
+    let tailX = targetX;
+    let tailY = targetY;
+    let rafId = 0;
+
+    const place = (element, x, y) => {
+        element.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    };
+
+    const tick = () => {
+        glowX += (targetX - glowX) * 0.22;
+        glowY += (targetY - glowY) * 0.22;
+        tailX += (targetX - tailX) * 0.1;
+        tailY += (targetY - tailY) * 0.1;
+
+        place(glow, glowX, glowY);
+        place(tail, tailX, tailY);
+
+        rafId = window.requestAnimationFrame(tick);
+    };
+
+    const show = () => {
+        glow.classList.add('is-visible');
+        tail.classList.add('is-visible');
+    };
+
+    const hide = () => {
+        glow.classList.remove('is-visible', 'is-hovering');
+        tail.classList.remove('is-visible');
+    };
+
+    document.addEventListener('pointermove', (event) => {
+        targetX = event.clientX;
+        targetY = event.clientY;
+
+        const interactiveTarget = event.target instanceof Element
+            ? event.target.closest('a, button, input, textarea, select, summary, [role="button"]')
+            : null;
+
+        glow.classList.toggle('is-hovering', Boolean(interactiveTarget));
+        show();
+    }, { passive: true });
+
+    document.addEventListener('pointerdown', () => {
+        glow.style.scale = '1.18';
+    });
+
+    document.addEventListener('pointerup', () => {
+        glow.style.scale = '';
+    });
+
+    document.addEventListener('pointerleave', hide);
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            hide();
+        }
+    });
+
+    tick();
+
+    window.addEventListener('beforeunload', () => {
+        if (rafId) {
+            window.cancelAnimationFrame(rafId);
+        }
+    }, { once: true });
+};
+
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', highlightDocsCodeBlocks);
+    document.addEventListener('DOMContentLoaded', () => {
+        highlightDocsCodeBlocks();
+        initCursorGlow();
+    });
 } else {
     highlightDocsCodeBlocks();
+    initCursorGlow();
 }
