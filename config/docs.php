@@ -10,6 +10,7 @@ return [
         'modal' => [
             'label' => 'Modal',
             'description' => 'Ready-to-use modal flows for Laravel applications.',
+            'repository' => 'https://github.com/corepine/modal',
             'default_slug' => 'welcome',
             'navigation_file' => '_nav.json',
             'content_path' => resource_path('views/docs/modal'),
@@ -20,6 +21,7 @@ return [
         // 'threads' => [
         //     'label' => 'Threads',
         //     'description' => 'Threaded comments and voting for Laravel + Livewire apps.',
+        //     'repository' => 'https://github.com/corepine/threads',
         //     'default_slug' => 'welcome',
         //     'navigation_file' => '_nav.json',
         //     'content_path' => resource_path('views/docs/threads'),
