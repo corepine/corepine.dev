@@ -71,117 +71,108 @@
 </header>
 
 <main>
-    <section class="border-b border-zinc-200 dark:border-zinc-800">
-        <div class="mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center lg:px-8 lg:py-16">
-            <div>
-                <div class="inline-flex items-center gap-2 border border-teal-200 bg-teal-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:border-teal-900/70 dark:bg-teal-950/30 dark:text-teal-300">
-                    Built for Laravel
+    <section class="relative overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
+     
+
+        <div class="relative mx-auto w-full max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8 lg:pt-20 lg:pb-16">
+            <div class="mx-auto max-w-4xl text-center">
+                <a href="/modal/docs" class="inline-flex items-center gap-3 border border-teal-200 bg-white/90 px-3 py-2 text-sm font-medium text-zinc-700 shadow-sm transition hover:border-teal-300 hover:text-zinc-950 dark:border-teal-900/70 dark:bg-zinc-950/80 dark:text-zinc-200 dark:hover:border-teal-700 dark:hover:text-zinc-50">
+                    <span class="inline-flex items-center gap-2 bg-teal-500 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-3.5 w-3.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m13.5 4.5-7.5 12h6l-1.5 6 7.5-12h-6l1.5-6Z" />
+                        </svg>
+                        Now shipping
+                    </span>
+                    <span>Modal 0.1x</span>
+                </a>
+
+                <div class="mt-8 flex items-center justify-center gap-4 text-sm font-medium uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500">
+                    <span>Laravel</span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                    <span>Livewire</span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                    <span>Vue</span>
                 </div>
 
-                <h1 class="font-space mt-8 max-w-4xl text-5xl font-normal tracking-[-0.06em] text-zinc-950 sm:text-6xl lg:text-[5.2rem] lg:leading-[0.94] dark:text-zinc-50">
-                    Artisan tools you can ship today.
+                <h1 class="font-space mt-8 text-5xl font-normal tracking-[-0.065em] text-zinc-950 sm:text-6xl lg:text-[5.5rem] lg:leading-[0.92] dark:text-zinc-50">
+                    Artisan tools for shipping faster.
                 </h1>
 
-                <p class="mt-7 max-w-2xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
-                    Corepine gives you built, tested, and verified tools so you can move faster and stop spending time rebuilding common product flows.
+                <p class="mx-auto mt-7 max-w-3xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
+                    Corepine gives Laravel teams polished tools for modals, actions, and product flows, with the docs and release clarity needed to put them to work.
                 </p>
 
-                <div class="mt-10 flex flex-wrap gap-4">
-                    <a href="#products" class="inline-flex items-center border border-teal-600 bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-500">
+                <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+                    <a href="#products" class="inline-flex items-center justify-center border border-zinc-950 bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200">
                         Explore tools
                     </a>
-                    <a href="/modal/docs" class="inline-flex gap-2  items-center border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
+                    <a href="/modal/docs" class="inline-flex items-center justify-center gap-2 border border-zinc-300 bg-white/90 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950/80 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
                         View Modal docs
-
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.75 21 12m0 0-3.75 3.25M21 12H3" />
                         </svg>
-
                     </a>
                 </div>
 
-                <div class="mt-12 flex flex-wrap items-center gap-3 border-t border-zinc-200 pt-8 text-sm font-medium text-zinc-600 dark:border-zinc-800 dark:text-zinc-300">
-                    <span>Built</span>
-                    <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                    <span>Tested</span>
-                    <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                    <span>Verified</span>
-                </div>
+         
             </div>
 
-            <div class="relative">
-                <div class="border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-                    <div class="flex items-center justify-between border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
-                        <div>
-                            <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Available now</p>
-                            <p class="mt-1 font-space text-lg font-semibold">Modal</p>
+            <div class="relative mx-auto mt-16 max-w-6xl">
+                <div class="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 p-3 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.28)] backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
+                    <div class="overflow-hidden rounded-[1.6rem] border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+                        <div class="flex items-center justify-between border-b border-zinc-200 px-5 py-3 dark:border-zinc-800">
+                            <div class="flex items-center gap-2">
+                                <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                                <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                                <span class="h-2.5 w-2.5 rounded-full bg-teal-400 dark:bg-teal-500"></span>
+                                <span class="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">corepine/modal</span>
+                            </div>
+                            <a href="/modal/docs" class="text-sm font-medium text-teal-700 transition hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200">
+                                Open docs
+                            </a>
                         </div>
-                        <a href="/modal/docs" class="text-sm font-medium text-teal-700 transition hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200">
-                            Open docs
-                        </a>
-                    </div>
 
-                    <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
-                        <div class="border-b border-zinc-200 p-5 dark:border-zinc-800 lg:border-b-0 lg:border-r">
-                            <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                                A Laravel modal tool for drawers, layered flows, and action-driven interfaces.
-                            </p>
-
-                            <div class="mt-6 space-y-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
-                                <div>
-                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Built for</p>
-                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Confirmations, forms, drawers, sheets, and layered flows</p>
+                        <div class="grid lg:grid-cols-[280px_minmax(0,1fr)]">
+                            <div class="border-b border-zinc-200 bg-zinc-50/90 p-5 dark:border-zinc-800 dark:bg-zinc-900/90 lg:border-b-0 lg:border-r">
+                                <div class="border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-400 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-500">
+                                    Search components...
                                 </div>
-                                <div>
-                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Includes</p>
-                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Actions, events, Blade usage, Livewire integration, versioned docs</p>
-                                </div>
-                                {{-- <div>
-                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Why it exists</p>
-                                    <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">So your team ships the flow instead of spending weeks building the plumbing</p>
-                                </div> --}}
-                            </div>
-                        </div>
 
-                        <div class="grid gap-0 divide-y divide-zinc-200 dark:divide-zinc-800">
-                            <div class="bg-zinc-50 p-5 dark:bg-zinc-900">
-                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">What Corepine does</p>
-                                <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">Corepine ships tools your team can install and use without rebuilding common flows from scratch.</p>
+                                <div class="mt-5 space-y-2 text-sm">
+                                    <div class="border border-zinc-200 bg-white px-4 py-3 font-medium text-zinc-900 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-100">Centered modal</div>
+                                    <div class="px-4 py-2 text-zinc-500 dark:text-zinc-400">Bottom sheet</div>
+                                    <div class="px-4 py-2 text-zinc-500 dark:text-zinc-400">Drawer right</div>
+                                    <div class="px-4 py-2 text-zinc-500 dark:text-zinc-400">Actions</div>
+                                    <div class="px-4 py-2 text-zinc-500 dark:text-zinc-400">Events</div>
+                                </div>
                             </div>
-                            <div class="p-5">
-                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Live now</p>
-                                <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Modal docs</p>
-                            </div>
-                            <div class="p-5">
-                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Version</p>
-                                <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">0.1x</p>
+
+                            <div class="bg-white dark:bg-zinc-950">
+                                <div class="border-b border-zinc-200 px-6 py-5 dark:border-zinc-800">
+                                    <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Available now</p>
+                                    <h2 class="font-space mt-2 text-3xl font-semibold tracking-[-0.04em] text-zinc-950 dark:text-zinc-50">Modal</h2>
+                                    <p class="mt-3 max-w-2xl text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                                        A Laravel modal tool for drawers, layered flows, and action-driven interfaces.
+                                    </p>
+                                </div>
+
+                                <div class="bg-zinc-50 p-5 dark:bg-zinc-900">
+                                    <div class="overflow-hidden rounded-[1.4rem] border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+                                        <img
+                                            src="{{ asset('assets/modal/centered-modal-light.png') }}"
+                                            alt="Centered modal screenshot"
+                                            class="h-full w-full object-cover dark:hidden"
+                                        >
+                                        <img
+                                            src="{{ asset('assets/modal/centered-modal-dark.png') }}"
+                                            alt="Centered modal screenshot"
+                                            class="hidden h-full w-full object-cover dark:block"
+                                        >
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-                
-        <div class="bg-zinc-50/80 p-5 dark:bg-zinc-900/80 max-w-7xl mx-auto">
-            <div class="overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-                <div class="flex items-center gap-2 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
-                    <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                    <span class="h-2.5 w-2.5 rounded-full bg-teal-400 dark:bg-teal-500"></span>
-                    <span class="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">Centered modal preview</span>
-                </div>
-
-                <div class="aspect-[4/3] bg-zinc-50 dark:bg-zinc-900">
-                    <img
-                        src="{{ asset('assets/modal/centered-modal-light.png') }}"
-                        alt="Centered modal screenshot"
-                        class="h-full w-full object-cover dark:hidden"
-                    >
-                    <img
-                        src="{{ asset('assets/modal/centered-modal-dark.png') }}"
-                        alt="Centered modal screenshot"
-                        class="hidden h-full w-full object-cover dark:block"
-                    >
                 </div>
             </div>
         </div>
