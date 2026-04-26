@@ -12,7 +12,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 </head>
-<body data-cursor-glow="true" class="corepine-page min-h-full bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+<body data-cursor-glow="true" data-page-ready="false" class="corepine-page min-h-full bg-white text-zinc-950 antialiased dark:bg-zinc-950 dark:text-zinc-50">
 <div class="corepine-grid pointer-events-none fixed inset-0 -z-10 opacity-70 dark:opacity-40"></div>
 
 <header class="sticky top-0 z-40 border-b border-zinc-200/80 bg-white/90 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/90">
@@ -76,7 +76,7 @@
 
         <div class="relative mx-auto w-full max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8 lg:pt-20 lg:pb-16">
             <div class="mx-auto max-w-4xl text-center">
-                <a href="/modal/docs" class="inline-flex items-center gap-3 border border-teal-200 bg-white/90 px-3 py-2 text-sm font-medium text-zinc-700 shadow-sm transition hover:border-teal-300 hover:text-zinc-950 dark:border-teal-900/70 dark:bg-zinc-950/80 dark:text-zinc-200 dark:hover:border-teal-700 dark:hover:text-zinc-50">
+                <a href="/modal/docs" class="page-reveal inline-flex items-center gap-3 border border-teal-200 bg-white/90 px-3 py-2 text-sm font-medium text-zinc-700 shadow-sm transition hover:border-teal-300 hover:text-zinc-950 dark:border-teal-900/70 dark:bg-zinc-950/80 dark:text-zinc-200 dark:hover:border-teal-700 dark:hover:text-zinc-50" style="--reveal-order: 1;">
                     <span class="inline-flex items-center gap-2 bg-teal-500 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-3.5 w-3.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m13.5 4.5-7.5 12h6l-1.5 6 7.5-12h-6l1.5-6Z" />
@@ -86,7 +86,7 @@
                     <span>Modal 0.1x</span>
                 </a>
 
-                <div class="mt-8 flex items-center justify-center gap-4 text-sm font-medium uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500">
+                <div class="page-reveal mt-8 flex items-center justify-center gap-4 text-sm font-medium uppercase tracking-[0.18em] text-zinc-400 dark:text-zinc-500" style="--reveal-order: 2;">
                     <span>Laravel</span>
                     <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
                     <span>Livewire</span>
@@ -94,15 +94,15 @@
                     <span>Vue</span>
                 </div>
 
-                <h1 class="font-space mt-8 text-5xl font-normal tracking-[-0.065em] text-zinc-950 sm:text-6xl lg:text-[5.5rem] lg:leading-[0.92] dark:text-zinc-50">
+                <h1 class="page-reveal font-space mt-8 text-5xl font-normal tracking-[-0.065em] text-zinc-950 sm:text-6xl lg:text-[5.5rem] lg:leading-[0.92] dark:text-zinc-50" style="--reveal-order: 3;">
                     Artisan tools for shipping faster.
                 </h1>
 
-                <p class="mx-auto mt-7 max-w-3xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
+                <p class="page-reveal mx-auto mt-7 max-w-3xl text-xl leading-9 text-zinc-600 dark:text-zinc-300" style="--reveal-order: 4;">
                     Corepine gives you polished tools for modals, actions, and product flows, with the docs and release clarity needed to put them to work.
                 </p>
 
-                <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+                <div class="page-reveal mt-10 flex flex-wrap items-center justify-center gap-4" style="--reveal-order: 5;">
                     <a href="#products" class="inline-flex items-center justify-center border border-zinc-950 bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200">
                         Explore tools
                     </a>
@@ -117,7 +117,7 @@
          
             </div>
 
-            <div class="relative mx-auto mt-16 max-w-6xl">
+            <div class="page-reveal relative mx-auto mt-16 max-w-6xl" style="--reveal-order: 6;">
                 <div class="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 p-3 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.28)] backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
                     <div class="overflow-hidden rounded-[1.6rem] border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
                         <div class="flex items-center justify-between border-b border-zinc-200 px-5 py-3 dark:border-zinc-800">

@@ -1,8 +1,16 @@
 # Corepine.dev
 
-Corepine.dev is the home site and documentation hub for Corepine Laravel packages.
+[![Laravel Forge Site Deployment Status](https://img.shields.io/endpoint?url=https%3A%2F%2Fforge.laravel.com%2Fsite-badges%2F610d5c07-3a2c-494e-a3fc-44bc2c20d457&style=plastic)](https://forge.laravel.com/namu-makwembo/gorgeous-star-olq/3156502)
+
+Official website: [corepine.dev](https://corepine.dev)
+
+Corepine.dev is the official website and documentation hub for Corepine Laravel packages.
 
 Corepine focuses on plug-and-go package building blocks for real product teams, including ecommerce, social, and business workflows. The goal is fast setup, strong defaults, and room to customize.
+
+## Tags
+
+`laravel` `documentation` `packages` `ui` `livewire` `blade` `product-tools`
 
 ## Current Scope
 
@@ -44,3 +52,7 @@ npm run dev
 - Markdown links support version-aware `doc:` syntax and relative `.md` links
 
 For the full maintainer guide (version upgrades, linking rules, and structure), see [docs.md](docs.md).
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
