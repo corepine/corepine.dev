@@ -90,8 +90,13 @@
                     <a href="#products" class="inline-flex items-center border border-teal-600 bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-500">
                         Explore tools
                     </a>
-                    <a href="/modal/docs" class="inline-flex items-center border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
+                    <a href="/modal/docs" class="inline-flex gap-2  items-center border border-zinc-300 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
                         View Modal docs
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+                        </svg>
+
                     </a>
                 </div>
 
@@ -103,8 +108,8 @@
                     </div>
                     <div>
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Tested</p>
-                        <p class="mt-3 font-space text-xl font-semibold">Laravel ready</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Built for real usage, not just demos.</p>
+                        <p class="mt-3 font-space text-xl font-semibold">Made for apps</p>
+                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Built to fit real Laravel work.</p>
                     </div>
                     <div>
                         <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Verified</p>
@@ -150,8 +155,8 @@
 
                         <div class="grid gap-0 divide-y divide-zinc-200 dark:divide-zinc-800">
                             <div class="bg-zinc-50 p-5 dark:bg-zinc-900">
-                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Corepine promise</p>
-                                <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">We build, test, and verify the tools your team needs so you can focus on shipping the product itself.</p>
+                                <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">What Corepine does</p>
+                                <p class="mt-2 text-sm leading-7 text-zinc-700 dark:text-zinc-200">Corepine ships tools your team can install and use without rebuilding common flows from scratch.</p>
                             </div>
                             <div class="p-5">
                                 <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Live now</p>
@@ -163,6 +168,30 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+                
+        <div class="bg-zinc-50/80 p-5 dark:bg-zinc-900/80 max-w-7xl mx-auto">
+            <div class="overflow-hidden border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+                <div class="flex items-center gap-2 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
+                    <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                    <span class="h-2.5 w-2.5 rounded-full bg-teal-400 dark:bg-teal-500"></span>
+                    <span class="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">Centered modal preview</span>
+                </div>
+
+                <div class="aspect-[4/3] bg-zinc-50 dark:bg-zinc-900">
+                    <img
+                        src="{{ asset('assets/modal/centered-modal-light.png') }}"
+                        alt="Centered modal screenshot"
+                        class="h-full w-full object-cover dark:hidden"
+                    >
+                    <img
+                        src="{{ asset('assets/modal/centered-modal-dark.png') }}"
+                        alt="Centered modal screenshot"
+                        class="hidden h-full w-full object-cover dark:block"
+                    >
                 </div>
             </div>
         </div>
@@ -197,6 +226,8 @@
                 </div>
             </div>
         </div>
+
+        
     </section>
 
     <section id="why-corepine" class="border-b border-zinc-200 dark:border-zinc-800">
