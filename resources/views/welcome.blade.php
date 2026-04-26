@@ -99,7 +99,7 @@
                 </h1>
 
                 <p class="mx-auto mt-7 max-w-3xl text-xl leading-9 text-zinc-600 dark:text-zinc-300">
-                    Corepine gives Laravel teams polished tools for modals, actions, and product flows, with the docs and release clarity needed to put them to work.
+                    Corepine gives you polished tools for modals, actions, and product flows, with the docs and release clarity needed to put them to work.
                 </p>
 
                 <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
