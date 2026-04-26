@@ -72,7 +72,7 @@
 
 <main>
     <section class="border-b border-zinc-200 dark:border-zinc-800">
-        <div class="mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center lg:px-8 lg:py-24">
+        <div class="mx-auto grid w-full max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.9fr)] lg:items-center lg:px-8 lg:py-16">
             <div>
                 <div class="inline-flex items-center gap-2 border border-teal-200 bg-teal-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-700 dark:border-teal-900/70 dark:bg-teal-950/30 dark:text-teal-300">
                     Built for Laravel
@@ -100,22 +100,12 @@
                     </a>
                 </div>
 
-                <div class="mt-12 grid max-w-3xl gap-6 border-t border-zinc-200 pt-8 text-sm dark:border-zinc-800 sm:grid-cols-3">
-                    <div>
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Built</p>
-                        <p class="mt-3 font-space text-xl font-semibold">Ready to use</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Tools you can install instead of rebuilding.</p>
-                    </div>
-                    <div>
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Tested</p>
-                        <p class="mt-3 font-space text-xl font-semibold">Made for apps</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Built to fit real Laravel work.</p>
-                    </div>
-                    <div>
-                        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Verified</p>
-                        <p class="mt-3 font-space text-xl font-semibold">Ready to ship</p>
-                        <p class="mt-2 leading-7 text-zinc-600 dark:text-zinc-300">Released with the confidence teams need.</p>
-                    </div>
+                <div class="mt-12 flex flex-wrap items-center gap-3 border-t border-zinc-200 pt-8 text-sm font-medium text-zinc-600 dark:border-zinc-800 dark:text-zinc-300">
+                    <span>Built</span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                    <span>Tested</span>
+                    <span class="h-1.5 w-1.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                    <span>Verified</span>
                 </div>
             </div>
 
@@ -134,7 +124,7 @@
                     <div class="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
                         <div class="border-b border-zinc-200 p-5 dark:border-zinc-800 lg:border-b-0 lg:border-r">
                             <p class="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                                A modal package for Laravel comes with drawers, stacked flows, and action-driven UI without rebuilding modal infrastructure from scratch.
+                                A Laravel modal tool for drawers, layered flows, and action-driven interfaces.
                             </p>
 
                             <div class="mt-6 space-y-4 border-t border-zinc-200 pt-6 dark:border-zinc-800">
@@ -146,10 +136,10 @@
                                     <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Includes</p>
                                     <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">Actions, events, Blade usage, Livewire integration, versioned docs</p>
                                 </div>
-                                <div>
+                                {{-- <div>
                                     <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">Why it exists</p>
                                     <p class="mt-2 text-sm text-zinc-700 dark:text-zinc-200">So your team ships the flow instead of spending weeks building the plumbing</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 
