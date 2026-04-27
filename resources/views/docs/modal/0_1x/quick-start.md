@@ -92,7 +92,7 @@ Use `wire:click` on your button:
 ```blade
 <button
     type="button"
-    wire:click="$dispatch('modal.open', { component: 'user-list' })"
+    @click="$dispatch('modal.open', { component: 'user-list' })"
 >
     Open Users
 </button>
