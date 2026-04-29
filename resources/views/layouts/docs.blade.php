@@ -12,9 +12,42 @@
     @endproduction
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $pageTitle }} · {{ $projectConfig['label'] ?? ucfirst($project) }} · Corepine</title>
 
-    @include('partials.theme-head')
+    @php
+        $packageLabel = $projectConfig['label'] ?? ucfirst($project);
+        $packageDesc  = $projectConfig['seo_description'] ?? ($projectConfig['description'] ?? '');
+        $seoTitle     = $pageTitle . ' · ' . $packageLabel . ' · Corepine';
+        $previewPath  = 'assets/' . $project . '/preview.png';
+        $ogImage      = file_exists(public_path($previewPath))
+            ? asset($previewPath)
+            : asset('assets/' . $project . '/centered-modal-light.png');
+    @endphp
+
+    <x-seo
+        :title="$seoTitle"
+        :description="$packageDesc"
+        :image="$ogImage"
+        type="article"
+        :json-ld="[
+            '@context' => 'https://schema.org',
+            '@type' => 'TechArticle',
+            'name' => $seoTitle,
+            'description' => $packageDesc,
+            'url' => request()->url(),
+            'isPartOf' => [
+                '@type' => 'SoftwareApplication',
+                'name' => 'Corepine ' . $packageLabel,
+                'applicationCategory' => 'DeveloperApplication',
+                'operatingSystem' => 'PHP',
+                'url' => url('/' . $project . '/docs'),
+                'author' => [
+                    '@type' => 'Organization',
+                    'name' => 'Corepine',
+                    'url' => 'https://corepine.dev',
+                ],
+            ],
+        ]"
+    />
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">

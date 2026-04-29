@@ -12,8 +12,26 @@
     @endproduction
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Corepine · Built, tested, and verified Laravel tools</title>
-    <meta name="description" content="Corepine builds tested and verified Laravel tools you can ship without rebuilding the same product flows from scratch.">
+
+    <x-seo
+        title="Corepine —  Beautiful Laravel tools and packages for Inertia.js, Livewire & PHP"
+        description="Production-ready Laravel packages for Inertia.js, Livewire, and modern PHP apps. Modals, UI flows, and developer tools — built, tested, and ready to ship."
+        :image="asset('assets/modal/centered-modal-light.png')"
+        :json-ld="[
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => 'Corepine',
+            'url' => 'https://corepine.dev',
+            'description' => 'Open-source Laravel packages for Inertia.js, Livewire, and PHP applications.',
+            'logo' => asset('brand/corepine-logo-mark.svg'),
+            'sameAs' => ['https://github.com/corepine'],
+        ]"
+    />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
 
     @include('partials.theme-head')
 
