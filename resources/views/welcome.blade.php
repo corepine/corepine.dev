@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <x-seo
-        title="Corepine —  Beautiful Laravel tools and packages for Inertia.js, Livewire & PHP"
+        title="Corepine — Production-Ready Laravel Packages & Tools"
         description="Production-ready Laravel packages for Inertia.js, Livewire, and modern PHP apps. Modals, UI flows, and developer tools — built, tested, and ready to ship."
         :image="asset('assets/modal/centered-modal-light.png')"
         :json-ld="[
