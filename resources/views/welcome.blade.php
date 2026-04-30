@@ -70,7 +70,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="#documentation" class="text-zinc-600 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-zinc-50">Documentation</a>
         </nav>
 
-        <a href="/modal/docs" class="hidden border border-teal-600 bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-500 md:inline-flex">
+        <a href="/docs/modal" class="hidden border border-teal-600 bg-teal-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-teal-500 md:inline-flex">
             Modal docs
         </a>
 
@@ -109,7 +109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="relative mx-auto w-full max-w-7xl px-4 pt-16 pb-12 sm:px-6 lg:px-8 lg:pt-20 lg:pb-16">
             <div class="mx-auto max-w-4xl text-center">
-                <a href="/modal/docs" class="page-reveal inline-flex items-center gap-3 border border-teal-200 bg-white/90 px-3 py-2 text-sm font-medium text-zinc-700 shadow-sm transition hover:border-teal-300 hover:text-zinc-950 dark:border-teal-900/70 dark:bg-zinc-950/80 dark:text-zinc-200 dark:hover:border-teal-700 dark:hover:text-zinc-50" style="--reveal-order: 1;">
+                <a href="/docs/modal" class="page-reveal inline-flex items-center gap-3 border border-teal-200 bg-white/90 px-3 py-2 text-sm font-medium text-zinc-700 shadow-sm transition hover:border-teal-300 hover:text-zinc-950 dark:border-teal-900/70 dark:bg-zinc-950/80 dark:text-zinc-200 dark:hover:border-teal-700 dark:hover:text-zinc-50" style="--reveal-order: 1;">
                     <span class="inline-flex items-center gap-2 bg-teal-500 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-3.5 w-3.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m13.5 4.5-7.5 12h6l-1.5 6 7.5-12h-6l1.5-6Z" />
@@ -139,7 +139,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <a href="#products" class="inline-flex items-center justify-center border border-zinc-950 bg-zinc-950 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 dark:border-zinc-50 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200">
                         Explore tools
                     </a>
-                    <a href="/modal/docs" class="inline-flex items-center justify-center gap-2 border border-zinc-300 bg-white/90 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950/80 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
+                    <a href="/docs/modal" class="inline-flex items-center justify-center gap-2 border border-zinc-300 bg-white/90 px-6 py-3 text-sm font-semibold text-zinc-800 transition hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-950/80 dark:text-zinc-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-900">
                         View Modal docs
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.75 21 12m0 0-3.75 3.25M21 12H3" />
@@ -151,7 +151,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
 
             <div class="page-reveal relative mx-auto mt-16 max-w-6xl" style="--reveal-order: 6;">
-                <div class="overflow-hidden rounded-[2rem] border border-zinc-200 bg-white/90 p-3 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.28)] backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
+                <div class="overflow-hidden rounded-4xl border border-zinc-200 bg-white/90 p-3 shadow-[0_24px_80px_-40px_rgba(15,23,42,0.28)] backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
                     <div class="overflow-hidden rounded-[1.6rem] border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
                         <div class="flex items-center justify-between border-b border-zinc-200 px-5 py-3 dark:border-zinc-800">
                             <div class="flex items-center gap-2">
@@ -160,7 +160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="h-2.5 w-2.5 rounded-full bg-teal-400 dark:bg-teal-500"></span>
                                 <span class="ml-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">corepine/modal</span>
                             </div>
-                            <a href="/modal/docs" class="text-sm font-medium text-teal-700 transition hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200">
+                            <a href="/docs/modal" class="text-sm font-medium text-teal-700 transition hover:text-teal-600 dark:text-teal-300 dark:hover:text-teal-200">
                                 Open docs
                             </a>
                         </div>
@@ -281,7 +281,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
                 <div class="grid gap-4 md:grid-cols-3">
                     <figure class="border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
-                        <div class="aspect-[4/3] overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+                        <div class="aspect-4/3 overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
                             <img
                                 src="{{ asset('assets/modal/centered-modal-light.png') }}"
                                 alt="Centered modal screenshot"
@@ -297,7 +297,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </figure>
 
                     <figure class="border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
-                        <div class="aspect-[4/3] overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+                        <div class="aspect-4/3 overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
                             <img
                                 src="{{ asset('assets/modal/bottom-sheet-light.png') }}"
                                 alt="Bottom sheet screenshot"
@@ -313,7 +313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </figure>
 
                     <figure class="border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950">
-                        <div class="aspect-[4/3] overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
+                        <div class="aspect-4/3 overflow-hidden border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900">
                             <img
                                 src="{{ asset('assets/modal/drawer-right-light.png') }}"
                                 alt="Drawer modal screenshot"
